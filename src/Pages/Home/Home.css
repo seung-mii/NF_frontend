@@ -1,0 +1,137 @@
+/* ALL */
+.home p {
+  padding: 5px 0px;
+  margin: 5px 0px;
+}
+
+.home hr {
+  border: 1.5px solid #bcbcbc41;
+}
+
+.home img {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.home button {
+  width: 40%;
+  padding: 8px;
+  margin: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background-color: #47647C;
+  border: 2px solid #47647C;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* HOME */
+.home {
+  color: #47647C;
+  width: 100%;
+  font-size: 12px;
+  margin: auto 0;
+}
+
+.home .main {
+  width: 100%;
+  margin: auto;
+}
+
+.home .header {
+  margin: 15px 30px;
+  font-size: 17px;
+  font-weight: 900;
+  justify-content: space-between;
+}
+
+.home .header span {
+  font-weight: 900;
+  vertical-align: middle;
+  float: right;
+  cursor: pointer;
+}
+
+.home .type {
+  display: flex;
+}
+
+.home .type p {
+  display: flex;
+  margin: 5px 10px;
+  color: #bcbcbc;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.home .type p:first-child {
+  margin-left: 30px;
+  color: #47647C;
+}
+
+.home .board {
+  width: 82%;
+  color: #000000;
+  margin: 10px 20px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background-color: #d7e9f75d;
+}
+
+.home .board .user img {
+  width: 50px;
+  height: 50px;
+  padding-top: 5px;
+  border-radius: 100%;
+}
+
+.home .board .user {
+  display: flex;
+  width: 100%;
+}
+
+.home .board .user .name {
+  font-size: 15px;
+  padding: 7px 0px 0px 0px;
+}
+
+.home .board .user .date {
+  padding-top: 0px;
+}
+
+.home .board .user .name,
+.home .board .location,
+.home .board .restaurant {
+  display: flex;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.home .board .title {
+  padding: 0px;
+  margin: 15px 0px 3px 0px;
+  font-size: 15px;
+}
+
+.home .board .content {
+  margin-bottom: 15px;
+}
+
+.home .board .location span,
+.home .board .restaurant span {
+  margin-right: 5px;
+  padding-top: 4px;
+}
+
+.home .btn {
+  text-align: center;
+}
+
+.home .primary {
+  color: #47647C;
+  background-color: transparent;
+  border: 2px solid #47647C;
+}

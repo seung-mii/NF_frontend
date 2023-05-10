@@ -1,0 +1,166 @@
+/* ALL */
+.entire p {
+  padding: 5px 0px;
+  margin: 5px 0px;
+}
+
+.entire hr {
+  border: 1.5px solid #bcbcbc41;
+}
+
+.entire img {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+input {
+  width: 80%;
+  height: 20px;
+  font-size: 12px;
+  padding: 5px 20px;
+  margin: 0px 5px 0px 10px;
+  outline: none;
+  border: 0px;
+  border-radius: 50px;
+  background-color: #bcbcbc21;
+}
+
+/* BOARD */
+.entire {
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.entire .main {
+  width: 100%;
+  margin: auto;
+}
+
+.entire .header {
+  margin: 10px 30px;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.entire .header span {
+  display: inline-block;
+  color: #47647C;
+  padding-top: 5px;
+  font-weight: 900;
+  justify-content: space-between;
+}
+
+.entire .header span#basket {
+  float: right;
+}
+
+.entire .board,
+.entire .ing {
+  width: 82%;
+  color: #000000;
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background-color: #d7e9f75d;
+}
+
+.entire .ing {
+  padding: 10px 20px 20px 20px;
+}
+
+.entire .board .user img {
+  width: 50px;
+  height: 50px;
+  padding-top: 5px;
+  border-radius: 100%;
+}
+
+.entire .board .user {
+  display: flex;
+  width: 100%;
+}
+
+.entire .board .user .name {
+  font-size: 15px;
+  padding: 7px 0px 0px 0px;
+}
+
+.home .board .user .date {
+  padding-top: 0px;
+}
+
+.entire .board .user .name,
+.entire .board .location,
+.entire .board .restaurant {
+  display: flex;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.entire .board .title {
+  padding: 0px;
+  margin: 15px 0px 3px 0px;
+  font-size: 15px;
+}
+
+.entire .board .content {
+  margin-bottom: 15px;
+}
+
+.entire .board .location span,
+.entire .board .restaurant span {
+  margin-right: 5px;
+  padding-top: 4px;
+}
+
+.entire .ing .users {
+  display: flex;
+}
+
+.entire .ing .user img,
+.entire .comment .user img {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.entire .ing h4 {
+  margin: 10px 0px;
+}
+
+.entire .board .user,
+.entire .ing .user,
+.entire .comment .user {
+  display: flex;
+  width: 100%;
+}
+
+.entire .comment {
+  padding: 10px;
+  width: 90%;
+  margin: auto;
+}
+
+.entire .comment .user p {
+  font-weight: 700;
+}
+
+.entire .input {
+  width: 100%;
+  margin: auto;
+}
+
+.input {
+  /* position: relative;
+  transform: translateY(-100%); */
+}
+
+.input span {
+  color: #47647C;
+  font-weight: 700;
+  vertical-align: middle;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Board.css';
+import '../../Css/Meeting/Board.css';
 import profile from '../../Images/profile.png';
 
 function Board() {

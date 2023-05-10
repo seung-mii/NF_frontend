@@ -1,5 +1,5 @@
 import React from 'react';
-import './Make.css';
+import '../../Css/Meeting/Make.css';
 
 function Make() {
   return (

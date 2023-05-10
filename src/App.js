@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './Pages/Home/Home.js';
-import Make from './Pages/Meeting/Make.js';
-import Board from './Pages/Meeting/Board.js';
-import Check from './Pages/Restaurant/Check.js';
-import NotFound from './Pages/NotFound';
+import Home from './Js/Home/Home.js';
+import Make from './Js/Meeting/Make.js';
+import Board from './Js/Meeting/Board.js';
+import Check from './Js/Restaurant/Check.js';
+import NotFound from './Js/NotFound/NotFound.js';
 
 function App() {
   return (

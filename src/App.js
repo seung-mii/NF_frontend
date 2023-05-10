@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Pages/Home/Home.js';
 import Make from './Pages/Meeting/Make.js';
 import Board from './Pages/Meeting/Board.js';
+import Check from './Pages/Restaurant/Check.js';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/make" element={<Make />}></Route>
+        <Route path="/check" element={<Check />}></Route>
         <Route path="/board" element={<Board />}></Route>
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,118 @@
+/* ALL */
+.check h4 {
+  padding: 5px 0px;
+  margin: 5px 10px;
+}
+
+.check p {
+  padding: 5px 0px;
+  margin: 5px 0px;
+}
+
+.check hr {
+  border: 1.5px solid #bcbcbc41;
+}
+
+.check input {
+  border: 0px;
+  font-size: 12px;
+  outline: none;
+}
+
+.check img {
+  width: 85px;
+  height: 85px;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+
+.check button {
+  width: 100px;
+  padding: 8px 10px;
+  margin: 0px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  background-color: #47647C;
+  border: 3px solid #47647C;
+  border-radius: 10px;
+  cursor: pointer;
+  float: right;
+}
+
+/* CHECK */
+.check {
+  width: 100%;
+  font-size: 15px;
+  margin: auto 0;
+}
+
+.check .main {
+  width: 100%;
+  margin: auto;
+}
+
+.check .header {
+  color: #47647C;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.check .header span {
+  float: left;
+  color: #47647C;
+  font-weight: 900;
+  padding-top: 3px;
+  margin-left: 30px;
+}
+
+.check .header h4 {
+  font-size: 17px;
+}
+
+.check .type {
+  display: flex;
+}
+
+.check .type p {
+  display: flex;
+  margin: 5px 10px;
+  color: #bcbcbc;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.check .type p:first-child {
+  margin-left: 30px;
+  color: #47647C;
+}
+
+.check .restaurant {
+  display: flex;
+  margin: 15px 20px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  background-color: #d7e9f75d;
+}
+
+.check .restaurant .name,
+.check .restaurant .tip,
+.check .restaurant .least {
+  display: flex;
+}
+
+.check .restaurant .name h4 {
+  font-size: 17px;
+  padding: 0px;
+}
+
+.check .restaurant .price {
+  width: 100%;
+}
+
+.check .restaurant p,
+.check .restaurant strong {
+  padding: 2px 5px;
+  margin: 2px 5px;
+}

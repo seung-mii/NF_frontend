@@ -1,0 +1,28 @@
+.signup-main-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: bold;
+  color: #47647C;
+  margin-top: 170px;
+}
+
+.certification {
+  display: flex;
+  align-items: center;
+}
+
+.certification button {
+  margin-left: 10px;
+}
+
+.yes-account {
+  font-weight: 700;
+  color: #47647C;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.login-btn {
+  margin-left: 305px;
+}

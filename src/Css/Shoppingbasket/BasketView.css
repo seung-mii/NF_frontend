@@ -1,0 +1,121 @@
+/* 리스트 전체 */
+.bvlist {
+  height: 74vh;
+
+  background-color: "background.paper";
+  overflow: auto;
+  min-width: 100%;
+  font-size: 15px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+/* 입금 전, 주문 취소 버튼 div */
+.bvlistitem {
+  display: flex;
+  flex-direction: column;
+  width: 100;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* .divider {
+  background: rgba(188, 188, 188, 0.41);
+} */
+
+/* 리스트 좌 div  */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+/* 이미지와 사용자 이름 */
+.userinfo .top {
+  display: flex;
+  flex-direction: row;
+}
+.top .bvicon {
+  color: #47647c;
+  font-size: 50px;
+  /* height: 50px;
+  width: 50px; */
+}
+.top .p {
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+/* 알리오올리오 2개 */
+.mqp {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}
+/* 총가격 15000원 */
+.userinfo .pp {
+  font-size: 12px;
+
+  margin: 5px;
+}
+
+/* .userinfo .typo {
+  font-size: 12px;
+} */
+
+/* 전체페이지 */
+.bvcontainer {
+  font-size: 17px;
+  /* font-weight: bold; */
+}
+/* 페이지 상단 */
+.bv-header {
+  height: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+/* 식당이름 */
+.bv-header .resname {
+  font-size: 15px;
+  font-weight: 900;
+}
+/* 주문남은시간 */
+.bvtext {
+  font-size: 12px;
+  font-weight: 900;
+}
+.hr {
+  border: 1.5px solid #bcbcbc41;
+  margin-bottom: 0px;
+}
+
+/* 하단 */
+.bv-footer {
+  font-size: 17px;
+  font-weight: bold;
+}
+.bv-footer .bv-btt {
+  background-color: #47647c;
+  width: 85%;
+  height: 50px;
+  font-size: 17px;
+  /* font-weight: bold; */
+}
+.bv-footer .bv-btt:focus {
+  background-color: #47647c;
+  width: 85%;
+  height: 50px;
+  font-size: 17px;
+  /* font-weight: bold; */
+}
+.bv-footer .bv-btt:hover {
+  background-color: #47647c;
+  width: 85%;
+  height: 50px;
+  font-size: 17px;
+  /* font-weight: bold; */
+}

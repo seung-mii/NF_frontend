@@ -1,0 +1,92 @@
+/* 전체페이지 */
+.mdcontainer {
+}
+/* .rescontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* 식당 이름 있는 헤더 부분 */
+.md-header {
+  height: 83vh;
+
+  background-color: "background.paper";
+  overflow: auto;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* 헤더부분 식당이름 텍스트 */
+.md-header .mdtext {
+  font-weight: 900;
+  text-align: center;
+  font-size: 17px;
+}
+/* 헤더부분 이미지 */
+.image {
+  height: 440px;
+}
+.md-header .image {
+}
+
+/* 우돌돌피자 */
+.fnbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+}
+/* 15000원 */
+.fpbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 12px;
+  /* font-weight: bold; */
+}
+.fpbox .p {
+  margin-top: -4px;
+}
+/* 1개 */
+.fqbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+}
+/* + - 버튼 */
+.md-header .fqbox .qicon {
+  color: white;
+  background-color: #47647c;
+  border-radius: 50%;
+}
+
+/* 하단 컨테이너 */
+.footer-container {
+  position: relative;
+  bottom: 0.5;
+  width: 100%;
+}
+.footer-container .btt {
+  background-color: #47647c;
+  width: 85%;
+  height: 50px;
+}
+.footer-container .btt:focus {
+  background-color: #47647c;
+  width: 85%;
+  height: 50px;
+}
+.footer-container .btt:hover {
+  background-color: #47647c;
+  width: 85%;
+  height: 50px;
+}
+.footer-container .text {
+  font-weight: bold;
+  font-size: 17px;
+}

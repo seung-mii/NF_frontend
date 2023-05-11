@@ -21,13 +21,15 @@ export function call(api, method, request) {
     options.body = JSON.stringify(request);
   }
 
-  return fetch(options.url, options).then((response) =>
-    response.json().then((json) => {
-      if (!response.ok) {
-        return Promise.reject(json);
-      }
-      return json;
-    }))
+  return fetch(options.url, options)
+    .then((response) =>
+      response.json().then((json) => {
+        if (!response.ok) {
+          return Promise.reject(json);
+        }
+        return json;
+      })
+    )
     .catch((error) => {
       console.log("Oops!");
       console.log(error.status);
@@ -40,16 +42,15 @@ export function call(api, method, request) {
 
 // 로그인을 위한 API 서비스 메소드 signin
 export function login(userDTO) {
-  return call("/api/member/login", "POST", userDTO)
-    .then((response) => {
-      if (response.token) {
-        // local 스토리지에 토큰 저장
-        localStorage.setItem("ACCESS_TOKEN", response.token);
+  return call("/api/member/login", "POST", userDTO).then((response) => {
+    if (response.token) {
+      // local 스토리지에 토큰 저장
+      localStorage.setItem("ACCESS_TOKEN", response.token);
 
-        // token이 존재하는 경우 todo 화면으로 리디렉트
-        window.location.href = "/";
-      }
-  })
+      // token이 존재하는 경우 todo 화면으로 리디렉트
+      window.location.href = "/";
+    }
+  });
 }
 
 // 회원가입 요청
@@ -64,7 +65,7 @@ export function join(userDTO) {
     .catch((error) => {
       console.log("Oops!");
       console.log(error.status);
-      
+
       if (error.status === 403) {
         window.location.href = "/api/member/join";
       }

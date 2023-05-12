@@ -142,6 +142,26 @@ function Home() {
           </div>
         )}
       </div>
+      <div className='footer'>
+        <div className='option'>
+          <a href='/home'>
+            <span class="material-symbols-rounded">home</span>
+            <h2>홈</h2>
+          </a>
+        </div>
+        <div className='option'>
+          <a href='/make'>
+            <span class="material-symbols-rounded">add_circle</span>
+            <h2>모임 만들기</h2>
+          </a>
+        </div>
+        <div className='option'>
+          <a href='/mypage'>
+            <span class="material-symbols-rounded">person</span>
+            <h2>마이페이지</h2>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

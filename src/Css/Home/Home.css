@@ -69,13 +69,16 @@
 
 .home .type p:first-child {
   margin-left: 30px;
+}
+
+.home .type p.this {
   color: #47647C;
 }
 
 .home .board {
   width: 82%;
   color: #000000;
-  margin: 10px 20px;
+  margin: 10px 20px 20px 20px;
   padding: 10px 20px;
   border-radius: 15px;
   background-color: #d7e9f75d;

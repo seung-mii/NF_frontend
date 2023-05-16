@@ -1,17 +1,10 @@
 /* 전체페이지 */
 .mdcontainer {
 }
-/* .rescontainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
 
 /* 식당 이름 있는 헤더 부분 */
 .md-header {
   height: 83vh;
-
   background-color: "background.paper";
   overflow: auto;
   min-width: 100%;
@@ -25,10 +18,9 @@
   font-size: 17px;
 }
 /* 헤더부분 이미지 */
-.image {
-  height: 440px;
-}
+
 .md-header .image {
+  height: 585px;
 }
 
 /* 우돌돌피자 */
@@ -45,7 +37,6 @@
   flex-direction: row;
   justify-content: center;
   font-size: 12px;
-  /* font-weight: bold; */
 }
 .fpbox .p {
   margin-top: -4px;
@@ -67,26 +58,30 @@
 
 /* 하단 컨테이너 */
 .footer-container {
-  position: relative;
-  bottom: 0.5;
-  width: 100%;
+  font-size: 17px;
+  font-weight: 700;
 }
 .footer-container .btt {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 8px;
 }
 .footer-container .btt:focus {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 8px;
 }
 .footer-container .btt:hover {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
-}
-.footer-container .text {
-  font-weight: bold;
   font-size: 17px;
+  font-weight: 700;
+  border-radius: 8px;
 }

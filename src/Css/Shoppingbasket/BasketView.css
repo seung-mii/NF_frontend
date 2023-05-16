@@ -1,7 +1,6 @@
 /* 리스트 전체 */
 .bvlist {
   height: 74vh;
-
   background-color: "background.paper";
   overflow: auto;
   min-width: 100%;
@@ -18,10 +17,6 @@
   font-size: 15px;
 }
 
-/* .divider {
-  background: rgba(188, 188, 188, 0.41);
-} */
-
 /* 리스트 좌 div  */
 .userinfo {
   display: flex;
@@ -36,8 +31,6 @@
 .top .bvicon {
   color: #47647c;
   font-size: 50px;
-  /* height: 50px;
-  width: 50px; */
 }
 .top .p {
   font-size: 15px;
@@ -56,18 +49,12 @@
 /* 총가격 15000원 */
 .userinfo .pp {
   font-size: 12px;
-
   margin: 5px;
 }
-
-/* .userinfo .typo {
-  font-size: 12px;
-} */
 
 /* 전체페이지 */
 .bvcontainer {
   font-size: 17px;
-  /* font-weight: bold; */
 }
 /* 페이지 상단 */
 .bv-header {
@@ -96,26 +83,29 @@
 /* 하단 */
 .bv-footer {
   font-size: 17px;
-  font-weight: bold;
+  font-weight: 700;
 }
 .bv-footer .bv-btt {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
   font-size: 17px;
-  /* font-weight: bold; */
+  font-weight: 700;
+  border-radius: 8px;
 }
 .bv-footer .bv-btt:focus {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
   font-size: 17px;
-  /* font-weight: bold; */
+  font-weight: 700;
+  border-radius: 8px;
 }
 .bv-footer .bv-btt:hover {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
   font-size: 17px;
-  /* font-weight: bold; */
+  font-weight: 700;
+  border-radius: 8px;
 }

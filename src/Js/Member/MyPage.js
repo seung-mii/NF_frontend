@@ -1,15 +1,27 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "../../Css/Member/MyPage.css";
-
+import { call, logout, dropoutUser } from "../../Service/ApiService";
 function MyPage() {
-  const logout = () => {
-    window.location.href = "/";
-  };
-
+  const [user, setUser] = useState({ email: "", name: "" });
+  useEffect(() => {
+    call("/api/member/getMember", "GET", null).then((response) =>
+      setUser({ email: response.data.email, name: response.data.name })
+    );
+  }, []);
   const myposts = () => {
     window.location.href = "/myposts";
   };
-
+  const handleLogout = () => {
+    logout();
+    window.location.href = "/";
+  };
+  const handleDropoutUser = () => {
+    if (window.confirm("회원 탈퇴하시겠습니까?") == true) {
+      alert("회원탈퇴 되었습니다.");
+      dropoutUser();
+      window.location.href = "/";
+    }
+  };
   return (
     <>
       <div className="header">
@@ -20,9 +32,9 @@ function MyPage() {
         {/* <img src="" alt=""></img> */}
         <div className="img"></div>
         <div className="mypage-explain">
-          <div className="username">Username</div>
-          <div>매너점수 : 70점</div>
-          <div>학교 인증 : hehe@kumoh.ac.kr</div>
+          <div className="username">{user.name}</div>
+
+          <div>학교 인증 : abc@kumoh.ac.kr</div>
         </div>
       </div>
       <div className="button-container2">
@@ -39,9 +51,13 @@ function MyPage() {
           </div>
           <div className="blue-container">
             <li className="mypage-title">회원</li>
-            <li className="mypage-content">회원정보</li>
-            <li className="mypage-content">로그아웃</li>
-            <li className="mypage-content">회원탈퇴</li>
+            <li className="mypage-content">회원정보수정</li>
+            <li className="mypage-content" onClick={() => handleLogout()}>
+              로그아웃
+            </li>
+            <li className="mypage-content" onClick={() => handleDropoutUser()}>
+              회원탈퇴
+            </li>
           </div>
         </ul>
       </div>

@@ -2,6 +2,7 @@ import { call } from "../../Service/ApiService";
 import BasketViewHost from "./BascketViewHost";
 import BasketView from "./BasketView";
 import { useEffect, useState } from "react";
+
 function Basket() {
   const [user, setUser] = useState({ email: "", name: "" });
   const hostemail = "dmb225@kumoh.ac.kr";
@@ -14,6 +15,7 @@ function Basket() {
     setUser({ email: userEmail });
     if (user.email === hostemail) setIsHost(true);
   }, [user.email, hostemail]);
+
   const content = isHost ? <BasketViewHost /> : <BasketView />;
   return content;
 }

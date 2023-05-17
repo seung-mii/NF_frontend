@@ -11,17 +11,12 @@
   align-items: center;
   font-size: 17px;
 }
-/* .nav .container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-} */
 .icon {
   margin-left: 30px;
   font-weight: 900;
   padding-top: 7px;
 }
-.title {
+.nav .title {
   width: 100%;
   position: absolute;
   text-align: center;

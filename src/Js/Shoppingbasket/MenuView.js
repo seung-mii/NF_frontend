@@ -5,12 +5,10 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import { ListItem } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
-// import Divider from "@mui/material/Divider";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import "../../Css/Shoppingbasket/MenuView.css";
-// import { LineWeight } from "@mui/icons-material";
 function MenuView() {
   //식당 정보도 백엔드에서 가져온다.
   const res = { name: "구미가당김", id: "1" };
@@ -98,10 +96,10 @@ function MenuView() {
   };
   const detailFood = (item) => {
     console.log(item);
-    window.location.href = `/menudetail/${res.name}/${item.name}`;
+    window.location.href = `/menudetail/${res.name}/${item.id}`;
   };
   const basketViewFunc = () => {
-    window.location.href = "/basketviewhost";
+    window.location.href = "/basket";
   };
   var menulistitems = menulist.length > 0 && (
     <List className="list">
@@ -116,7 +114,6 @@ function MenuView() {
               detailFood(item);
             }}
             className="listitem"
-            // style={{ margin: "0px 10px" }}
           >
             {/* 아바타 */}
             <ListItemAvatar>
@@ -125,7 +122,6 @@ function MenuView() {
                 alt={item.name}
                 src={item.src}
                 className="avatar"
-                // sx={{ height: "90px", width: "90px", borderRadius: "8px" }}
               />
             </ListItemAvatar>
             {/* 텍스트 */}
@@ -149,10 +145,8 @@ function MenuView() {
                 </React.Fragment>
               }
               className="listitemtext"
-              // style={{ margin: "10px" }}
             />
           </ListItem>
-          {/* <Divider className="divider" variant="middle" /> */}
         </>
       ))}
     </List>
@@ -163,13 +157,10 @@ function MenuView() {
       <div className="mv-header">
         <p className="text">{res.name}</p>
       </div>
-      <hr
-        className="hr"
-        //  style={{ border: "1.5px solid #bcbcbc41", marginBottom: "0px" }}
-      />
+      <hr className="hr" />
 
       {menulistitems}
-      {/* <hr /> */}
+
       <div className="footer-container">
         <Stack
           direction="row"
@@ -178,7 +169,7 @@ function MenuView() {
           gap={1}
         >
           <Button className="btt" variant="contained" onClick={basketViewFunc}>
-            <p className="text">공동 장바구니 보기</p>
+            공동 장바구니 보기
           </Button>
         </Stack>
       </div>

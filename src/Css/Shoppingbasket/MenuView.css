@@ -7,13 +7,11 @@
   font-size: 15px;
   margin-top: 0px;
   padding-top: 0px;
-  /* margin: 100px; */
 }
 /* 리스트 아이템 음식이름+가격 텍스트*/
 .list .typography {
   display: inline;
   font-size: 12px;
-  /* margin: 10px; */
 }
 .list .divider {
   background: rgba(188, 188, 188, 0.41);
@@ -49,30 +47,35 @@
 
 /* 하단부 버튼 텍스트 */
 .text {
-  /* font-weight: bold; */
   font-size: 17px;
   font-weight: 900;
 }
 .footer-container {
+  font-size: 17px;
+  font-weight: 700;
 }
 /* 하단부의 버튼 */
 .footer-container .btt {
   background-color: #47647c;
   width: 400px;
   height: 50px;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   border-radius: 8px;
 }
 .footer-container .btt :focus {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
   font-size: 17px;
+  font-weight: 700;
+  border-radius: 8px;
 }
 .footer-container .btt :hover {
   background-color: #47647c;
-  width: 85%;
+  width: 400px;
   height: 50px;
   font-size: 17px;
+  font-weight: 700;
+  border-radius: 8px;
 }

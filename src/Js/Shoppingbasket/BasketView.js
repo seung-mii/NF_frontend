@@ -6,13 +6,16 @@ import { ListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Divider from "@mui/material/Divider";
 import "../../Css/Shoppingbasket/BasketView.css";
 function BasketView() {
+  //board의 아이디 넘겨받아야함
+  //특정 board 조회
   const [title, setTitle] = useState("장바구니 조회");
   const myInfo = { id: "2" };
   const res = { name: "구미가당김", id: "1" };
+  //board의 res id로 특정 음식점 정보 조회
   const orderInfo = { id: "1", orderTime: new Date(2023, 4, 6, 20, 10) };
+  //board의 정보 조회
   //6시 35분이면 2 55 분에서 3시 40분이 되어야한다.
   // 18 : 35 - 14 : 55 분에서 분을 뺏을때 음수가 나오면 시간 한시간을 내리고 60분을 더해서 뺄셈을 해야함
   // 17: 95 이런식으로
@@ -27,7 +30,7 @@ function BasketView() {
   // 분을 가져와 분값을 뺀 분을 정해주는 state
   const [second, setSecond] = useState(59 - new Date().getSeconds());
   // 초를 가져와 초값을 뺀 초를 정해주는 state
-
+  //board의 reply list 조회하여 reply 조회
   const userlist = [
     {
       name: "홍길동",
@@ -114,28 +117,10 @@ function BasketView() {
               )
             }
           >
-            {/* <AccountCircleIcon className="bvicon" /> */}
             <div className="userinfo">
-              {/* <Typography>
-                {user.isHost
-                  ? user.name.charAt(0) + "**" + "(방장)"
-                  : user.id == myInfo.id
-                  ? user.name.charAt(0) + "**" + "(나)"
-                  : user.name.charAt(0) + "**"}
-              </Typography> */}
               <div className="top">
-                <AccountCircleIcon
-                  className="bvicon"
-                  // style={{ fontSize: "50px" }}
-                />
-                <p
-                  className="p"
-                  // style={{
-                  //   fontSize: "15px",
-                  //   fontWeight: "700",
-                  //   marginLeft: "6px",
-                  // }}
-                >
+                <AccountCircleIcon className="bvicon" />
+                <p className="p">
                   {user.isHost
                     ? user.name.charAt(0) + "**" + "(방장)"
                     : user.id == myInfo.id
@@ -152,7 +137,6 @@ function BasketView() {
               <p className="pp">총 가격: {user.totalPrice}원</p>
             </div>
           </ListItem>
-          {/* <Divider className="divider" variant="middle" /> */}
         </>
       ))}
     </List>
@@ -186,7 +170,6 @@ function BasketView() {
 
       {userlistitems}
 
-      {/* <hr /> */}
       <div className="bv-footer">
         <Stack
           direction="row"
@@ -194,14 +177,8 @@ function BasketView() {
           justifyContent="center"
           gap={1}
         >
-          {/* <Button
-            variant="contained"
-            style={{ backgroundColor: "#47647C", width: "85%" }}
-          >
-            <p style={{ fontWeight: "bold" }}>입금완료(취소불가)</p> */}
           {/* //나의 id랑 userlist의 id랑 같은걸 찾아서 나의 status 나타내기 */}
           {/* 입금전이면 장바구니 음식을 삭제할 수 있게, 입금확인이면 취소불가 */}
-          {/* </Button> */}
         </Stack>
       </div>
     </div>

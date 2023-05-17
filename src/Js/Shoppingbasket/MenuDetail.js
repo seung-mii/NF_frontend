@@ -4,7 +4,6 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-// import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useParams } from "react-router-dom";
 import "../../Css/Shoppingbasket/MenuDetail.css";
 function MenuDetail() {
@@ -20,7 +19,7 @@ function MenuDetail() {
   //내가 가지고 있으면서 백엔드에게 주어야하는정보는 사용자가 장바구니에 담은 (메뉴의 이름, 수량, 가격) > 총가격 INSERT
   const [quantity, setQuantity] = useState(1);
   const { resname } = useParams();
-  const { foodname } = useParams();
+  const { foodid } = useParams();
   const [totalCost, setTotalCost] = useState(food.price * quantity);
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
   useEffect(() => {
@@ -52,14 +51,11 @@ function MenuDetail() {
   return (
     <div className="mdcontainer">
       <Nav title={title} />
-      {/* <div className="rescontainer">
-        <p className="mdtext">{resname}</p>
-      </div> */}
-      {/* <hr /> */}
+
       <div className="md-header">
         <p className="mdtext">{resname}</p>
-        {/* <hr /> */}
-        <img className="image" alt={foodname} src={food.src} />
+
+        <img className="image" alt={foodid} src={food.src} />
         <div className="fnbox">
           <p>{food.name}</p>
         </div>
@@ -88,7 +84,7 @@ function MenuDetail() {
           gap={1}
         >
           <Button variant="contained" className="btt" onClick={insertMenu}>
-            <p className="text">{buttonText}</p>
+            {buttonText}
           </Button>
         </Stack>
       </div>

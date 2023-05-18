@@ -21,7 +21,7 @@ function SignUp() {
     const password = data.get("password");
     const moneyBank = data.get("money-bank");
     const moneyAccount = data.get("money-account");
-    console.log(moneyAccount);
+    // console.log(moneyAccount);
     signup({
       name: username,
       email: email,
@@ -29,9 +29,7 @@ function SignUp() {
       bank: moneyBank,
       bank_account_number: moneyAccount,
     })
-      .then((response) => {
-        alert("회원가입에 성공하였습니다!");
-      })
+      .then((response) => {})
       .catch((error) => {
         alert(error);
       });

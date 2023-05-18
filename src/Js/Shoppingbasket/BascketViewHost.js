@@ -8,11 +8,26 @@ import Typography from "@mui/material/Typography";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "../../Css/Shoppingbasket/BasketView.css";
+import { call } from "../../Service/ApiService";
+import * as AppStorage from "../../AppStorage";
 function BasketViewHost() {
   const [title, setTitle] = useState("장바구니 조회");
-  const myInfo = { id: "1" }; //나의 이메일
+  // const myInfo = { id: "1" }; //나의 이메일
+  const myInfo = { email: "hong@naver.com" }; //나의 이메일
   const [buttonText, setButtonText] = useState("입금 확인 모두 주문하기");
-  const res = { name: "구미가당김", id: "1" };
+  const [res, setRes] = useState({ name: "구미가당김", id: "1" });
+  useEffect(() => {
+    //board_no에 따른 레스토랑 정보 조회
+    call(`/api/restaurant/get/${res.id}`, "GET", null).then((response) =>
+      setRes({
+        id: response.data.id,
+        name: response.data.name,
+        category: response.data.category,
+        delivery_tip: response.data.delivery_tip,
+        min_order_price: response.data.min_order_price,
+      })
+    );
+  }, []);
   const orderInfo = { id: "1", orderTime: new Date(2023, 4, 4, 18, 0) };
   //6시 35분이면 2 55 분에서 3시 40분이 되어야한다.
   // 18 : 35 - 14 : 55 분에서 분을 뺏을때 음수가 나오면 시간 한시간을 내리고 60분을 더해서 뺄셈을 해야함
@@ -58,9 +73,10 @@ function BasketViewHost() {
       name: "홍길동",
       menulist: [{ name: "알리오올리오", quantity: 2, price: 22000 }],
       id: "1",
+      email: "1@naver.com",
       totalPrice: 22000,
       confirmed: true,
-      isHost: true,
+      isHost: false,
     },
     //id가 이메일로 변경되어야함.
     //total price 프론트에서 계산
@@ -70,6 +86,7 @@ function BasketViewHost() {
       name: "이순신",
       menulist: [{ name: "명란크림 리조또", quantity: 1, price: 15000 }],
       id: "2",
+      email: "12@naver.com",
       totalPrice: 15000,
       confirmed: false,
       isHost: false,
@@ -82,6 +99,7 @@ function BasketViewHost() {
         { name: "명란크림 리조또", quantity: 2, price: 15000 },
       ],
       id: "3",
+      email: "13@naver.com",
       totalPrice: 60000,
       confirmed: true,
       isHost: false,
@@ -93,6 +111,7 @@ function BasketViewHost() {
         { name: "명란크림 리조또", quantity: 1, price: 15000 },
       ],
       id: "4",
+      email: "14@naver.com",
       totalPrice: 30000,
       confirmed: false,
       isHost: false,
@@ -104,9 +123,10 @@ function BasketViewHost() {
         { name: "우돌돌피자", quantity: 1, price: 15000 },
       ],
       id: "5",
+      email: "hong@naver.com",
       totalPrice: 30000,
       confirmed: true,
-      isHost: false,
+      isHost: true,
     },
   ];
   //나의 id와 비교하여 나이면 (나) 이표시 필요
@@ -190,13 +210,13 @@ function BasketViewHost() {
               <div className="top">
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
-                  {user.isHost && user.id == myInfo.id
+                  {user.isHost && user.email === myInfo.email
                     ? user.name.charAt(0) + "**" + "(나: 방장)"
                     : user.name.charAt(0) + "**"}
                 </p>
               </div>
               {user.menulist.map((menu, idx) => (
-                <p className="mqp">
+                <p className="mqp" key={menu.id}>
                   {menu.name} {menu.quantity}개
                 </p>
               ))}

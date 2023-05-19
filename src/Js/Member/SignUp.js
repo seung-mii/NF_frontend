@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Grid, Container } from "@material-ui/core";
 import { signup } from "../../Service/ApiService";
 import "../../Css/Member/SignUp.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { InputLabel } from "@mui/material";
-function SignUp() {
-  const [bank, setBank] = React.useState("");
 
+function SignUp() {
+  const [bank, setBank] = useState("");
+  const [text, setText] = useState("계정 생성");
   const handleChange = (event) => {
     setBank(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    setText("회원가입 중입니다...");
     const data = new FormData(event.target);
     const username = data.get("username");
     const email = data.get("email");
@@ -29,9 +30,14 @@ function SignUp() {
       bank: moneyBank,
       bank_account_number: moneyAccount,
     })
-      .then((response) => {})
+      .then((response) => {
+        setText("회원가입이 완료되었습니다!");
+        window.location.href = "/";
+      })
       .catch((error) => {
-        alert(error);
+        if (error === "email already exist")
+          setText("이미 존재하는 이메일 입니다.");
+        else setText(error);
       });
   };
 
@@ -121,9 +127,10 @@ function SignUp() {
 
           <Grid item xs={12}>
             <button type="submit" color="#E2E9F6" className="login-button">
-              계정생성
+              {text}
             </button>
           </Grid>
+
           <div className="login-btn">
             <a href="/" className="yes-account">
               로그인

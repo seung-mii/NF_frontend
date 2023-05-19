@@ -8,7 +8,7 @@ console.log("hostname", hostname);
 // }
 
 //안드로이드 스튜디오 오류나서 추가한 부분
-backendHost = "http://172.30.204.124:8080";
+backendHost = "http://172.30.206.180:8080";
 
 console.log("backendHost", backendHost);
 export const APL_BASE_URL = `${backendHost}`;

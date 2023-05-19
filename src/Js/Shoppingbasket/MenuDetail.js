@@ -6,6 +6,9 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useParams } from "react-router-dom";
 import "../../Css/Shoppingbasket/MenuDetail.css";
+import { call } from "../../Service/ApiService";
+import * as AppStorage from "../../AppStorage";
+//담기 갯수 ...
 function MenuDetail() {
   const [title, setTitle] = useState("메뉴 조회");
   // id를 이용하여 음식정보를 가져오는 method 필요
@@ -22,6 +25,7 @@ function MenuDetail() {
   const { foodid } = useParams();
   const [totalCost, setTotalCost] = useState(food.price * quantity);
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
+  // const { boardno } = useParams();
   useEffect(() => {
     setTotalCost(food.price * quantity);
     setButtonText(totalCost + "원 담기");
@@ -45,6 +49,15 @@ function MenuDetail() {
     setQuantity(quantity + 1);
   };
   const insertMenu = () => {
+    // var BasketDTO = {
+    //   userEmail: AppStorage.getItem("email"),
+    //   board_no: boardno,
+    //   menu_no: foodid,
+    //   quantity: quantity,
+    // };
+    // call("/api/basket/create", "POST", BasketDTO).then((response) =>
+    //   console.log(response)
+    // );
     window.location.href = "/menuview";
     setButtonText("공동 장바구니에 메뉴를 추가했습니다.");
   };

@@ -83,12 +83,12 @@ export function signup(userDTO) {
     .then((response) => {
       console.log(response);
       if (response.data) {
-        window.location.href = "/";
-        console.log("회원가입 성공");
+        // alert("회원가입에 성공하였습니다!");
+        // window.location.href = "/";
       }
     })
     .catch((error) => {
-      alert(error.error);
+      // alert(error.error);
       return Promise.reject(error.error);
     });
 }

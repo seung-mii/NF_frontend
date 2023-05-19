@@ -10,8 +10,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "../../Css/Shoppingbasket/BasketView.css";
 import { call } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
+//이름말고 이메일을 보여줄까? 메뉴정보,가격계산
 //확인취소, 주문취소, 모두 주문
-function BasketViewHost() {
+function BasketView_notList() {
   const [title, setTitle] = useState("장바구니 조회");
   // const myInfo = { id: "1" }; //나의 이메일
   const myInfo = { email: "hong@naver.com" }; //나의 이메일
@@ -69,106 +70,54 @@ function BasketViewHost() {
       setButtonText("주문이 완료되었습니다.");
     }
   };
-  const userlist_new = [
+  //   id가 basket_no라고 친다
+  const basketlist = [
     {
-      name: "홍길동",
-      name: "알리오올리오",
-      quantity: 2,
-      price: 22000,
-      id: "1",
+      board_no: 1,
+      basket_no: 1,
       email: "12@naver.com",
-      totalPrice: 22000,
+      menu_no: 1,
+      quantity: 1,
       confirmed: true,
-      isHost: false,
+      isHost: true,
     },
     //id가 이메일로 변경되어야함.
     //total price 프론트에서 계산
     //menulist - > food_no & quantity
     //isHost 계산
     {
-      name: "홍길동",
-      id: "1",
-      name: "명란크림 리조또",
-      quantity: 1,
-      price: 15000,
-      email: "12@naver.com",
-      totalPrice: 15000,
-      confirmed: false,
-      isHost: false,
-    },
-    {
-      name: "유재석",
-      id: "2",
-      name: "명란크림 리조또",
-      quantity: 1,
-      price: 15000,
+      board_no: 1,
+      basket_no: 2,
       email: "123@naver.com",
-      totalPrice: 15000,
-      confirmed: false,
-      isHost: false,
-    },
-  ];
-  const userlist = [
-    {
-      name: "홍길동",
-      menulist: [{ name: "알리오올리오", quantity: 2, price: 22000 }],
-      id: "1",
-      email: "1@naver.com",
-      totalPrice: 22000,
+      menu_no: 3,
+      quantity: 2,
       confirmed: true,
-      isHost: false,
-    },
-    //id가 이메일로 변경되어야함.
-    //total price 프론트에서 계산
-    //menulist - > food_no & quantity
-    //isHost 계산
-    {
-      name: "이순신",
-      menulist: [{ name: "명란크림 리조또", quantity: 1, price: 15000 }],
-      id: "2",
-      email: "12@naver.com",
-      totalPrice: 15000,
-      confirmed: false,
-      isHost: false,
+      isHost: true,
     },
     {
-      name: "황진이",
-      menulist: [
-        { name: "까르보나라", quantity: 1, price: 15000 },
-        { name: "우돌돌피자", quantity: 1, price: 15000 },
-        { name: "명란크림 리조또", quantity: 2, price: 15000 },
-      ],
-      id: "3",
-      email: "13@naver.com",
-      totalPrice: 60000,
-      confirmed: true,
-      isHost: false,
-    },
-    {
-      name: "유재석",
-      menulist: [
-        { name: "까르보나라", quantity: 1, price: 15000 },
-        { name: "명란크림 리조또", quantity: 1, price: 15000 },
-      ],
-      id: "4",
-      email: "14@naver.com",
-      totalPrice: 30000,
-      confirmed: false,
-      isHost: false,
-    },
-    {
-      name: "강호동",
-      menulist: [
-        { name: "까르보나라", quantity: 1, price: 15000 },
-        { name: "우돌돌피자", quantity: 1, price: 15000 },
-      ],
-      id: "5",
-      email: "hong@naver.com",
-      totalPrice: 30000,
+      board_no: 1,
+      basket_no: 3,
+      email: "123@naver.com",
+      menu_no: 4,
+      quantity: 1,
       confirmed: true,
       isHost: true,
     },
   ];
+
+  const userlist = [];
+
+  basketlist.forEach((basket) => {
+    const { email, menu_no, quantity } = basket;
+    const existingUser = userlist.find((user) => user.email === email);
+
+    if (existingUser) {
+      existingUser.menulist.push({ menu_no, quantity });
+    } else {
+      userlist.push({ email, menulist: [{ menu_no, quantity }] });
+    }
+  });
+
   //나의 id와 비교하여 나이면 (나) 이표시 필요
   useEffect(() => {
     console.log(orderInfo);
@@ -251,13 +200,13 @@ function BasketViewHost() {
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
                   {user.isHost && user.email === myInfo.email
-                    ? user.name.charAt(0) + "**" + "(나: 방장)"
-                    : user.name.charAt(0) + "**"}
+                    ? user.email.charAt(0) + "**" + "(나: 방장)"
+                    : user.email.charAt(0) + "**"}
                 </p>
               </div>
               {user.menulist.map((menu, idx) => (
                 <p className="mqp" key={menu.id}>
-                  {menu.name} {menu.quantity}개
+                  {menu.menu_no} {menu.quantity}개
                 </p>
               ))}
 
@@ -315,4 +264,4 @@ function BasketViewHost() {
   );
 }
 
-export default BasketViewHost;
+export default BasketView_notList;

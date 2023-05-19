@@ -3,6 +3,7 @@ import BasketViewHost from "./BascketViewHost";
 import BasketView from "./BasketView";
 import { useEffect, useState } from "react";
 import * as AppStorage from "../../AppStorage";
+import BasketView_notList from "./BasketView_notList";
 
 function Basket() {
   const [user, setUser] = useState({ email: "", name: "" });
@@ -17,7 +18,7 @@ function Basket() {
     if (user.email === hostemail) setIsHost(true);
   }, [user.email, hostemail]);
 
-  const content = isHost ? <BasketViewHost /> : <BasketView />;
+  const content = isHost ? <BasketView_notList /> : <BasketView_notList />;
   return content;
 }
 export default Basket;

@@ -3,7 +3,25 @@ import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { getCurrentLocation } from "../native/location";
 
 const KakaoMap = () => {
+  const { kakao } = window;
+  //position은 위도 경도
   const [position, setPosition] = useState({ lat: 33.450701, lng: 126.570667 });
+  //address는 주소
+  const [address, setAddress] = useState(null);
+  const getAddress = (lat, lng) => {
+    const geocoder = new kakao.maps.services.Geocoder(); // 좌표 -> 주소로 변환해주는 객체
+    const coord = new kakao.maps.LatLng(lat, lng); // 주소로 변환할 좌표 입력
+    const callback = function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        setAddress(result[0].address);
+      }
+    };
+    geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+  };
+  const setFullAddress = (lat, lng) => {
+    setPosition(lat, lng);
+    getAddress(position.lat, position.lng);
+  };
   useEffect(() => {
     getCurrentLocation().then(({ lat, lng }) => {
       setPosition({
@@ -26,7 +44,7 @@ const KakaoMap = () => {
         }}
         level={3} // 지도의 확대 레벨
         onClick={(_t, mouseEvent) =>
-          setPosition({
+          setFullAddress({
             lat: mouseEvent.latLng.getLat(),
             lng: mouseEvent.latLng.getLng(),
           })
@@ -42,6 +60,11 @@ const KakaoMap = () => {
             position.lng +
             " 입니다"}
         </p>
+      )}
+      {address && (
+        <div>
+          <p>현재 좌표의 주소는: {address.address_name}</p>
+        </div>
       )}
     </>
   );

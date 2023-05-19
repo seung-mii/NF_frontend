@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import { getCurrentLocation } from "../native/location";
+import { getCurrentLocation } from "../../native/location";
 
-const KakaoMap = () => {
+const MakeMap = () => {
   const { kakao } = window;
   //position은 위도 경도
   const [position, setPosition] = useState({ lat: 33.450701, lng: 126.570667 });
@@ -70,4 +70,4 @@ const KakaoMap = () => {
   );
 };
 
-export default KakaoMap;
+export default MakeMap;

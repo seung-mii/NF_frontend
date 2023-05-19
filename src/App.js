@@ -13,7 +13,7 @@ import Login from "./Js/Member/Login";
 import SignUp from "./Js/Member/SignUp";
 import Basket from "./Js/Shoppingbasket/Basket";
 import MyPage from "./Js/Member/MyPage";
-import KakaoMap from "./components/KakaoMap";
+import MakeMap from "./Js/Meeting/MakeMap";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         <Route path="/menudetail/:resname/:foodid" element={<MenuDetail />} />
         <Route path="/basket" element={<Basket />} />
 
-        <Route path="/map" element={<KakaoMap />} />
+        <Route path="/map" element={<MakeMap />} />
       </Routes>
     </BrowserRouter>
   );

@@ -7,12 +7,27 @@ import Typography from "@mui/material/Typography";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "../../Css/Shoppingbasket/BasketView.css";
+import { call } from "../../Service/ApiService";
+import * as AppStorage from "../../AppStorage";
 function BasketView() {
   //board의 아이디 넘겨받아야함
   //특정 board 조회
   const [title, setTitle] = useState("장바구니 조회");
-  const myInfo = { id: "2" };
-  const res = { name: "구미가당김", id: "1" };
+  // const myInfo = { id: "1" }; //나의 이메일
+  const myInfo = { email: "hong@naver.com" }; //나의 이메일
+  const [res, setRes] = useState({ name: "구미가당김", id: "1" });
+  useEffect(() => {
+    //board_no에 따른 레스토랑 정보 조회
+    call(`/api/restaurant/get/${res.id}`, "GET", null).then((response) =>
+      setRes({
+        id: response.data.id,
+        name: response.data.name,
+        category: response.data.category,
+        delivery_tip: response.data.delivery_tip,
+        min_order_price: response.data.min_order_price,
+      })
+    );
+  }, []);
   //board의 res id로 특정 음식점 정보 조회
   const orderInfo = { id: "1", orderTime: new Date(2023, 4, 6, 20, 10) };
   //board의 정보 조회
@@ -36,6 +51,7 @@ function BasketView() {
       name: "홍길동",
       menulist: [{ name: "알리오올리오", quantity: 2, price: 22000 }],
       id: "1",
+      email: "1@naver.com",
       totalPrice: 22000,
       confirmed: true,
       isHost: true,
@@ -45,6 +61,7 @@ function BasketView() {
       name: "이순신",
       menulist: [{ name: "명란크림 리조또", quantity: 1, price: 15000 }],
       id: "2",
+      email: "12@naver.com",
       totalPrice: 15000,
       confirmed: false,
       isHost: false,
@@ -56,6 +73,7 @@ function BasketView() {
         { name: "우돌돌피자", quantity: 1, price: 15000 },
       ],
       id: "3",
+      email: "13@naver.com",
       totalPrice: 30000,
       confirmed: true,
       isHost: false,
@@ -123,13 +141,13 @@ function BasketView() {
                 <p className="p">
                   {user.isHost
                     ? user.name.charAt(0) + "**" + "(방장)"
-                    : user.id == myInfo.id
+                    : user.email == myInfo.email
                     ? user.name.charAt(0) + "**" + "(나)"
                     : user.name.charAt(0) + "**"}
                 </p>
               </div>
               {user.menulist.map((menu, idx) => (
-                <p className="mqp">
+                <p className="mqp" key={menu.id}>
                   {menu.name} {menu.quantity}개
                 </p>
               ))}

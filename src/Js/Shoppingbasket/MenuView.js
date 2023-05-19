@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../../components/Nav";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -9,9 +9,10 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import "../../Css/Shoppingbasket/MenuView.css";
+import { call } from "../../Service/ApiService";
 function MenuView() {
   //식당 정보도 백엔드에서 가져온다.
-  const res = { name: "구미가당김", id: "1" };
+  // const res = { name: "구미가당김", id: "1" };
   //menulist는 백엔드에서 가져온다. 식당 > 전체메뉴
   const menulist = [
     {
@@ -91,6 +92,19 @@ function MenuView() {
     },
   ];
   const [title, setTitle] = useState("메뉴 조회");
+  const [res, setRes] = useState({ name: "구미가당김", id: "1" });
+  useEffect(() => {
+    //board_no에 따른 레스토랑 정보 조회
+    call(`/api/restaurant/get/${res.id}`, "GET", null).then((response) =>
+      setRes({
+        id: response.data.id,
+        name: response.data.name,
+        category: response.data.category,
+        delivery_tip: response.data.delivery_tip,
+        min_order_price: response.data.min_order_price,
+      })
+    );
+  }, []);
   const mainFunc = () => {
     window.location.href = "/";
   };

@@ -92,18 +92,38 @@ function MenuView() {
     },
   ];
   const [title, setTitle] = useState("메뉴 조회");
-  const [res, setRes] = useState({ name: "구미가당김", id: "1" });
+  const [res, setRes] = useState({ name: "", id: "" });
+  // const [menulist,setMenulist]=useState([]);
+  const board_no = 1;
   useEffect(() => {
-    //board_no에 따른 레스토랑 정보 조회
-    call(`/api/restaurant/get/${res.id}`, "GET", null).then((response) =>
+    call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
       setRes({
-        id: response.data.id,
-        name: response.data.name,
-        category: response.data.category,
-        delivery_tip: response.data.delivery_tip,
-        min_order_price: response.data.min_order_price,
+        id: response.data.restaurant.restaurant_no,
+        name: response.data.restaurant.name,
       })
     );
+
+    //board_no에 따른 레스토랑 정보 조회
+    // call(`/api/restaurant/menu/${res.id}`, "GET", null).then((response) =>
+    //   setMenulist(response.data)
+    // );
+  }, []);
+  useEffect(() => {
+    if (res.Id) {
+      call(`/api/restaurant/get/${res.id}`, "GET", null).then((response) =>
+        setRes({
+          id: response.data.id,
+          name: response.data.name,
+          category: response.data.category,
+          delivery_tip: response.data.delivery_tip,
+          min_order_price: response.data.min_order_price,
+        })
+      );
+    }
+    //board_no에 따른 레스토랑 정보 조회
+    // call(`/api/restaurant/menu/${res.id}`, "GET", null).then((response) =>
+    //   setMenulist(response.data)
+    // );
   }, []);
   const mainFunc = () => {
     window.location.href = "/";

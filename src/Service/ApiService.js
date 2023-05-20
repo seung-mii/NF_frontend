@@ -1,5 +1,7 @@
 import { APL_BASE_URL } from "./app-config";
 import * as AppStorage from "../AppStorage";
+import M from "../native";
+
 const ACCESS_TOKEN = "ACCESS_TOKEN";
 
 export function call(api, method, request) {
@@ -83,8 +85,6 @@ export function signup(userDTO) {
     .then((response) => {
       console.log(response);
       if (response.data) {
-        // alert("회원가입에 성공하였습니다!");
-        // window.location.href = "/";
       }
     })
     .catch((error) => {

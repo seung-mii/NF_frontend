@@ -160,8 +160,8 @@ function BasketView_notList() {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#47647C",
-                      color: user.confirmed ? "white" : "#FFFF00",
+                      backgroundColor: "#7ca380",
+                      color: user.confirmed ? "white" : "#00FF00",
                       fontSize: "12px",
                       width: 90,
                       lineHeight: "32px",
@@ -176,8 +176,8 @@ function BasketView_notList() {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#47647C",
-                      color: user.confirmed ? "#FFFF00" : "white",
+                      backgroundColor: "#7ca380",
+                      color: user.confirmed ? "#00FF00" : "white",
                       lineHeight: "32px",
                       width: 90,
                       padding: 2,

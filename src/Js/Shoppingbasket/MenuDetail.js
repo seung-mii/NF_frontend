@@ -55,7 +55,7 @@ function MenuDetail() {
     //   menu_no: foodid,
     //   quantity: quantity,
     // };
-    // call("/api/basket/create", "POST", BasketDTO).then((response) =>
+    // call(`/api/basket/${boardno}`, "POST", BasketDTO).then((response) =>
     //   console.log(response)
     // );
     window.location.href = "/menuview";

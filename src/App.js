@@ -14,6 +14,7 @@ import SignUp from "./Js/Member/SignUp";
 import Basket from "./Js/Shoppingbasket/Basket";
 import MyPage from "./Js/Member/MyPage";
 import MakeMap from "./Js/Meeting/MakeMap";
+import Update from "./Js/Member/Update";
 
 function App() {
   return (

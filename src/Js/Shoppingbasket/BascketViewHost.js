@@ -13,37 +13,15 @@ import * as AppStorage from "../../AppStorage";
 //확인취소, 주문취소, 모두 주문
 function BasketViewHost() {
   const [title, setTitle] = useState("장바구니 조회");
-  // const myInfo = { id: "1" }; //나의 이메일
-  const myInfo = { email: "hong@naver.com" }; //나의 이메일
+  const [myInfo, setMyInfo] = useState({ email: "" });
   const [buttonText, setButtonText] = useState("입금 확인 모두 주문하기");
   const [res, setRes] = useState({ name: "구미가당김", id: "1" });
-  useEffect(() => {
-    //board_no에 따른 레스토랑 정보 조회
-    call(`/api/restaurant/get/${res.id}`, "GET", null).then((response) =>
-      setRes({
-        id: response.data.id,
-        name: response.data.name,
-        category: response.data.category,
-        delivery_tip: response.data.delivery_tip,
-        min_order_price: response.data.min_order_price,
-      })
-    );
-  }, []);
-  const orderInfo = { id: "1", orderTime: new Date(2023, 4, 4, 18, 0) };
-  //6시 35분이면 2 55 분에서 3시 40분이 되어야한다.
-  // 18 : 35 - 14 : 55 분에서 분을 뺏을때 음수가 나오면 시간 한시간을 내리고 60분을 더해서 뺄셈을 해야함
-  // 17: 95 이런식으로
-
-  const [hour, setHour] = useState(
-    orderInfo.orderTime.getHours() - new Date().getHours()
-  );
-  // 시간을 가져와 시간값을 뺀 시간을 정해주는 state
-  const [minute, setMinute] = useState(
-    orderInfo.orderTime.getMinutes() - new Date().getMinutes()
-  );
-  // 분을 가져와 분값을 뺀 분을 정해주는 state
-  const [second, setSecond] = useState(59 - new Date().getSeconds());
-  // 초를 가져와 초값을 뺀 초를 정해주는 state
+  const [orderInfo, setOrderInfo] = useState({});
+  // const [userlist, setUserList] = [];
+  const board_no = 2;
+  const [hour, setHour] = useState(0);
+  const [minute, setMinute] = useState(0);
+  const [second, setSecond] = useState(0);
   const cancleOrder = () => {
     if (window.confirm("해당 사용자의 주문을 취소하시겠습니까?") == true) {
       //true는 확인버튼을 눌렀을 때 코드 작성
@@ -169,29 +147,59 @@ function BasketViewHost() {
       isHost: true,
     },
   ];
-  //나의 id와 비교하여 나이면 (나) 이표시 필요
   useEffect(() => {
-    console.log(orderInfo);
-    const id = setInterval(() => {
-      var tempMin = orderInfo.orderTime.getMinutes() - new Date().getMinutes();
-      if (tempMin < 0) {
-        setHour(orderInfo.orderTime.getHours() - 1 - new Date().getHours());
-        setMinute(
-          orderInfo.orderTime.getMinutes() + 59 - new Date().getMinutes()
-        );
-        setSecond(59 - new Date().getSeconds());
-      } else {
-        setHour(orderInfo.orderTime.getHours() - new Date().getHours());
-        setMinute(orderInfo.orderTime.getMinutes() - new Date().getMinutes());
-        setSecond(59 - new Date().getSeconds());
+    var myemail = AppStorage.getItem("email");
+    setMyInfo({ email: myemail });
+    const fetchOrderInfo = async () => {
+      try {
+        const response = await call(`/api/board/get/${board_no}`, "GET", null);
+        const orderTime = new Date(response.data.order_time);
+        const resId = response.data.restaurant.restaurant_no;
+        setOrderInfo({ resId: resId, orderTime: orderTime });
+      } catch (error) {
+        console.log("Error fetching order information:", error);
+      }
+    };
+
+    fetchOrderInfo();
+  }, [board_no]);
+  useEffect(() => {
+    if (orderInfo.resId) {
+      console.log(orderInfo.resId);
+      call(`/api/restaurant/get/${orderInfo.resId}`, "GET", null).then(
+        (response) =>
+          setRes({
+            name: response.data.name,
+          })
+      );
+    }
+  }, [orderInfo.resId]);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (orderInfo.orderTime) {
+        const now = new Date();
+        const timeDiff = orderInfo.orderTime - now;
+
+        if (timeDiff > 0) {
+          const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+          const seconds = Math.floor((timeDiff / 1000) % 60);
+
+          setHour(hours);
+          setMinute(minutes);
+          setSecond(seconds);
+        } else {
+          // Time has expired
+          setHour(0);
+          setMinute(0);
+          setSecond(0);
+          clearInterval(intervalId);
+        }
       }
     }, 1000);
-    console.log(orderInfo.orderTime.getHours() - new Date().getHours());
-    console.log(hour, minute);
-    // 1초마다 실행되는 인터벌을 이용해 1초마다 다시 랜더링 시켜줌
-    return () => clearInterval(id);
-    // 페이지를 벗어나게되면 반복을 종료해줌
-  }, []);
+
+    return () => clearInterval(intervalId);
+  }, [orderInfo]);
   var userlistitems = userlist.length > 0 && (
     // 전체
     <List className="bvlist">
@@ -211,8 +219,8 @@ function BasketViewHost() {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#47647C",
-                      color: user.confirmed ? "white" : "#FFFF00",
+                      backgroundColor: "#7ca380",
+                      color: user.confirmed ? "white" : "#00FF00",
                       fontSize: "12px",
                       width: 90,
                       lineHeight: "32px",
@@ -227,8 +235,8 @@ function BasketViewHost() {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#47647C",
-                      color: user.confirmed ? "#FFFF00" : "white",
+                      backgroundColor: "#7ca380",
+                      color: user.confirmed ? "#00FF00" : "white",
                       lineHeight: "32px",
                       width: 90,
                       padding: 2,
@@ -281,9 +289,12 @@ function BasketViewHost() {
         >
           <p className="resname">{res.name}</p>
           <p className="bvtext">
-            주문 남은 시간 {hour < 10 ? "0" + hour : hour}:
+            {/* 주문 남은 시간 {hour < 10 ? "0" + hour : hour}:
             {minute < 10 ? "0" + minute : minute}:
-            {second < 10 ? "0" + second : second}
+            {second < 10 ? "0" + second : second} */}
+            주문 남은 시간 : {hour.toString().padStart(2, "0")}:
+            {minute.toString().padStart(2, "0")}:
+            {second.toString().padStart(2, "0")}
           </p>
           <RefreshIcon
             className="bvicon"

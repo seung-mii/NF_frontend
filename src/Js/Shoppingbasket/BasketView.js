@@ -12,7 +12,7 @@ import * as AppStorage from "../../AppStorage";
 function BasketView(props) {
   const [title, setTitle] = useState("장바구니 조회 (일반)");
   const [myInfo, setMyInfo] = useState({ email: "" });
-  const [res, setRes] = useState({ name: "구미가당김", id: "1" });
+  const [res, setRes] = useState({ name: "", id: "" });
   const [orderInfo, setOrderInfo] = useState({});
   const board_no = 1;
   const [basket, setBasket] = useState([]);
@@ -67,7 +67,6 @@ function BasketView(props) {
           setMinute(minutes);
           setSecond(seconds);
         } else {
-          // Time has expired
           setHour(0);
           setMinute(0);
           setSecond(0);

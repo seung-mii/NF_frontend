@@ -43,42 +43,6 @@ export function call(api, method, request) {
       return Promise.reject(error);
     });
 }
-// export function callUseParams(api, method, value) {
-//   let headers = new Headers({
-//     "Content-Type": "application/json",
-//   });
-//   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-//   if (accessToken) {
-//     headers.append("Authorization", "Bearer " + accessToken);
-//   }
-//   let options = {
-//     headers: headers,
-//     url:
-//       APL_BASE_URL +
-//       api +
-//       new URLSearchParams({
-//         id: value,
-//       }),
-//     method: method,
-//   };
-
-//   return fetch(options.url, options)
-//     .then((response) =>
-//       response.json().then((json) => {
-//         if (!response.ok) {
-//           return Promise.reject(json);
-//         }
-//         return json;
-//       })
-//     )
-//     .catch((error) => {
-//       console.log("Oops!");
-//       console.log(error.status);
-//       console.log("Oops!");
-
-//       return Promise.reject(error);
-//     });
-// }
 //회원가입
 export function signup(userDTO) {
   return call("/api/member/join", "POST", userDTO)

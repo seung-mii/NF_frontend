@@ -15,14 +15,14 @@ function BasketViewHost(props) {
   const [title, setTitle] = useState("장바구니 조회 (방장)");
   const [myInfo, setMyInfo] = useState({ email: "" });
   const [buttonText, setButtonText] = useState("입금 확인 모두 주문하기");
-  const [res, setRes] = useState({ name: "구미가당김", id: "1" });
+  const [res, setRes] = useState({ name: "", id: "" });
   const [orderInfo, setOrderInfo] = useState({});
   const [basket, setBasket] = useState([]);
   const board_no = 1;
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
-  // const { boardno } = useParams();
+
   const boardNo = props.boardNo;
   const cancleConfirmed = (list) => {
     var baskets = list;
@@ -94,7 +94,6 @@ function BasketViewHost(props) {
           setMinute(minutes);
           setSecond(seconds);
         } else {
-          // Time has expired
           setHour(0);
           setMinute(0);
           setSecond(0);
@@ -217,7 +216,6 @@ function BasketViewHost(props) {
                   <p className="mqp" key={menu.id}>
                     {menu.menuName} {menu.quantity}개
                   </p>
-                  {/* <p className="pp">총 가격: {menu.menuPrice}원</p> */}
                 </>
               ))}
 

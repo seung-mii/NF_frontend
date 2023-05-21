@@ -10,8 +10,8 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import "../../Css/Shoppingbasket/MenuView.css";
 import { call } from "../../Service/ApiService";
+import M from "../../native";
 function MenuView() {
-  //식당 정보도 백엔드에서 가져온다.
   const [title, setTitle] = useState("메뉴 조회");
   const [res, setRes] = useState({ name: "", id: "" });
   const [menulist, setMenulist] = useState([]);
@@ -26,7 +26,6 @@ function MenuView() {
   }, []);
   useEffect(() => {
     if (res.id) {
-      //board_no에 따른 레스토랑 정보 조회
       call(`/api/menu/restaurant/${res.id}`, "GET", null).then((response) =>
         // console.log(response)
         setMenulist(response.data)
@@ -39,6 +38,14 @@ function MenuView() {
   const detailFood = (item) => {
     console.log(item);
     window.location.href = `/menudetail/${board_no}/${res.name}/${item.menu_no}`;
+    // M.page.html({
+    //   path: "menudetail",
+    //   param: {
+    //     boardNo: board_no,
+    //     resname: res.name,
+    //     foodid: item.menu_no,
+    //   },
+    // });
   };
   const basketViewFunc = () => {
     window.location.href = `/basket/${board_no}`;

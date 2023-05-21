@@ -15,6 +15,8 @@ import Basket from "./Js/Shoppingbasket/Basket";
 import MyPage from "./Js/Member/MyPage";
 import MakeMap from "./Js/Meeting/MakeMap";
 import Update from "./Js/Member/Update";
+import BasketViewHost from "./Js/Shoppingbasket/BascketViewHost";
+import BasketView from "./Js/Shoppingbasket/BasketView";
 
 function App() {
   return (

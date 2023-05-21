@@ -7,24 +7,24 @@ import * as AppStorage from "../../AppStorage";
 function Basket() {
   const [user, setUser] = useState({ email: "" });
   const board_no = 1;
-  const hostemail = "dmb225@kumoh.ac.kr";
+  // const hostemail = "dmb225@kumoh.ac.kr";
   const [host, setHost] = useState({ email: "" });
   const [isHost, setIsHost] = useState(false);
   useEffect(() => {
-    // call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
-    //   setHost({
-    //     id: response.data.member.email,
-    //   })
-    // );
+    call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
+      setHost({
+        email: response.data.member.email,
+      })
+    );
     var userEmail = AppStorage.getItem("email");
     setUser({ email: userEmail });
   }, []);
 
   useEffect(() => {
-    if (user.email && user.email === hostemail) {
+    if (user.email && user.email === host.email) {
       setIsHost(true);
     }
-  }, [user.email, hostemail]);
+  }, [user.email, host.email]);
 
   const content = isHost ? <BasketViewHost /> : <BasketView />;
   return content;

@@ -12,19 +12,23 @@ import { call } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
 //확인취소, 주문취소, 모두 주문
 function BasketViewHost() {
-  const [title, setTitle] = useState("장바구니 조회");
+  const [title, setTitle] = useState("장바구니 조회 (방장)");
   const [myInfo, setMyInfo] = useState({ email: "" });
   const [buttonText, setButtonText] = useState("입금 확인 모두 주문하기");
   const [res, setRes] = useState({ name: "구미가당김", id: "1" });
   const [orderInfo, setOrderInfo] = useState({});
   // const [userlist, setUserList] = [];
-  const board_no = 2;
+  const [basket, setBasket] = useState([]);
+  const board_no = 1;
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
   const cancleOrder = () => {
     if (window.confirm("해당 사용자의 주문을 취소하시겠습니까?") == true) {
       //true는 확인버튼을 눌렀을 때 코드 작성
+      call(`/api/basket/delete/{basket_no}`, "DELETE", null).then((response) =>
+        console.log(response)
+      );
       alert("주문이 취소되었습니다.");
       //해당 사용자의 음식 공동 장바구니에서 삭제
     }
@@ -32,14 +36,26 @@ function BasketViewHost() {
     // //해당 사용자의 음식 공동 장바구니에서 삭제
   };
   const cancleConfirmed = () => {
+    var baskets = basket
+      .filter((basket) => basket.memberEmail === myInfo.email)
+      .map((basket) => basket.basketNo);
     if (window.confirm("해당 사용자의 입금 확인을 취소하시겠습니까?") == true) {
-      //true는 확인버튼을 눌렀을 때 코드 작성
-      alert("확인이 취소되었습니다.");
-      //해당 사용자의 입금여부 취소
+      baskets.forEach((basketNo) => {
+        var modifyBasket = { basketNo: basketNo, confirmed: false };
+        call("/api/basket/modify", "PUT", modifyBasket)
+          .then((response) => {
+            console.log(response);
+            alert("확인이 취소되었습니다.");
+            // 삭제 요청에 대한 응답을 처리하는 로직을 추가하세요.
+          })
+          .catch((error) => {
+            console.error(error);
+            // 에러 처리 로직을 추가하세요.
+          });
+      });
     }
 
-    // console.log("확인이 취소되었습니다.");
-    // //해당 사용자의 입금여부 취소
+    //     alert("확인이 취소되었습니다.");
   };
   const order = () => {
     if (window.confirm("주문하시겠습니까?") == true) {
@@ -47,106 +63,7 @@ function BasketViewHost() {
       setButtonText("주문이 완료되었습니다.");
     }
   };
-  const userlist_new = [
-    {
-      name: "홍길동",
-      name: "알리오올리오",
-      quantity: 2,
-      price: 22000,
-      id: "1",
-      email: "12@naver.com",
-      totalPrice: 22000,
-      confirmed: true,
-      isHost: false,
-    },
-    //id가 이메일로 변경되어야함.
-    //total price 프론트에서 계산
-    //menulist - > food_no & quantity
-    //isHost 계산
-    {
-      name: "홍길동",
-      id: "1",
-      name: "명란크림 리조또",
-      quantity: 1,
-      price: 15000,
-      email: "12@naver.com",
-      totalPrice: 15000,
-      confirmed: false,
-      isHost: false,
-    },
-    {
-      name: "유재석",
-      id: "2",
-      name: "명란크림 리조또",
-      quantity: 1,
-      price: 15000,
-      email: "123@naver.com",
-      totalPrice: 15000,
-      confirmed: false,
-      isHost: false,
-    },
-  ];
-  const userlist = [
-    {
-      name: "홍길동",
-      menulist: [{ name: "알리오올리오", quantity: 2, price: 22000 }],
-      id: "1",
-      email: "1@naver.com",
-      totalPrice: 22000,
-      confirmed: true,
-      isHost: false,
-    },
-    //id가 이메일로 변경되어야함.
-    //total price 프론트에서 계산
-    //menulist - > food_no & quantity
-    //isHost 계산
-    {
-      name: "이순신",
-      menulist: [{ name: "명란크림 리조또", quantity: 1, price: 15000 }],
-      id: "2",
-      email: "12@naver.com",
-      totalPrice: 15000,
-      confirmed: false,
-      isHost: false,
-    },
-    {
-      name: "황진이",
-      menulist: [
-        { name: "까르보나라", quantity: 1, price: 15000 },
-        { name: "우돌돌피자", quantity: 1, price: 15000 },
-        { name: "명란크림 리조또", quantity: 2, price: 15000 },
-      ],
-      id: "3",
-      email: "13@naver.com",
-      totalPrice: 60000,
-      confirmed: true,
-      isHost: false,
-    },
-    {
-      name: "유재석",
-      menulist: [
-        { name: "까르보나라", quantity: 1, price: 15000 },
-        { name: "명란크림 리조또", quantity: 1, price: 15000 },
-      ],
-      id: "4",
-      email: "14@naver.com",
-      totalPrice: 30000,
-      confirmed: false,
-      isHost: false,
-    },
-    {
-      name: "강호동",
-      menulist: [
-        { name: "까르보나라", quantity: 1, price: 15000 },
-        { name: "우돌돌피자", quantity: 1, price: 15000 },
-      ],
-      id: "5",
-      email: "hong@naver.com",
-      totalPrice: 30000,
-      confirmed: true,
-      isHost: true,
-    },
-  ];
+
   useEffect(() => {
     var myemail = AppStorage.getItem("email");
     setMyInfo({ email: myemail });
@@ -155,7 +72,12 @@ function BasketViewHost() {
         const response = await call(`/api/board/get/${board_no}`, "GET", null);
         const orderTime = new Date(response.data.order_time);
         const resId = response.data.restaurant.restaurant_no;
-        setOrderInfo({ resId: resId, orderTime: orderTime });
+        const hostEmail = response.data.member.email;
+        setOrderInfo({
+          resId: resId,
+          orderTime: orderTime,
+          hostEmail: hostEmail,
+        });
       } catch (error) {
         console.log("Error fetching order information:", error);
       }
@@ -200,6 +122,46 @@ function BasketViewHost() {
 
     return () => clearInterval(intervalId);
   }, [orderInfo]);
+  useEffect(() => {
+    call(`/api/basket/byBoardId/${board_no}`, "GET", null).then((response) =>
+      setBasket(response.data)
+    );
+  }, []);
+
+  const userlist = basket.reduce((acc, item) => {
+    const existingGroup = acc.find(
+      (group) => group.memberEmail === item.memberEmail
+    );
+    if (existingGroup) {
+      const existingMenu = existingGroup.menulist.find(
+        (menu) => menu.menuName === item.menuName
+      );
+      if (existingMenu) {
+        existingMenu.quantity += item.quantity;
+      } else {
+        existingGroup.menulist.push({
+          menuName: item.menuName,
+          quantity: item.quantity,
+        });
+      }
+      existingGroup.totalPrice += item.menuPrice * item.quantity;
+    } else {
+      acc.push({
+        memberEmail: item.memberEmail,
+        memberName: item.memberName,
+        menulist: [
+          {
+            menuName: item.menuName,
+            quantity: item.quantity,
+          },
+        ],
+        confirmed: item.confirmed,
+        totalPrice: item.menuPrice * item.quantity,
+      });
+    }
+    return acc;
+  }, []);
+
   var userlistitems = userlist.length > 0 && (
     // 전체
     <List className="bvlist">
@@ -232,23 +194,25 @@ function BasketViewHost() {
                   >
                     {user.confirmed ? "입금 확인" : "입금 전"}
                   </Typography>
-                  <Typography
-                    variant="contained"
-                    style={{
-                      backgroundColor: "#7ca380",
-                      color: user.confirmed ? "#00FF00" : "white",
-                      lineHeight: "32px",
-                      width: 90,
-                      padding: 2,
-                      margin: 6,
-                      fontWeight: "bold",
-                      fontSize: "12px",
-                      borderRadius: "25px",
-                    }}
-                    onClick={user.confirmed ? cancleConfirmed : cancleOrder}
-                  >
-                    {user.confirmed ? "확인 취소" : "주문 취소"}
-                  </Typography>
+                  {user.confirmed && (
+                    <Typography
+                      variant="contained"
+                      style={{
+                        backgroundColor: "#7ca380",
+                        color: "#00FF00",
+                        lineHeight: "32px",
+                        width: 90,
+                        padding: 2,
+                        margin: 6,
+                        fontWeight: "bold",
+                        fontSize: "12px",
+                        borderRadius: "25px",
+                      }}
+                      onClick={cancleConfirmed}
+                    >
+                      확인 취소
+                    </Typography>
+                  )}
                 </div>
               )
             }
@@ -258,15 +222,18 @@ function BasketViewHost() {
               <div className="top">
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
-                  {user.isHost && user.email === myInfo.email
-                    ? user.name.charAt(0) + "**" + "(나: 방장)"
-                    : user.name.charAt(0) + "**"}
+                  {user.email === orderInfo.hostEmail
+                    ? user.memberName.charAt(0) + "**" + "(방장:나)"
+                    : user.memberName.charAt(0) + "**"}
                 </p>
               </div>
               {user.menulist.map((menu, idx) => (
-                <p className="mqp" key={menu.id}>
-                  {menu.name} {menu.quantity}개
-                </p>
+                <>
+                  <p className="mqp" key={menu.id}>
+                    {menu.menuName} {menu.quantity}개
+                  </p>
+                  {/* <p className="pp">총 가격: {menu.menuPrice}원</p> */}
+                </>
               ))}
 
               <p className="pp">총 가격: {user.totalPrice}원</p>
@@ -289,9 +256,6 @@ function BasketViewHost() {
         >
           <p className="resname">{res.name}</p>
           <p className="bvtext">
-            {/* 주문 남은 시간 {hour < 10 ? "0" + hour : hour}:
-            {minute < 10 ? "0" + minute : minute}:
-            {second < 10 ? "0" + second : second} */}
             주문 남은 시간 : {hour.toString().padStart(2, "0")}:
             {minute.toString().padStart(2, "0")}:
             {second.toString().padStart(2, "0")}

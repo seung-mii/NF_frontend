@@ -13,33 +13,46 @@ function MenuDetail() {
   const [title, setTitle] = useState("메뉴 조회");
   // id를 이용하여 음식정보를 가져오는 method 필요
   // 가져온 임시데이터 아래
-  const food = {
-    name: "우돌돌피자",
-    price: "15000",
-    id: "1",
-    src: "https://ldb-phinf.pstatic.net/20200908_256/1599494234060B5s40_JPEG/TebGb1il2yj38iY1vZ_F_ONM.jpg",
-  };
+  // const food = {
+  //   name: "우돌돌피자",
+  //   price: "15000",
+  //   id: "1",
+  //   src: "https://ldb-phinf.pstatic.net/20200908_256/1599494234060B5s40_JPEG/TebGb1il2yj38iY1vZ_F_ONM.jpg",
+  // };
   //내가 가지고 있으면서 백엔드에게 주어야하는정보는 사용자가 장바구니에 담은 (메뉴의 이름, 수량, 가격) > 총가격 INSERT
   const [quantity, setQuantity] = useState(1);
   const { resname } = useParams();
   const { foodid } = useParams();
-  const [totalCost, setTotalCost] = useState(food.price * quantity);
+  const [menu, setMenu] = useState({});
+  const [totalCost, setTotalCost] = useState(0);
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
   // const { boardno } = useParams();
+  const boardno = 1;
   useEffect(() => {
-    setTotalCost(food.price * quantity);
-    setButtonText(totalCost + "원 담기");
-    console.log(
-      quantity +
-        "개 의 " +
-        food.price +
-        " 가격의" +
-        food.name +
-        " 주문하여 총 가격은 " +
-        totalCost +
-        "원"
+    if (menu.menu_no) {
+      setTotalCost(menu.price * quantity);
+      setButtonText(totalCost + "원 담기");
+      console.log(
+        quantity +
+          "개 의 " +
+          menu.price +
+          " 가격의" +
+          menu.name +
+          " 주문하여 총 가격은 " +
+          totalCost +
+          "원"
+      );
+    }
+  }, [menu.menu_no, quantity, totalCost]);
+  useEffect(() => {
+    call(`/api/menu/${foodid}`, "GET", null).then((response) =>
+      setMenu({
+        menu_no: response.data.menu_no,
+        name: response.data.name,
+        price: response.data.price,
+      })
     );
-  }, [quantity, totalCost]);
+  }, []);
   const delFunc = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -49,17 +62,26 @@ function MenuDetail() {
     setQuantity(quantity + 1);
   };
   const insertMenu = () => {
-    // var BasketDTO = {
-    //   userEmail: AppStorage.getItem("email"),
-    //   board_no: boardno,
-    //   menu_no: foodid,
-    //   quantity: quantity,
-    // };
-    // call(`/api/basket/${boardno}`, "POST", BasketDTO).then((response) =>
-    //   console.log(response)
-    // );
-    window.location.href = "/menuview";
-    setButtonText("공동 장바구니에 메뉴를 추가했습니다.");
+    var BasketDTO = {
+      email: AppStorage.getItem("email"),
+      boardNo: boardno,
+      menuNo: menu.menu_no,
+      quantity: quantity,
+    };
+    console.log(BasketDTO);
+    call("/api/basket/create", "POST", BasketDTO)
+      .then((response) => {
+        if (response.data) {
+          setButtonText("공동 장바구니에 메뉴를 추가했습니다.");
+          window.location.href = "/menuview";
+        }
+      })
+      .catch((error) => {
+        alert(error.error);
+        return Promise.reject(error.error);
+      });
+    // window.location.href = "/menuview";
+    // setButtonText("공동 장바구니에 메뉴를 추가했습니다.");
   };
   return (
     <div className="mdcontainer">
@@ -68,12 +90,12 @@ function MenuDetail() {
       <div className="md-header">
         <p className="mdtext">{resname}</p>
 
-        <img className="image" alt={foodid} src={food.src} />
+        <img className="image" alt={menu.menu_no} src={menu.src} />
         <div className="fnbox">
-          <p>{food.name}</p>
+          <p>{menu.name}</p>
         </div>
         <div className="fpbox">
-          <p className="p">{food.price}원</p>
+          <p className="p">{menu.price}원</p>
         </div>
         <div className="fqbox">
           <Stack

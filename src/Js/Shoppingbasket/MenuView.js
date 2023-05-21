@@ -15,7 +15,7 @@ function MenuView() {
   const [title, setTitle] = useState("메뉴 조회");
   const [res, setRes] = useState({ name: "", id: "" });
   const [menulist, setMenulist] = useState([]);
-  const board_no = 1;
+  const board_no = 13;
   useEffect(() => {
     call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
       setRes({
@@ -38,10 +38,10 @@ function MenuView() {
   };
   const detailFood = (item) => {
     console.log(item);
-    window.location.href = `/menudetail/${res.name}/${item.menu_no}`;
+    window.location.href = `/menudetail/${board_no}/${res.name}/${item.menu_no}`;
   };
   const basketViewFunc = () => {
-    window.location.href = "/basket";
+    window.location.href = `/basket/${board_no}`;
   };
   var menulistitems = menulist.length > 0 && (
     <List className="list">

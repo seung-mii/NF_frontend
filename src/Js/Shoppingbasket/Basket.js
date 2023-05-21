@@ -2,16 +2,16 @@ import { call } from "../../Service/ApiService";
 import BasketViewHost from "./BascketViewHost";
 import BasketView from "./BasketView";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import * as AppStorage from "../../AppStorage";
-
 function Basket() {
   const [user, setUser] = useState({ email: "" });
   const board_no = 1;
-  // const hostemail = "dmb225@kumoh.ac.kr";
   const [host, setHost] = useState({ email: "" });
   const [isHost, setIsHost] = useState(false);
+  const { boardNo } = useParams();
   useEffect(() => {
-    call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
+    call(`/api/board/get/${boardNo}`, "GET", null).then((response) =>
       setHost({
         email: response.data.member.email,
       })
@@ -26,7 +26,11 @@ function Basket() {
     }
   }, [user.email, host.email]);
 
-  const content = isHost ? <BasketViewHost /> : <BasketView />;
+  const content = isHost ? (
+    <BasketViewHost boardNo={boardNo} />
+  ) : (
+    <BasketView boardNo={boardNo} />
+  );
   return content;
 }
 export default Basket;

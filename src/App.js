@@ -34,8 +34,11 @@ function App() {
         <Route path="/myposts" element={<MyPosts />} />
 
         <Route path="/menuview" element={<MenuView />} />
-        <Route path="/menudetail/:resname/:foodid" element={<MenuDetail />} />
-        <Route path="/basket" element={<Basket />} />
+        <Route
+          path="/menudetail/:boardNo/:resname/:foodid"
+          element={<MenuDetail />}
+        />
+        <Route path="/basket/:boardNo" element={<Basket />} />
 
         <Route path="/map" element={<MakeMap />} />
       </Routes>

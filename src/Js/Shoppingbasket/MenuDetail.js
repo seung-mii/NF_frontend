@@ -8,25 +8,15 @@ import { useParams } from "react-router-dom";
 import "../../Css/Shoppingbasket/MenuDetail.css";
 import { call } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
-//담기 갯수 ...
 function MenuDetail() {
   const [title, setTitle] = useState("메뉴 조회");
-  // id를 이용하여 음식정보를 가져오는 method 필요
-  // 가져온 임시데이터 아래
-  // const food = {
-  //   name: "우돌돌피자",
-  //   price: "15000",
-  //   id: "1",
-  //   src: "https://ldb-phinf.pstatic.net/20200908_256/1599494234060B5s40_JPEG/TebGb1il2yj38iY1vZ_F_ONM.jpg",
-  // };
-  //내가 가지고 있으면서 백엔드에게 주어야하는정보는 사용자가 장바구니에 담은 (메뉴의 이름, 수량, 가격) > 총가격 INSERT
   const [quantity, setQuantity] = useState(1);
   const { resname } = useParams();
   const { foodid } = useParams();
   const [menu, setMenu] = useState({});
   const [totalCost, setTotalCost] = useState(0);
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
-  // const { boardno } = useParams();
+  const { boardNo } = useParams();
   const boardno = 1;
   useEffect(() => {
     if (menu.menu_no) {
@@ -64,7 +54,7 @@ function MenuDetail() {
   const insertMenu = () => {
     var BasketDTO = {
       email: AppStorage.getItem("email"),
-      boardNo: boardno,
+      boardNo: boardNo,
       menuNo: menu.menu_no,
       quantity: quantity,
     };

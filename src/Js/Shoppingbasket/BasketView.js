@@ -9,30 +9,23 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "../../Css/Shoppingbasket/BasketView.css";
 import { call } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
-function BasketView() {
-  //board의 아이디 넘겨받아야함
-  //특정 board 조회
+function BasketView(props) {
   const [title, setTitle] = useState("장바구니 조회 (일반)");
   const [myInfo, setMyInfo] = useState({ email: "" });
-
   const [res, setRes] = useState({ name: "구미가당김", id: "1" });
   const [orderInfo, setOrderInfo] = useState({});
-
   const board_no = 1;
-
   const [basket, setBasket] = useState([]);
   const [hour, setHour] = useState(0);
-
   const [minute, setMinute] = useState(0);
-
   const [second, setSecond] = useState(0);
-
+  const boardNo = props.boardNo;
   useEffect(() => {
     var myemail = AppStorage.getItem("email");
     setMyInfo({ email: myemail });
     const fetchOrderInfo = async () => {
       try {
-        const response = await call(`/api/board/get/${board_no}`, "GET", null);
+        const response = await call(`/api/board/get/${boardNo}`, "GET", null);
         const orderTime = new Date(response.data.order_time);
         const resId = response.data.restaurant.restaurant_no;
         const hostEmail = response.data.member.email;
@@ -47,7 +40,7 @@ function BasketView() {
     };
 
     fetchOrderInfo();
-  }, [board_no]);
+  }, [boardNo]);
   useEffect(() => {
     if (orderInfo.resId) {
       console.log(orderInfo.resId);
@@ -86,7 +79,7 @@ function BasketView() {
     return () => clearInterval(intervalId);
   }, [orderInfo]);
   useEffect(() => {
-    call(`/api/basket/byBoardId/${board_no}`, "GET", null).then((response) =>
+    call(`/api/basket/byBoardId/${boardNo}`, "GET", null).then((response) =>
       setBasket(response.data)
     );
   }, []);
@@ -108,6 +101,7 @@ function BasketView() {
         });
       }
       existingGroup.totalPrice += item.menuPrice * item.quantity;
+      existingGroup.basketlist.push(item.basketNo);
     } else {
       acc.push({
         memberEmail: item.memberEmail,
@@ -119,6 +113,7 @@ function BasketView() {
           },
         ],
         confirmed: item.confirmed,
+        basketlist: [item.basketNo],
         totalPrice: item.menuPrice * item.quantity,
       });
     }
@@ -127,9 +122,18 @@ function BasketView() {
 
   const cancleOrder = () => {
     if (window.confirm("주문을 취소하시겠습니까?") == true) {
-      call(`/api/basket/deleteByBoradNo/${board_no}`, "DELETE", null).then(
-        (response) => setBasket(response)
-      );
+      call(
+        `/api/basket/deleteMyBasketList/byBoradNo/${boardNo}`,
+        "DELETE",
+        null
+      )
+        .then((response) => {
+          console.log(response);
+          alert("주문이 취소되었습니다.");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
   var userlistitems = userlist.length > 0 && (
@@ -141,7 +145,7 @@ function BasketView() {
             key={user.id}
             alignItems="flex-start"
             secondaryAction={
-              user.email === orderInfo.hostEmail ? (
+              user.memberEmail === orderInfo.hostEmail ? (
                 <></>
               ) : (
                 <div className="bvlistitem">
@@ -188,7 +192,7 @@ function BasketView() {
               <div className="top">
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
-                  {user.email === orderInfo.hostEmail
+                  {user.memberEmail === orderInfo.hostEmail
                     ? user.memberName.charAt(0) + "**" + "(방장)"
                     : user.memberEmail == myInfo.email
                     ? user.memberName.charAt(0) + "**" + "(나)"

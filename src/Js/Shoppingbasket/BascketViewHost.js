@@ -11,51 +11,34 @@ import "../../Css/Shoppingbasket/BasketView.css";
 import { call } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
 //확인취소, 주문취소, 모두 주문
-function BasketViewHost() {
+function BasketViewHost(props) {
   const [title, setTitle] = useState("장바구니 조회 (방장)");
   const [myInfo, setMyInfo] = useState({ email: "" });
   const [buttonText, setButtonText] = useState("입금 확인 모두 주문하기");
   const [res, setRes] = useState({ name: "구미가당김", id: "1" });
   const [orderInfo, setOrderInfo] = useState({});
-  // const [userlist, setUserList] = [];
   const [basket, setBasket] = useState([]);
   const board_no = 1;
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
-  const cancleOrder = () => {
-    if (window.confirm("해당 사용자의 주문을 취소하시겠습니까?") == true) {
-      //true는 확인버튼을 눌렀을 때 코드 작성
-      call(`/api/basket/delete/{basket_no}`, "DELETE", null).then((response) =>
-        console.log(response)
-      );
-      alert("주문이 취소되었습니다.");
-      //해당 사용자의 음식 공동 장바구니에서 삭제
-    }
-    // console.log("주문이 취소되었습니다.");
-    // //해당 사용자의 음식 공동 장바구니에서 삭제
-  };
-  const cancleConfirmed = () => {
-    var baskets = basket
-      .filter((basket) => basket.memberEmail === myInfo.email)
-      .map((basket) => basket.basketNo);
+  // const { boardno } = useParams();
+  const boardNo = props.boardNo;
+  const cancleConfirmed = (list) => {
+    var baskets = list;
+    console.log(list);
     if (window.confirm("해당 사용자의 입금 확인을 취소하시겠습니까?") == true) {
       baskets.forEach((basketNo) => {
-        var modifyBasket = { basketNo: basketNo, confirmed: false };
-        call("/api/basket/modify", "PUT", modifyBasket)
+        call(`/api/basket/completePayment/${basketNo}`, "PUT", null)
           .then((response) => {
             console.log(response);
-            alert("확인이 취소되었습니다.");
-            // 삭제 요청에 대한 응답을 처리하는 로직을 추가하세요.
           })
           .catch((error) => {
             console.error(error);
-            // 에러 처리 로직을 추가하세요.
           });
       });
+      alert("확인이 취소되었습니다.");
     }
-
-    //     alert("확인이 취소되었습니다.");
   };
   const order = () => {
     if (window.confirm("주문하시겠습니까?") == true) {
@@ -69,7 +52,7 @@ function BasketViewHost() {
     setMyInfo({ email: myemail });
     const fetchOrderInfo = async () => {
       try {
-        const response = await call(`/api/board/get/${board_no}`, "GET", null);
+        const response = await call(`/api/board/get/${boardNo}`, "GET", null);
         const orderTime = new Date(response.data.order_time);
         const resId = response.data.restaurant.restaurant_no;
         const hostEmail = response.data.member.email;
@@ -84,7 +67,7 @@ function BasketViewHost() {
     };
 
     fetchOrderInfo();
-  }, [board_no]);
+  }, [boardNo]);
   useEffect(() => {
     if (orderInfo.resId) {
       console.log(orderInfo.resId);
@@ -123,10 +106,10 @@ function BasketViewHost() {
     return () => clearInterval(intervalId);
   }, [orderInfo]);
   useEffect(() => {
-    call(`/api/basket/byBoardId/${board_no}`, "GET", null).then((response) =>
+    call(`/api/basket/byBoardId/${boardNo}`, "GET", null).then((response) =>
       setBasket(response.data)
     );
-  }, []);
+  }, [basket]);
 
   const userlist = basket.reduce((acc, item) => {
     const existingGroup = acc.find(
@@ -145,6 +128,7 @@ function BasketViewHost() {
         });
       }
       existingGroup.totalPrice += item.menuPrice * item.quantity;
+      existingGroup.basketlist.push(item.basketNo);
     } else {
       acc.push({
         memberEmail: item.memberEmail,
@@ -156,6 +140,7 @@ function BasketViewHost() {
           },
         ],
         confirmed: item.confirmed,
+        basketlist: [item.basketNo],
         totalPrice: item.menuPrice * item.quantity,
       });
     }
@@ -173,7 +158,7 @@ function BasketViewHost() {
             key={user.id}
             alignItems="flex-start"
             secondaryAction={
-              user.isHost ? (
+              user.memberEmail === orderInfo.hostEmail ? (
                 <></>
               ) : (
                 // 버튼
@@ -208,7 +193,7 @@ function BasketViewHost() {
                         fontSize: "12px",
                         borderRadius: "25px",
                       }}
-                      onClick={cancleConfirmed}
+                      onClick={() => cancleConfirmed(user.basketlist)}
                     >
                       확인 취소
                     </Typography>
@@ -222,7 +207,7 @@ function BasketViewHost() {
               <div className="top">
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
-                  {user.email === orderInfo.hostEmail
+                  {user.memberEmail === orderInfo.hostEmail
                     ? user.memberName.charAt(0) + "**" + "(방장:나)"
                     : user.memberName.charAt(0) + "**"}
                 </p>
@@ -281,8 +266,6 @@ function BasketViewHost() {
         >
           <Button variant="contained" className="bv-btt" onClick={order}>
             <p>{buttonText}</p>
-            {/* //나의 id랑 userlist의 id랑 같은걸 찾아서 나의 status 나타내기 */}
-            {/* 입금전이면 장바구니 음식을 삭제할 수 있게, 입금확인이면 취소불가 */}
           </Button>
         </Stack>
       </div>

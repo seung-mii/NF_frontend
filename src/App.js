@@ -28,20 +28,16 @@ function App() {
 
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        {/* <Route path="/mypage" element={<Update />} /> */}
+        <Route path="/mypage" element={<MyPage />} />
 
         <Route path="/myposts" element={<MyPosts />} />
 
-        {/* <Route path="/mypage" element={<MenuView />} /> */}
         <Route path="/menuview" element={<MenuView />} />
         <Route
           path="/menudetail/:boardNo/:resname/:foodid"
           element={<MenuDetail />}
         />
-        {/* <Route
-          path="/menudetail?boardNo=boardNo?resname=resname?foodid=foodid"
-          element={<MenuDetail />}
-        /> */}
+
         <Route path="/basket/:boardNo" element={<Basket />} />
 
         <Route path="/map" element={<MakeMap />} />

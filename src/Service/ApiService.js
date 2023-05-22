@@ -1,6 +1,7 @@
 import { APL_BASE_URL } from "./app-config";
 import * as AppStorage from "../AppStorage";
 import M from "../native";
+import { ContactlessOutlined } from "@mui/icons-material";
 
 const ACCESS_TOKEN = "ACCESS_TOKEN";
 
@@ -35,7 +36,7 @@ export function call(api, method, request) {
     )
     .catch((error) => {
       console.log("Oops!");
-      alert(error.error);
+      console.log(error.error);
 
       // if (error.status === 403) {
       //   window.location.href = "/";

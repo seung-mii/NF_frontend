@@ -15,7 +15,7 @@ function MenuView() {
   const [title, setTitle] = useState("메뉴 조회");
   const [res, setRes] = useState({ name: "", id: "" });
   const [menulist, setMenulist] = useState([]);
-  const board_no = 13;
+  const board_no = 12;
   useEffect(() => {
     call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
       setRes({

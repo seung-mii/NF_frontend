@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import * as AppStorage from "../../AppStorage";
 function Basket() {
   const [user, setUser] = useState({ email: "" });
-  const board_no = 1;
   const [host, setHost] = useState({ email: "" });
   const [isHost, setIsHost] = useState(false);
   const { boardNo } = useParams();

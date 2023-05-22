@@ -37,7 +37,7 @@ function BasketViewHost(props) {
             console.error(error);
           });
       });
-      alert("확인이 취소되었습니다.");
+      alert("확인여부가 변경 되었습니다.");
     }
   };
   const order = () => {
@@ -178,25 +178,24 @@ function BasketViewHost(props) {
                   >
                     {user.confirmed ? "입금 확인" : "입금 전"}
                   </Typography>
-                  {user.confirmed && (
-                    <Typography
-                      variant="contained"
-                      style={{
-                        backgroundColor: "#7ca380",
-                        color: "#00FF00",
-                        lineHeight: "32px",
-                        width: 90,
-                        padding: 2,
-                        margin: 6,
-                        fontWeight: "bold",
-                        fontSize: "12px",
-                        borderRadius: "25px",
-                      }}
-                      onClick={() => cancleConfirmed(user.basketlist)}
-                    >
-                      확인 취소
-                    </Typography>
-                  )}
+
+                  <Typography
+                    variant="contained"
+                    style={{
+                      backgroundColor: "#7ca380",
+                      color: user.confirmed ? "#00FF00" : "white",
+                      lineHeight: "32px",
+                      width: 90,
+                      padding: 2,
+                      margin: 6,
+                      fontWeight: "bold",
+                      fontSize: "12px",
+                      borderRadius: "25px",
+                    }}
+                    onClick={() => cancleConfirmed(user.basketlist)}
+                  >
+                    {user.confirmed ? "확인 취소" : "입금 확인"}
+                  </Typography>
                 </div>
               )
             }

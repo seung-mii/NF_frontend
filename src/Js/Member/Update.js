@@ -32,22 +32,29 @@ function Update() {
     var MemberModifyDTO = {
       name: username,
       push_email: email,
-      password1: password1,
-      password2: password2,
+      cur_password: password1,
+      new_password: password2,
       bank: moneyBank,
       bank_account_number: moneyAccount,
     };
-    call("/api/member/modify", "POST", MemberModifyDTO).then((response) => {
-      console.log(response);
-      //   setUpdate({
-      //     password1: response.data.password1,
-      //     password2: response.data.password2,
-      //     name: response.data.name,
-      //     push_email: response.data.push_email,
-      //     bank: response.data.push_email,
-      //     bank_account_number: response.data.bank_account_number,
-      //   });
-    });
+    console.log(MemberModifyDTO);
+    call("/api/member/modify", "POST", MemberModifyDTO)
+      .then((response) => {
+        console.log(response);
+        setUpdate({
+          password1: response.data.password1,
+          password2: response.data.password2,
+          name: response.data.name,
+          push_email: response.data.push_email,
+          bank: response.data.push_email,
+          bank_account_number: response.data.bank_account_number,
+        });
+      })
+      .then((response) => {
+        alert("회원정보 수정이 완료되었습니다!");
+        window.location.href = "/mypage";
+      })
+      .catch((error) => {});
   };
 
   useEffect(() => {

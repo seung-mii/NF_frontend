@@ -14,6 +14,7 @@ import SignUp from "./Js/Member/SignUp";
 import Basket from "./Js/Shoppingbasket/Basket";
 import MyPage from "./Js/Member/MyPage";
 import MakeMap from "./Js/Meeting/MakeMap";
+import Update from "./Js/Member/Update";
 
 function App() {
   return (
@@ -27,16 +28,20 @@ function App() {
 
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        {/* <Route path="/mypage" element={<MyPage />} /> */}
+        {/* <Route path="/mypage" element={<Update />} /> */}
 
         <Route path="/myposts" element={<MyPosts />} />
 
-        <Route path="/mypage" element={<MenuView />} />
+        {/* <Route path="/mypage" element={<MenuView />} /> */}
         <Route path="/menuview" element={<MenuView />} />
         <Route
           path="/menudetail/:boardNo/:resname/:foodid"
           element={<MenuDetail />}
         />
+        {/* <Route
+          path="/menudetail?boardNo=boardNo?resname=resname?foodid=foodid"
+          element={<MenuDetail />}
+        /> */}
         <Route path="/basket/:boardNo" element={<Basket />} />
 
         <Route path="/map" element={<MakeMap />} />

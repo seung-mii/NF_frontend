@@ -18,9 +18,7 @@ function MenuDetail() {
   const [totalCost, setTotalCost] = useState(0);
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
   const { boardNo } = useParams();
-  // const resname = M.data.param("resname");
-  // const foodid = M.data.param("foodid");
-  // const boardNo = M.data.param("boardNo");
+
   const boardno = 1;
   useEffect(() => {
     if (menu.menu_no) {

@@ -38,14 +38,6 @@ function MenuView() {
   const detailFood = (item) => {
     console.log(item);
     window.location.href = `/menudetail/${board_no}/${res.name}/${item.menu_no}`;
-    // M.page.html({
-    //   path: "menudetail",
-    //   param: {
-    //     boardNo: board_no,
-    //     resname: res.name,
-    //     foodid: item.menu_no,
-    //   },
-    // });
   };
   const basketViewFunc = () => {
     window.location.href = `/basket/${board_no}`;

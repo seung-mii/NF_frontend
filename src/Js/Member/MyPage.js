@@ -5,11 +5,12 @@ import * as AppStorage from "../../AppStorage";
 function MyPage() {
   const [user, setUser] = useState({ email: "", name: "" });
   useEffect(() => {
-    call("/api/member/getMember", "GET", null).then((response) =>
-      setUser({ email: response.data.email, name: response.data.name })
-    );
-    // var myemail = AppStorage.getItem("email");
-    // setUser({ email: myemail });
+    // call("/api/member/getMember", "GET", null).then((response) =>
+    //   setUser({ email: response.data.email, name: response.data.name })
+    // );
+    var myemail = AppStorage.getItem("email");
+    // alert(myemail);
+    setUser({ email: myemail });
   }, []);
   const myposts = () => {
     window.location.href = "/myposts";

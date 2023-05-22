@@ -30,7 +30,7 @@ function MyPage() {
     <>
       <div className="header">
         <span class="material-symbols-rounded">chevron_left</span>
-        <div className="name">마이페이지</div>
+        <div className="mypage_name">마이페이지</div>
       </div>
       <div className="profile-container">
         {/* <img src="" alt=""></img> */}

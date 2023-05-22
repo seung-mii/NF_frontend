@@ -29,7 +29,7 @@
 }
 
 .make select {
-  width: 99%;
+  width: 100%;
   outline: none;
   font-size: 12px;
   font-weight: 700;
@@ -41,7 +41,7 @@
 }
 
 .make button {
-  width: 99%;
+  width: 100%;
   padding: 10px 15px;
   margin-top: 2px;
   font-size: 12px;
@@ -85,9 +85,30 @@
 .make .restaurant,
 .make .infor,
 .make .time {
-  width: 100%;
+  width: 91%;
   margin: auto;
   padding: 5px 20px 10px 20px;
+}
+
+.make .restaurant a,
+.make .location a {
+  display: block;
+  width: 92%;
+  padding: 10px 15px;
+  margin-top: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #47647C;
+  border: 1px solid #47647C;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.make .location a {
+  width: 86%;
 }
 
 .make .infor,
@@ -96,44 +117,68 @@
 }
 
 .make .infor .num {
+  position: relative;
   width: 100px;
   margin-right: 50px;
 }
 
 .make .infor .num span {
   position: absolute;
-  top: 5px;
+  top: 47px;
   left: 10px;
   cursor: pointer;
+  z-index: 9;
 }
 
 .make .infor .num span:last-child {
-  right: -75px;
+  left: 95px;
 }
 
 .make .infor .location {
-  width: 72%;
+  width: 60%;
   margin-left: 30px;
 }
 
-.make .infor p,
-.make .timeItem p {
-  position: relative;
+.make .infor input {
   width: 100%;
   font-size: 12px;
   font-weight: 700;
   color: #47647C;
-  padding: 10px 20px;
+  padding: 8.5px 20px;
+  margin: 1px 8px 5px 0px;
+  text-align: center;
+  border: 1px solid #bcbcbcc4;
+  border-radius: 10px;
+}
+
+.make .timeItem .item {
+  position: relative;
+}
+
+.make .timeItem input {
+  width: 58.5px;
+  padding: 8.5px 15px 9px 0px;
   margin: 7px 8px 5px 0px;
   text-align: center;
   border: 1px solid #bcbcbcc4;
   border-radius: 10px;
 }
 
+.make .timeItem p {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #47647C;
+  padding: 0px;
+  margin: 7px 8px 5px 0px;
+}
+
 .make .makeBtn {
   display: block;
   width: 60%;
   margin: 20px auto;
-  border-radius: 5px;
+  border-radius: 6px;
   box-shadow: 0px 5px lightgray;
 }

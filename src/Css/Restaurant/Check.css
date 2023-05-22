@@ -36,7 +36,7 @@
   color: white;
   background-color: #47647C;
   border: 3px solid #47647C;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   float: right;
 }
@@ -81,10 +81,14 @@
   color: #bcbcbc;
   font-size: 15px;
   font-weight: 900;
+  cursor: pointer;
 }
 
 .check .type p:first-child {
   margin-left: 30px;
+}
+
+.check .type p.this {
   color: #47647C;
 }
 

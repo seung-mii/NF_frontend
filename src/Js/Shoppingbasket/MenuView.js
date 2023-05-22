@@ -10,110 +10,37 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import "../../Css/Shoppingbasket/MenuView.css";
 import { call } from "../../Service/ApiService";
+import M from "../../native";
 function MenuView() {
-  //식당 정보도 백엔드에서 가져온다.
-  // const res = { name: "구미가당김", id: "1" };
-  //menulist는 백엔드에서 가져온다. 식당 > 전체메뉴
-  const menulist = [
-    {
-      name: "우돌돌피자",
-      price: "15000원",
-      id: "1",
-      src: "https://ldb-phinf.pstatic.net/20200908_256/1599494234060B5s40_JPEG/TebGb1il2yj38iY1vZ_F_ONM.jpg",
-    },
-
-    {
-      name: "알리오올리오",
-      price: "11000원",
-      id: "2",
-      src: "https://ldb-phinf.pstatic.net/20200908_59/1599496218694Nb1Ma_JPEG/jNVLwar76hndVy0GCEf2VEvt.jpg",
-    },
-    {
-      name: "까르보나라",
-      price: "15000원",
-      id: "3",
-      src: "https://ldb-phinf.pstatic.net/20200908_175/1599494729582nC75d_JPEG/sAi84ZssSVcnVKO_C_4tSelT.jpg",
-    },
-    {
-      name: "명란크림 리조또",
-      price: "15000원",
-      id: "4",
-      src: "https://ldb-phinf.pstatic.net/20200121_173/1579600389452jkvPD_JPEG/H4LjMH_92RgOlcqr44yE68fm.jpg",
-    },
-    {
-      name: "우돌돌피자",
-      price: "15000원",
-      id: "5",
-      src: "https://ldb-phinf.pstatic.net/20200908_256/1599494234060B5s40_JPEG/TebGb1il2yj38iY1vZ_F_ONM.jpg",
-    },
-
-    {
-      name: "알리오올리오",
-      price: "11000원",
-      id: "6",
-      src: "https://ldb-phinf.pstatic.net/20200908_59/1599496218694Nb1Ma_JPEG/jNVLwar76hndVy0GCEf2VEvt.jpg",
-    },
-    {
-      name: "까르보나라",
-      price: "15000원",
-      id: "7",
-      src: "https://ldb-phinf.pstatic.net/20200908_175/1599494729582nC75d_JPEG/sAi84ZssSVcnVKO_C_4tSelT.jpg",
-    },
-    {
-      name: "명란크림 리조또",
-      price: "15000원",
-      id: "8",
-      src: "https://ldb-phinf.pstatic.net/20200121_173/1579600389452jkvPD_JPEG/H4LjMH_92RgOlcqr44yE68fm.jpg",
-    },
-    {
-      name: "우돌돌피자",
-      price: "15000원",
-      id: "9",
-      src: "https://ldb-phinf.pstatic.net/20200908_256/1599494234060B5s40_JPEG/TebGb1il2yj38iY1vZ_F_ONM.jpg",
-    },
-
-    {
-      name: "알리오올리오",
-      price: "11000원",
-      id: "10",
-      src: "https://ldb-phinf.pstatic.net/20200908_59/1599496218694Nb1Ma_JPEG/jNVLwar76hndVy0GCEf2VEvt.jpg",
-    },
-    {
-      name: "까르보나라",
-      price: "15000원",
-      id: "11",
-      src: "https://ldb-phinf.pstatic.net/20200908_175/1599494729582nC75d_JPEG/sAi84ZssSVcnVKO_C_4tSelT.jpg",
-    },
-    {
-      name: "명란크림 리조또",
-      price: "15000원",
-      id: "12",
-      src: "https://ldb-phinf.pstatic.net/20200121_173/1579600389452jkvPD_JPEG/H4LjMH_92RgOlcqr44yE68fm.jpg",
-    },
-  ];
   const [title, setTitle] = useState("메뉴 조회");
-  const [res, setRes] = useState({ name: "구미가당김", id: "1" });
+  const [res, setRes] = useState({ name: "", id: "" });
+  const [menulist, setMenulist] = useState([]);
+  const board_no = 12;
   useEffect(() => {
-    //board_no에 따른 레스토랑 정보 조회
-    call(`/api/restaurant/get/${res.id}`, "GET", null).then((response) =>
+    call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
       setRes({
-        id: response.data.id,
-        name: response.data.name,
-        category: response.data.category,
-        delivery_tip: response.data.delivery_tip,
-        min_order_price: response.data.min_order_price,
+        id: response.data.restaurant.restaurant_no,
+        name: response.data.restaurant.name,
       })
     );
   }, []);
+  useEffect(() => {
+    if (res.id) {
+      call(`/api/menu/restaurant/${res.id}`, "GET", null).then((response) =>
+        // console.log(response)
+        setMenulist(response.data)
+      );
+    }
+  }, [res.id]);
   const mainFunc = () => {
     window.location.href = "/";
   };
   const detailFood = (item) => {
     console.log(item);
-    window.location.href = `/menudetail/${res.name}/${item.id}`;
+    window.location.href = `/menudetail/${board_no}/${res.name}/${item.menu_no}`;
   };
   const basketViewFunc = () => {
-    window.location.href = "/basket";
+    window.location.href = `/basket/${board_no}`;
   };
   var menulistitems = menulist.length > 0 && (
     <List className="list">
@@ -154,7 +81,7 @@ function MenuView() {
                     variant="body2"
                     color="text.primary"
                   >
-                    {item.price}
+                    {item.price}원
                   </Typography>
                 </React.Fragment>
               }

@@ -1,12 +1,16 @@
 import { React, useState, useEffect } from "react";
 import "../../Css/Member/MyPage.css";
 import { call, logout, dropoutUser } from "../../Service/ApiService";
+import * as AppStorage from "../../AppStorage";
 function MyPage() {
   const [user, setUser] = useState({ email: "", name: "" });
   useEffect(() => {
-    call("/api/member/getMember", "GET", null).then((response) =>
-      setUser({ email: response.data.email, name: response.data.name })
-    );
+    // call("/api/member/getMember", "GET", null).then((response) =>
+    //   setUser({ email: response.data.email, name: response.data.name })
+    // );
+    var myemail = AppStorage.getItem("email");
+    // alert(myemail);
+    setUser({ email: myemail });
   }, []);
   const myposts = () => {
     window.location.href = "/myposts";
@@ -34,7 +38,7 @@ function MyPage() {
         <div className="mypage-explain">
           <div className="username">{user.name}</div>
 
-          <div>학교 인증 : abc@kumoh.ac.kr</div>
+          <div>학교 인증 : {user.email}</div>
         </div>
       </div>
       <div className="button-container2">

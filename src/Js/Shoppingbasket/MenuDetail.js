@@ -61,6 +61,7 @@ function MenuDetail() {
       quantity: quantity,
     };
     console.log(BasketDTO);
+
     call("/api/basket/create", "POST", BasketDTO)
       .then((response) => {
         if (response.data) {

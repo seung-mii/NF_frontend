@@ -23,7 +23,7 @@ function MyPosts() {
         <div className="post" onClick={() => detail()}>
           <div className="post-title">학생회관으로 떡볶이 같이 시키실 분</div>
           <div className="post-place">🏠 배떡 옥계점</div>
-          <button className="btn">선택</button>
+          <button className="mypost_btn">선택</button>
         </div>
         <div className="underline"></div>
         <div className="post">

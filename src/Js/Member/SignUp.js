@@ -5,6 +5,7 @@ import "../../Css/Member/SignUp.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { InputLabel } from "@mui/material";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import M from "../../native";
 function SignUp() {
   const [bank, setBank] = useState("");
@@ -18,7 +19,7 @@ function SignUp() {
     setText("회원가입 중입니다...");
     const data = new FormData(event.target);
     const username = data.get("username");
-    const email = data.get("email");
+    const email = data.get("email") + "@kumoh.ac.kr";
     const password = data.get("password");
     const moneyBank = data.get("money-bank");
     const moneyAccount = data.get("money-account");
@@ -77,6 +78,26 @@ function SignUp() {
               label="이메일 주소"
               autoFocus
               style={{ marginLeft: "30px" }}
+              defaultValue=""
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <input
+                      type="text"
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        marginRight: "5px",
+                        background: "transparent",
+                      }}
+                      readOnly
+                    />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">@kumoh.ac.kr</InputAdornment>
+                ),
+              }}
             />
           </Grid>
           <Grid item xs={10}>

@@ -10,12 +10,14 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import "../../Css/Shoppingbasket/MenuView.css";
 import { call } from "../../Service/ApiService";
+import { useParams } from "react-router-dom";
 import M from "../../native";
 function MenuView() {
   const [title, setTitle] = useState("메뉴 조회");
   const [res, setRes] = useState({ name: "", id: "" });
   const [menulist, setMenulist] = useState([]);
-  const board_no = 12;
+  // const board_no = 12;
+  const { board_no } = useParams();
   useEffect(() => {
     call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
       setRes({

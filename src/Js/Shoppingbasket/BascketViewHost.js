@@ -24,19 +24,47 @@ function BasketViewHost(props) {
   const [second, setSecond] = useState(0);
 
   const boardNo = props.boardNo;
+
   const cancleConfirmed = (list) => {
     var baskets = list;
-    console.log(list);
-    if (window.confirm("해당 사용자의 입금 확인을 취소하시겠습니까?") == true) {
-      baskets.forEach((basketNo) => {
-        call(`/api/basket/completePayment/${basketNo}`, "PUT", null)
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      });
+    console.log(baskets);
+    const updatedlist = basket.filter((item) =>
+      baskets.includes(item.basketNo)
+    );
+    console.log(updatedlist);
+    const allConfirmed = updatedlist.every((item) => item.confirmed);
+    //모두 true 일경우 > false로 바꾸면 됨
+    //false가 하나라도 있을 경우 > false만 true로
+    if (
+      window.confirm("해당 사용자의 입금 확인여부를 변경 하시겠습니까?") == true
+    ) {
+      if (allConfirmed) {
+        // 모든 데이터의 confirmed이 true인 경우
+        updatedlist.forEach((item) => {
+          call(`/api/basket/completePayment/${item.basketNo}`, "PUT", null)
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        });
+      } else {
+        // confirmed이 false인 데이터만 처리
+        const falseConfirmedData = updatedlist.filter(
+          (item) => !item.confirmed
+        );
+
+        falseConfirmedData.forEach((item) => {
+          call(`/api/basket/completePayment/${item.basketNo}`, "PUT", null)
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        });
+      }
       alert("확인여부가 변경 되었습니다.");
     }
   };
@@ -105,9 +133,11 @@ function BasketViewHost(props) {
     return () => clearInterval(intervalId);
   }, [orderInfo]);
   useEffect(() => {
-    call(`/api/basket/byBoardId/${boardNo}`, "GET", null).then((response) =>
-      setBasket(response.data)
-    );
+    call(`/api/basket/byBoardId/${boardNo}`, "GET", null)
+      .then((response) => setBasket(response.data))
+      .catch((error) => {
+        alert(error.error);
+      });
   }, [basket]);
 
   const userlist = basket.reduce((acc, item) => {
@@ -120,14 +150,21 @@ function BasketViewHost(props) {
       );
       if (existingMenu) {
         existingMenu.quantity += item.quantity;
+
+        existingMenu.confirmed = existingMenu.confirmed && item.confirmed;
       } else {
         existingGroup.menulist.push({
           menuName: item.menuName,
           quantity: item.quantity,
+
+          basketNo: item.basketNo,
+          menuPrice: item.menuPrice,
+          confirmed: item.confirmed,
         });
       }
       existingGroup.totalPrice += item.menuPrice * item.quantity;
       existingGroup.basketlist.push(item.basketNo);
+      existingGroup.confirmed = existingGroup.confirmed && item.confirmed;
     } else {
       acc.push({
         memberEmail: item.memberEmail,
@@ -136,6 +173,10 @@ function BasketViewHost(props) {
           {
             menuName: item.menuName,
             quantity: item.quantity,
+
+            basketNo: item.basketNo,
+            menuPrice: item.menuPrice,
+            confirmed: item.confirmed,
           },
         ],
         confirmed: item.confirmed,
@@ -145,7 +186,7 @@ function BasketViewHost(props) {
     }
     return acc;
   }, []);
-
+  // console.log(userlist);
   var userlistitems = userlist.length > 0 && (
     // 전체
     <List className="bvlist">
@@ -214,6 +255,7 @@ function BasketViewHost(props) {
                 <>
                   <p className="mqp" key={menu.id}>
                     {menu.menuName} {menu.quantity}개
+                    {/* {menu.confirmed ? "" : " <입금확인 전> "} */}
                   </p>
                 </>
               ))}

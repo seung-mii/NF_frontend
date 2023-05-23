@@ -78,9 +78,12 @@ function BasketView(props) {
     return () => clearInterval(intervalId);
   }, [orderInfo]);
   useEffect(() => {
-    call(`/api/basket/byBoardId/${boardNo}`, "GET", null).then((response) =>
-      setBasket(response.data)
-    );
+    call(`/api/basket/byBoardId/${boardNo}`, "GET", null)
+      .then((response) => setBasket(response.data))
+
+      .catch((error) => {
+        alert(error.error);
+      });
   }, []);
 
   const userlist = basket.reduce((acc, item) => {
@@ -93,14 +96,21 @@ function BasketView(props) {
       );
       if (existingMenu) {
         existingMenu.quantity += item.quantity;
+
+        existingMenu.confirmed = existingMenu.confirmed && item.confirmed;
       } else {
         existingGroup.menulist.push({
           menuName: item.menuName,
           quantity: item.quantity,
+
+          basketNo: item.basketNo,
+          menuPrice: item.menuPrice,
+          confirmed: item.confirmed,
         });
       }
       existingGroup.totalPrice += item.menuPrice * item.quantity;
       existingGroup.basketlist.push(item.basketNo);
+      existingGroup.confirmed = existingGroup.confirmed && item.confirmed;
     } else {
       acc.push({
         memberEmail: item.memberEmail,
@@ -109,16 +119,21 @@ function BasketView(props) {
           {
             menuName: item.menuName,
             quantity: item.quantity,
+
+            basketNo: item.basketNo,
+            menuPrice: item.menuPrice,
+            confirmed: item.confirmed,
           },
         ],
         confirmed: item.confirmed,
+
         basketlist: [item.basketNo],
         totalPrice: item.menuPrice * item.quantity,
       });
     }
     return acc;
   }, []);
-
+  // console.log(userlist);
   const cancleOrder = () => {
     if (window.confirm("주문을 취소하시겠습니까?") == true) {
       call(
@@ -201,6 +216,7 @@ function BasketView(props) {
               {user.menulist.map((menu, idx) => (
                 <p className="mqp" key={menu.id}>
                   {menu.menuName} {menu.quantity}개
+                  {/* {menu.confirmed ? "" : " <입금확인 전> "} */}
                 </p>
               ))}
 

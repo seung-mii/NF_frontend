@@ -24,7 +24,7 @@ function Home() {
   const [cafeList, setCafeList] = useState([]);
   const [midnightList, setMidnightList] = useState([]);
 
-  const allTypeOff = () => { 
+  const allTypeOff = () => {
     setEntireType(false);
     setKoreanType(false);
     setSchoolType(false);
@@ -84,6 +84,11 @@ function Home() {
     setMidnightType(true);
   };
 
+  const onParticipate = (board_no) => {
+    call(`/api/board/participate/${board_no}`, "GET", null).then((response) => { });
+    window.location.reload();
+  }
+
   useEffect(() => {
     call("/api/board/getList", "GET", null).then((response) => { setList(response.data); });
     call("/api/board/getList", "GET", null).then((response) => { setEntireList(response.data); });
@@ -122,7 +127,7 @@ function Home() {
               <img src={profile} alt='profile' />
               <div className='infor'>
                 <p className='name'>{item.member.name}</p>
-                <p className='date'>{item.reg_date.slice(0, 4)}년 {item.reg_date.slice(5, 7)}월 {item.reg_date.slice(8, 10)}일</p>
+                <p className='date'>{item.reg_date.slice(0, 14)}</p>
               </div>
             </div>
             <h4 className='title'>{item.title}</h4>
@@ -136,8 +141,12 @@ function Home() {
               <p>{item.restaurant.name}</p>
             </div>
             <div className='btn'>
-              <Link to={`/board/${item.board_no}`}><button>댓글 작성</button></Link>
-              <button className='primary'>모집 {item.cur_people}/{item.max_people}명</button>
+              <Link to={`/board/${item.board_no}`}>
+                <button>댓글 작성</button>
+              </Link>
+              <button className='primary' onClick={() => onParticipate(item.board_no)}>
+                참여 ({item.cur_people}/{item.max_people})
+              </button>
             </div>
           </div>
         )}

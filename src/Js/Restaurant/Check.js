@@ -1,9 +1,10 @@
 /* eslint-disable no-lone-blocks */
-import React, { useState, useEffect } from "react";
-import "../../Css/Restaurant/Check.css";
-import profile from "../../Images/profile.png";
-import Make from "../Meeting/Make.js";
-import { call } from "../../Service/ApiService";
+import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import '../../Css/Restaurant/Check.css';
+import profile from '../../Images/profile.png';
+import Make from '../Meeting/Make.js';
+import { call } from '../../Service/ApiService';
 
 function Check() {
   const [categroy, setCategroy] = useState("전체");
@@ -130,13 +131,7 @@ function Check() {
   }, []);
 
   console.log(list);
-
-  const onChoose = (restaurant_no) => {
-    // console.log(restaurant_no);
-    <Make restaurantNo={restaurant_no} />;
-    window.location.href = "/make";
-  };
-
+  
   return (
     <div className="check">
       <div className="header">
@@ -186,10 +181,10 @@ function Check() {
           </p>
         </div>
         {list.map((item) => (
-          <div className="restaurant" id={item.restaurant_no}>
-            <img src={profile} alt="profile" />
-            <div className="price">
-              <div className="name">
+          <div className='restaurant' id={item.id} key={item.id}>
+            <img src={profile} alt='profile' />
+            <div className='price'>
+              <div className='name'>
                 <h4>{item.name}</h4>
               </div>
               <div className="tip">
@@ -200,7 +195,9 @@ function Check() {
                 <strong>최소주문</strong>
                 <p>{item.min_order_price}원</p>
               </div>
-              <button onClick={() => onChoose(item.restaurant_no)}>선택</button>
+              <Link to="/make" state={{restaurant_no: item.id}}>
+                <button>선택</button>
+              </Link>
             </div>
           </div>
         ))}

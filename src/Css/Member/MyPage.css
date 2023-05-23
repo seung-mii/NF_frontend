@@ -1,0 +1,103 @@
+.mypage_name {
+  font-weight: bold;
+  font-size: 17px;
+  margin-top: 20px;
+  text-align: center;
+  color: #47647C;
+}
+
+.profile-container img {
+  width: 112px;
+  height: 112px;
+  background: #47647C;
+  border-radius: 100%;
+}
+
+.img {
+  width: 70px;
+  height: 70px;
+  background: #47647C;
+  border-radius: 100%;
+  margin-bottom: 30px;
+}
+
+.mypage-explain .username {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  /* width: 80%;
+  border: solid 1.5px #47647C;
+  margin-left: 40px;
+  border-radius: 10px;
+  padding-top: 20px; */
+}
+
+.mypage-explain {
+  margin-left: 20px;
+}
+
+.mypage-explain div {
+  margin: 5px;
+  font-size: 12px;
+  font-weight: 540;
+}
+
+.button-container {
+  margin-top: 50px;
+  margin-left: 45px;
+}
+
+.button-container button {
+  margin: 5px;
+  background: #47647C;
+  border-radius: 15px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.button-container button {
+  cursor: pointer;
+}
+
+.no-bye {
+  width: 85%;
+  height: 35px;
+}
+
+.bye button {
+  width: 41.2%;
+  height: 35px;
+}
+
+.header {
+  margin-top: 10px;
+}
+
+.blue-container {
+  width: 88%;
+  border: solid 1.5px #47647C;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.blue-container li {
+  list-style: none;
+  margin-top: 18px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.mypage-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.mypage-content {
+  font-size: 12px;
+}

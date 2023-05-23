@@ -1,0 +1,41 @@
+.login-main-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: bold;
+  color: #47647C;
+  margin-top: 250px;
+}
+
+.login-button {
+  width: 331px;
+  height: 40px;
+  border-radius: 4px;
+  background: #47647C;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold 900;
+  border: none;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+.login-button:hover {
+  cursor: pointer;
+}
+
+.button {
+  margin-left: 290px;
+}
+
+.no-account {
+  font-weight: 700;
+  color: #47647C;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.material-symbols-rounded {
+  color: #47647C;
+  vertical-align: middle;
+}

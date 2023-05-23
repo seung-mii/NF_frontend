@@ -20,6 +20,7 @@ function SignUp() {
     const data = new FormData(event.target);
     const username = data.get("username");
     const email = data.get("email") + "@kumoh.ac.kr";
+    const push_email = data.get("push_email");
     const password = data.get("password");
     const moneyBank = data.get("money-bank");
     const moneyAccount = data.get("money-account");
@@ -27,6 +28,7 @@ function SignUp() {
     signup({
       name: username,
       email: email,
+      push_email: push_email,
       password: password,
       bank: moneyBank,
       bank_account_number: moneyAccount,
@@ -75,7 +77,7 @@ function SignUp() {
               required
               fullWidth
               id="email"
-              label="이메일 주소"
+              label="학교 이메일"
               autoFocus
               style={{ marginLeft: "30px" }}
               defaultValue=""
@@ -98,6 +100,19 @@ function SignUp() {
                   <InputAdornment position="end">@kumoh.ac.kr</InputAdornment>
                 ),
               }}
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              autoComplete="push_email"
+              name="push_email"
+              variant="outlined"
+              required
+              fullWidth
+              id="push_email"
+              label="push 이메일"
+              autoFocus
+              style={{ marginLeft: "30px" }}
             />
           </Grid>
           <Grid item xs={10}>

@@ -133,9 +133,11 @@ function BasketViewHost(props) {
     return () => clearInterval(intervalId);
   }, [orderInfo]);
   useEffect(() => {
-    call(`/api/basket/byBoardId/${boardNo}`, "GET", null).then((response) =>
-      setBasket(response.data)
-    );
+    call(`/api/basket/byBoardId/${boardNo}`, "GET", null)
+      .then((response) => setBasket(response.data))
+      .catch((error) => {
+        alert(error.error);
+      });
   }, [basket]);
 
   const userlist = basket.reduce((acc, item) => {

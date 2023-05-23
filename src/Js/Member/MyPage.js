@@ -21,9 +21,10 @@ function MyPage() {
   };
   const handleDropoutUser = () => {
     if (window.confirm("회원 탈퇴하시겠습니까?") == true) {
-      alert("회원탈퇴 되었습니다.");
-      dropoutUser();
-      window.location.href = "/";
+      dropoutUser().then((response) => {
+        alert("회원탈퇴 되었습니다.");
+        window.location.href = "/";
+      });
     }
   };
   return (

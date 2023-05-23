@@ -78,9 +78,12 @@ function BasketView(props) {
     return () => clearInterval(intervalId);
   }, [orderInfo]);
   useEffect(() => {
-    call(`/api/basket/byBoardId/${boardNo}`, "GET", null).then((response) =>
-      setBasket(response.data)
-    );
+    call(`/api/basket/byBoardId/${boardNo}`, "GET", null)
+      .then((response) => setBasket(response.data))
+
+      .catch((error) => {
+        alert(error.error);
+      });
   }, []);
 
   const userlist = basket.reduce((acc, item) => {
@@ -130,7 +133,7 @@ function BasketView(props) {
     }
     return acc;
   }, []);
-  console.log(userlist);
+  // console.log(userlist);
   const cancleOrder = () => {
     if (window.confirm("주문을 취소하시겠습니까?") == true) {
       call(

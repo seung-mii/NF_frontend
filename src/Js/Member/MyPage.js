@@ -12,25 +12,42 @@ function MyPage() {
     // alert(myemail);
     setUser({ email: myemail });
   }, []);
+  const home = () => {
+    window.location.href = "/home";
+  };
   const myposts = () => {
     window.location.href = "/myposts";
   };
+  const update = () => {
+    window.location.href = "/update";
+  };
+
   const handleLogout = () => {
     logout();
     window.location.href = "/";
   };
   const handleDropoutUser = () => {
     if (window.confirm("회원 탈퇴하시겠습니까?") == true) {
-      dropoutUser().then((response) => {
-        alert("회원탈퇴 되었습니다.");
-        window.location.href = "/";
-      });
+      call("/api/member/out", "GET", null)
+        .then((response) => {
+          console.log(response);
+          AppStorage.setItem("ACCESS_TOKEN", null);
+          AppStorage.setItem("email", null);
+          alert("회원탈퇴 되었습니다.");
+          window.location.href = "/";
+          console.log("탈퇴 완료");
+        })
+        .catch((error) => {
+          console.log(error.error);
+        });
     }
   };
   return (
     <>
       <div className="header">
-        <span class="material-symbols-rounded">chevron_left</span>
+        <span class="material-symbols-rounded" onClick={() => home()}>
+          chevron_left
+        </span>
         <div className="mypage_name">마이페이지</div>
       </div>
       <div className="profile-container">
@@ -45,10 +62,6 @@ function MyPage() {
       <div className="button-container2">
         <ul>
           <div className="blue-container">
-            <li className="mypage-title">계정</li>
-            <li className="mypage-content">학교인증</li>
-          </div>
-          <div className="blue-container">
             <li className="mypage-title">게시물</li>
             <li className="mypage-content" onClick={() => myposts()}>
               내가 쓴 게시물
@@ -56,7 +69,9 @@ function MyPage() {
           </div>
           <div className="blue-container">
             <li className="mypage-title">회원</li>
-            <li className="mypage-content">회원정보수정</li>
+            <li className="mypage-content" onClick={() => update()}>
+              회원정보수정
+            </li>
             <li className="mypage-content" onClick={() => handleLogout()}>
               로그아웃
             </li>

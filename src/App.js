@@ -29,7 +29,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage" element={<MyPage />} />
-
+        <Route path="/update" element={<Update />} />
         <Route path="/myposts" element={<MyPosts />} />
 
         <Route path="/menuview/:board_no" element={<MenuView />} />

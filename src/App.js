@@ -32,7 +32,7 @@ function App() {
 
         <Route path="/myposts" element={<MyPosts />} />
 
-        <Route path="/menuview" element={<MenuView />} />
+        <Route path="/menuview/:board_no" element={<MenuView />} />
         <Route
           path="/menudetail/:boardNo/:resname/:foodid"
           element={<MenuDetail />}

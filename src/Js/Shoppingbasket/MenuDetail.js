@@ -66,7 +66,7 @@ function MenuDetail() {
       .then((response) => {
         if (response.data) {
           setButtonText("공동 장바구니에 메뉴를 추가했습니다.");
-          window.location.href = "/menuview";
+          window.location.href = `/menuview/${boardNo}`;
         }
       })
       .catch((error) => {

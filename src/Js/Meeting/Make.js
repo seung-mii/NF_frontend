@@ -1,16 +1,14 @@
 /* eslint-disable no-lone-blocks */
 import React, { useState } from 'react';
-import { useLocation } from "react-router-dom";
 import '../../Css/Meeting/Make.css';
 import { call } from '../../Service/ApiService';
 import * as AppStorage from "../../AppStorage";
 
 function Make() {
-  const location = useLocation();
   const [list, setList] = useState({
     title: "",
     contents: "",
-    category: "",
+    category: AppStorage.getItem("category"),
     restaurant_no: AppStorage.getItem("restaurant_no"),
     max_people: 1,
     latitude: AppStorage.getItem("lat"),
@@ -23,7 +21,6 @@ function Make() {
   const onIncrease = () => { setList((prevState) => ({ ...prevState, max_people: list.max_people + 1})); }
   const onInputTitleChange = (e) => { setList((prevState) => ({ ...prevState, title : e.target.value})); }
   const onInputContentsChange = (e) => { setList((prevState) => ({ ...prevState, contents: e.target.value})); }
-  const onInputCategoryChange = (e) => { setList((prevState) => ({ ...prevState, category: e.target.value})); }
   const onInputPeopleChange = (e) => { setList((prevState) => ({ ...prevState, max_people: e.target.value})); }
   const onInputTimeChange = (e) => { setList({ ...list, [e.target.name]: e.target.value })} 
 
@@ -39,6 +36,7 @@ function Make() {
     call("/api/board/create", "POST", list).then((response) => {
       setList(response.data);
       AppStorage.setItem("restaurant_no", null);
+      AppStorage.setItem("category", null);
       AppStorage.setItem("lat", null);
       AppStorage.setItem("lng", null);
       AppStorage.setItem("address", null);
@@ -98,24 +96,6 @@ function Make() {
             value={list.contents}
             onChange={onInputContentsChange}
           />
-        </div>
-        <hr />
-        <div className='category'>
-          <h4>음식 카테고리</h4>
-          <select
-            id='category' name='category'
-            value={list.category}
-            onChange={onInputCategoryChange}
-          >
-            <option selected>음식 카테고리를 선택해 주세요.</option>
-            <option value="한식">한식</option>
-            <option value="분식">분식</option>
-            <option value="중식">중식</option>
-            <option value="일식">일식</option>
-            <option value="양식">양식</option>
-            <option value="카페">카페</option>
-            <option value="야식">야식</option>
-          </select>
         </div>
         <hr />
         <div className='time'>

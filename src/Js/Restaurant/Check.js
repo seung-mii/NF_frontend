@@ -86,8 +86,9 @@ function Check() {
     setMidnightType(true);
   };
 
-  const onChoose = (restaurant_no) => {
+  const onChoose = (restaurant_no, category) => {
     AppStorage.setItem("restaurant_no", restaurant_no);
+    AppStorage.setItem("category", category);
   }
 
   useEffect(() => {
@@ -102,7 +103,7 @@ function Check() {
     call("/api/restaurant/getListByCategory?category=야식", "GET", null).then((response) => { setMidnightList(response.data); });
   }, []);
 
-  console.log(list);
+  // console.log(list);
   
   return (
     <div className='check'>
@@ -125,7 +126,7 @@ function Check() {
           <p className={`${midnightType ? "this" : ""}`} onClick={onMidnightClick}>야식</p>
         </div>
         {list.map((item) => (
-          <div className='restaurant' id={item.id} key={item.id}>
+          <div className='restaurant' id={item.restaurant_no} key={item.restaurant_no}>
             <img src={profile} alt='profile' />
             <div className='price'>
               <div className='name'>
@@ -139,7 +140,7 @@ function Check() {
                 <strong>최소주문</strong>
                 <p>{item.min_order_price}원</p>
               </div>
-              <Link to="/make" state={{restaurant_no: item.id}} onClick={() => onChoose(item.id)}>
+              <Link to="/make" state={{restaurant_no: item.restaurant_no}} onClick={() => onChoose(item.id, item.category)}>
                 <button>선택</button>
               </Link>
             </div>

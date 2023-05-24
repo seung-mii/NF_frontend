@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { getCurrentLocation } from "../../native/location";
+import '../../Css/Meeting/Make.css';
 import * as AppStorage from "../../AppStorage";
 
 const MakeMap = () => {
@@ -25,7 +26,7 @@ const MakeMap = () => {
     getAddress(position.lat, position.lng);
   };
 
-  const onClick = ({lat, lng, address}) => {
+  const onClick = ({ lat, lng, address }) => {
     AppStorage.setItem("lat", lat);
     AppStorage.setItem("lng", lng);
     AppStorage.setItem("address", address);
@@ -38,18 +39,13 @@ const MakeMap = () => {
   }, []);
 
   return (
-    <>
-      <div className='header'>
-        <Link to="/make" onClick={() => onClick({lat : position.lat, lng : position.lng, address: address.address_name})}>
-          <span class="material-symbols-rounded">chevron_left</span>
-        </Link>
-      </div>
+    <div className="make">
       <Map // 지도를 표시할 Container
         center={{
           // 지도의 중심좌표 
           lat: position.lat, lng: position.lng,
         }}
-        style={{ width: "100%", height: "85vh" }}
+        style={{ width: "100%", height: "91vh" }}
         level={3} // 지도의 확대 레벨
         onClick={(_t, mouseEvent) =>
           setFullAddress({ lat: mouseEvent.latLng.getLat(), lng: mouseEvent.latLng.getLng() })
@@ -57,7 +53,7 @@ const MakeMap = () => {
       >
         {position && <MapMarker position={position} />}
       </Map>
-      {position && (
+      {/* {position && (
         <p>
           {"클릭한 위치의 위도는 " + position.lat + " 이고, 경도는 " + position.lng + " 입니다"}
         </p>
@@ -66,8 +62,11 @@ const MakeMap = () => {
         <div>
           <p>현재 좌표의 주소는: {address.address_name}</p>
         </div>
-      )}
-    </>
+      )} */}
+      <Link to="/make" className="mapBtn" onClick={() => onClick({lat : position.lat, lng : position.lng, address: address.address_name})}>
+        완료
+      </Link>
+    </div>
   );
 };
 

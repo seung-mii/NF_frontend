@@ -6,7 +6,7 @@ import { call } from '../../Service/ApiService';
 import * as AppStorage from "../../AppStorage";
 
 function Home() {
-  AppStorage.setItem("max_people", 1);
+  AppStorage.setItem("max_people", 2);
   const [categroy, setCategroy] = useState("전체");
   const [entireType, setEntireType] = useState(true);
   const [koreanType, setKoreanType] = useState(false);
@@ -87,7 +87,7 @@ function Home() {
   };
 
   const onParticipate = (board_no) => {
-    call(`/api/board/participate/${board_no}`, "GET", null).then((response) => { });
+    call(`/api/participation/in/${board_no}`, "GET", null).then((response) => { });
     window.location.reload();
   }
 
@@ -108,8 +108,7 @@ function Home() {
   return (
     <div className='home'>
       <div className='header'>
-        경북 구미시 대학로
-        <span class="material-symbols-rounded">search</span>
+        ❝ NeighborFood ❞
       </div>
       <hr />
       <div className='main'>

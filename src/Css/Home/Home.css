@@ -43,9 +43,10 @@
 }
 
 .home .header {
-  margin: 15px 30px;
+  margin: 15px 20px;
   font-size: 17px;
-  font-weight: 900;
+  font-weight: 800;
+  text-align: center;
   justify-content: space-between;
 }
 

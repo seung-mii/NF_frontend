@@ -29,7 +29,7 @@ function Make() {
   const onInputTitleChange = (e) => { setList((prevState) => ({ ...prevState, title : e.target.value})); }
   const onInputContentsChange = (e) => { setList((prevState) => ({ ...prevState, contents: e.target.value})); }
   const onInputTimeChange = (e) => { setList((prevState) => ({ ...prevState, [e.target.name]: e.target.value })); } 
-  const onInputDetailAddressChange = (e) => { setDetailAddress(e.target.value)} 
+  const onInputDetailAddressChange = (e) => { setDetailAddress(e.target.value) } 
   const onInputPeopleChange = (e) => { setList((prevState) => ({ ...prevState, max_people: list.max_people })); }
 
   const onClear = (e) => {
@@ -48,8 +48,8 @@ function Make() {
     if(list.hour.length == 1) { list.hour = "0" + list.hour }
     if (list.minute.length == 1) { list.minute = "0" + list.minute }
     list.order_time = list.year + list.month + list.day + list.hour + list.minute;
-    // setList((prevState) => ({ ...prevState, order_time: list.year + list.month + list.day + list.hour + list.minute }));
-    setList((prevState) => ({ ...prevState, location: list.location + " " + detailAddress }));
+    list.location = list.location + " " + detailAddress;
+    setList((prevState) => ({ ...prevState, location: list.location }));
     call("/api/board/create", "POST", list).then((response) => {
       setList(response.data);
       onClear();

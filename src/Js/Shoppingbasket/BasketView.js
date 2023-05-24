@@ -167,7 +167,7 @@ function BasketView(props) {
                     variant="contained"
                     style={{
                       backgroundColor: "#7ca380",
-                      color: user.confirmed ? "white" : "#00FF00",
+                      color: user.confirmed ? "#00FF00" : "white",
                       lineHeight: "32px",
                       width: 90,
                       padding: 2,
@@ -179,7 +179,7 @@ function BasketView(props) {
                   >
                     {user.confirmed ? "입금 확인" : "입금 전"}
                   </Typography>
-                  {user.confirmed && user.memberEmail === myInfo.email && (
+                  {!user.confirmed && user.memberEmail === myInfo.email && (
                     <Typography
                       variant="contained"
                       style={{

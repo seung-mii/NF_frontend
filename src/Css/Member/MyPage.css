@@ -1,8 +1,8 @@
-.mypage_name {
+.myheader .mypage_name {
   font-weight: bold;
   font-size: 17px;
   color: #9ab18a;
-  margin-left: 130px;
+  margin-left: 185px;
 }
 
 .profile-container img {
@@ -75,7 +75,7 @@
   height: 35px;
 }
 
-.header {
+.myheader {
   margin-top: 10px;
 }
 

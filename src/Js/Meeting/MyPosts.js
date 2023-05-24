@@ -32,16 +32,20 @@ function MyPosts() {
       setMember(response.data);
       console.log(response.data);
     });
-    call("/api/board/myBoardList", "GET", null).then((response) => {
-      setMyBoard(response.data);
-      setList(response.data);
-      console.log(response.data);
-    });
+    call("/api/board/myBoardList", "GET", null)
+      .then((response) => {
+        setMyBoard(response.data);
+        setList(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
     <>
-      <div className="header">
+      <div className="postheader">
         <span class="material-symbols-rounded" onClick={goBack}>
           chevron_left
         </span>
@@ -54,36 +58,36 @@ function MyPosts() {
           <div className="MyPostsName">{member.name}</div>
         </div>
       </div>
-      {list.length === 0
-        ? alert("참여한 모임이 없습니다")
-        : list.map((item) => (
-            <div
-              className="posts-container"
-              id={item.board_no}
-              key={item.board_no}
-            >
-              <div className="post">
-                <div className="post-title">{item.title}</div>
-                <div className="post-place">{item.restaurant.name}</div>
-                <div className="MyPostsButton">
-                  <a href={`/board/${item.board_no}`} className="MyPostsLink">
-                    <button className="MyPostsCancel">모임으로 이동</button>
-                  </a>
+      {list.length === 0 && (
+        <div className="no-posts-alert">참여한 모임이 없습니다.</div>
+      )}
+      {list.length > 0 &&
+        list.map((item) => (
+          <div
+            className="posts-container"
+            id={item.board_no}
+            key={item.board_no}
+          >
+            <div className="post">
+              <div className="post-title">{item.title}</div>
+              <div className="post-place">{item.restaurant.name}</div>
+              <div className="MyPostsButton">
+                <a href={`/board/${item.board_no}`} className="MyPostsLink">
+                  <button className="MyPostsCancel">모임으로 이동</button>
+                </a>
 
-                  <button
-                    className="MyPostsCancel"
-                    onClick={() => handleCancelParticipation(item.board_no)}
-                  >
-                    참여 취소
-                  </button>
-                </div>
+                <button
+                  className="MyPostsCancel"
+                  onClick={() => handleCancelParticipation(item.board_no)}
+                >
+                  참여 취소
+                </button>
               </div>
             </div>
-          ))}
+          </div>
+        ))}
     </>
   );
-}
-{
 }
 
 export default MyPosts;

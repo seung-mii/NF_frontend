@@ -44,7 +44,7 @@ function MyPage() {
   };
   return (
     <>
-      <div className="header">
+      <div className="myheader">
         <span class="material-symbols-rounded" onClick={() => home()}>
           chevron_left
         </span>

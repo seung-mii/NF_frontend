@@ -17,8 +17,10 @@ function Make() {
   }); 
 
   const onDecrease = () => { 
-    AppStorage.setItem("max_people", list.max_people - 1);
-    setList((prevState) => ({ ...prevState, max_people: parseInt(AppStorage.getItem("max_people"))}))
+    if (AppStorage.getItem("max_people") > 2) {
+      AppStorage.setItem("max_people", list.max_people - 1);
+      setList((prevState) => ({ ...prevState, max_people: parseInt(AppStorage.getItem("max_people"))}))
+    }
   }
   const onIncrease = () => { 
     AppStorage.setItem("max_people", list.max_people + 1);
@@ -26,7 +28,7 @@ function Make() {
   }
   const onInputTitleChange = (e) => { setList((prevState) => ({ ...prevState, title : e.target.value})); }
   const onInputContentsChange = (e) => { setList((prevState) => ({ ...prevState, contents: e.target.value})); }
-  const onInputTimeChange = (e) => { setList({ ...list, [e.target.name]: e.target.value })} 
+  const onInputTimeChange = (e) => { setList((prevState) => ({ ...prevState, [e.target.name]: e.target.value })); } 
   const onInputDetailAddressChange = (e) => { setDetailAddress(e.target.value)} 
   const onInputPeopleChange = (e) => { setList((prevState) => ({ ...prevState, max_people: list.max_people })); }
 
@@ -41,12 +43,13 @@ function Make() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(list.month.length == 1) { list.month = "0" + list.month}
-    if(list.day.length == 1) { list.day = "0" + list.day}
-    if(list.hour.length == 1) { list.hour = "0" + list.hour}
-    if (list.minute.length == 1) {list.minute = "0" + list.minute}
-    setList((prevState) => ({ ...prevState, location: list.location + detailAddress, order_time: list.year + list.month + list.day + list.hour + list.minute }));
-    
+    if(list.month.length == 1) { list.month = "0" + list.month }
+    if(list.day.length == 1) { list.day = "0" + list.day }
+    if(list.hour.length == 1) { list.hour = "0" + list.hour }
+    if (list.minute.length == 1) { list.minute = "0" + list.minute }
+    list.order_time = list.year + list.month + list.day + list.hour + list.minute;
+    // setList((prevState) => ({ ...prevState, order_time: list.year + list.month + list.day + list.hour + list.minute }));
+    setList((prevState) => ({ ...prevState, location: list.location + " " + detailAddress }));
     call("/api/board/create", "POST", list).then((response) => {
       setList(response.data);
       onClear();
@@ -81,6 +84,7 @@ function Make() {
             <span onClick={onDecrease} className="material-symbols-rounded">remove</span>
             <input
               required
+              disabled
               id='max_people' name='max_people' type='number'
               value={list.max_people}
               onChange={onInputPeopleChange}

@@ -1,19 +1,21 @@
 .navbar {
-  color: #47647c;
+  color: #5a9367;
   margin-top: 10px;
   text-align: center;
+  font-weight: 900;
+  font-size: 17px;
 }
 
 .navbar .span {
   float: left;
   font-weight: 900;
-  color: #47647c;
+  color: #5a9367;
   padding-top: 3px;
 }
 .navbar .title {
   font-size: 17px;
+  color: #5a9367;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-right: 30px;
 }

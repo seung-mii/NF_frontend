@@ -52,7 +52,7 @@
 /* + - 버튼 */
 .md-header .fqbox .qicon {
   color: white;
-  background-color: #7ca380;
+  background-color: #5a9367;
   border-radius: 50%;
 }
 
@@ -62,7 +62,7 @@
   font-weight: 700;
 }
 .footer-container .btt {
-  background-color: #7ca380;
+  background-color: #5a9367;
   width: 400px;
   height: 50px;
   font-size: 17px;
@@ -70,7 +70,7 @@
   border-radius: 8px;
 }
 .footer-container .btt:focus {
-  background-color: #7ca380;
+  background-color: #5a9367;
   width: 400px;
   height: 50px;
   font-size: 17px;
@@ -78,7 +78,7 @@
   border-radius: 8px;
 }
 .footer-container .btt:hover {
-  background-color: #7ca380;
+  background-color: #5a9367;
   width: 400px;
   height: 50px;
   font-size: 17px;

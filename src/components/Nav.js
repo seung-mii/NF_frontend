@@ -11,12 +11,17 @@ const Nav = (props) => {
       <span
         class="material-symbols-rounded"
         onClick={() => goBack()}
-        style={{ float: "left", marginLeft: "20px" }}
+        style={{
+          float: "left",
+          marginLeft: "20px",
+          fontWeight: "900",
+          color: "#5a9367",
+        }}
       >
         chevron_left
       </span>
 
-      <h4 style={{ marginRight: "30px" }}>{title}</h4>
+      <h4 style={{ marginRight: "45px" }}>{title}</h4>
     </div>
   );
 };

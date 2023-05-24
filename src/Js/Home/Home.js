@@ -87,7 +87,7 @@ function Home() {
   };
 
   const onParticipate = (board_no) => {
-    call(`/api/board/participate/${board_no}`, "GET", null).then((response) => { });
+    call(`/api/participation/in/${board_no}`, "GET", null).then((response) => { });
     window.location.reload();
   }
 

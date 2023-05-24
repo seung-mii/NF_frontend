@@ -5,14 +5,13 @@ import { call } from '../../Service/ApiService';
 import * as AppStorage from "../../AppStorage";
 
 function Make() {
+  const [detailAddress, setDetailAddress] = useState("");
   const [list, setList] = useState({
     title: "",
     contents: "",
     category: AppStorage.getItem("category"),
     restaurant_no: AppStorage.getItem("restaurant_no"),
     max_people: 1,
-    latitude: AppStorage.getItem("lat"),
-    longtitude: AppStorage.getItem("lng"),
     location: AppStorage.getItem("address"),
     order_time: ""
   }); 
@@ -23,6 +22,7 @@ function Make() {
   const onInputContentsChange = (e) => { setList((prevState) => ({ ...prevState, contents: e.target.value})); }
   const onInputPeopleChange = (e) => { setList((prevState) => ({ ...prevState, max_people: e.target.value})); }
   const onInputTimeChange = (e) => { setList({ ...list, [e.target.name]: e.target.value })} 
+  const onInputDetailAddressChange = (e) => { setDetailAddress(e.target.value)} 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,22 +30,19 @@ function Make() {
     if(list.month.length == 1) { list.month = "0" + list.month}
     if(list.day.length == 1) { list.day = "0" + list.day}
     if(list.hour.length == 1) { list.hour = "0" + list.hour}
-    if (list.minute.length == 1) { list.minute = "0" + list.minute }
-    console.log(list.year + list.month + list.day + list.hour + list.minute);
-    setList((prevState) => ({ ...prevState, order_time: list.year + list.month + list.day + list.hour + list.minute}));
+    if (list.minute.length == 1) {list.minute = "0" + list.minute}
+    setList((prevState) => ({ ...prevState, location: list.location + detailAddress, order_time: list.year + list.month + list.day + list.hour + list.minute }));
+    
     call("/api/board/create", "POST", list).then((response) => {
       setList(response.data);
       AppStorage.setItem("restaurant_no", null);
       AppStorage.setItem("category", null);
-      AppStorage.setItem("lat", null);
-      AppStorage.setItem("lng", null);
       AppStorage.setItem("address", null);
       window.location.href = "/home";
     });
   };
 
   console.log(list);
-  // console.log("restaurant_no :: ", AppStorage.getItem("restaurant_no"));
   
   return (
     <div className='make'>
@@ -55,15 +52,10 @@ function Make() {
       </div>
       <form noValidate onSubmit={handleSubmit} className='main'>
         <hr />
-        <div className='restaurant'>
-          <h4>음식점</h4>
-          <a href='/check'>음식점 선택하기</a>
-        </div>
-        <hr />
         <div className='infor'>
-          <div className='location'>
-            <h4>음식 받을 위치</h4>
-            <a href='/map'>위치 선택하기</a>
+          <div className='restaurant'>
+            <h4>음식점</h4>
+            <a href='/check'>음식점 선택하기</a>
           </div>
           <div className='num'>
             <h4>인원</h4>
@@ -76,6 +68,16 @@ function Make() {
             />
             <span onClick={onIncrease} className="material-symbols-rounded">add</span>
           </div>
+        </div>
+        <hr />
+        <div className='location'>
+          <h4>음식 받을 위치</h4>
+          <a href='/map'>위치 선택하기</a>
+          <input required
+            id='detail_address' name='detail_address' type='text'
+            placeholder='상세주소를 작성해 주세요.'
+            onChange={onInputDetailAddressChange}
+          />
         </div>
         <hr />
         <div className='title'>

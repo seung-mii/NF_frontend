@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import '../../Css/Meeting/Board.css';
 import profile from '../../Images/profile.png';
@@ -7,7 +7,11 @@ import * as AppStorage from "../../AppStorage";
 
 function Board() {
   const { id } = useParams();
-  const [list, setList] = useState([]);
+  const [list, setList] = useState({
+    member: { name: "" },
+    reg_date: "",
+    restaurant: { name: "" },
+  });
   const [reply, setReply] = useState({
     board_no: id,
     contents: ""
@@ -26,7 +30,7 @@ function Board() {
 
   const onBoardDelete = (board_no) => {
     call(`/api/board/delete/${board_no}`, "GET", null).then((response) => {
-      window.location.href = "/";
+      window.location.href = "/home";
     });
   }
 
@@ -36,7 +40,7 @@ function Board() {
     });
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     call(`/api/board/get/${id}`, "GET", null).then((response) => {
       setList(response.data);
     });
@@ -62,14 +66,14 @@ function Board() {
             <div className='user'>
               <img src={profile} alt='profile' />
               <div className='infor'>
-                {/* <p className='name'>{list.member.name}</p> */}
-                {/* <p className='date'>{list.reg_date.slice(0, 14)}</p> */}
+                <p className='name'>{list.member.name}</p>
+                <p className='date'>{list.reg_date.slice(0, 14)}</p>
               </div>
               { AppStorage.getItem("username") == list.member.name &&
                 <button onClick={() => onBoardDelete(list.board_no)}>
                   <span class="material-symbols-rounded">delete</span>
                 </button>
-              }
+              } 
             </div>
             <h4 className='title'>{list.title}</h4>
             <p className='content'>{list.contents}</p> 
@@ -79,7 +83,7 @@ function Board() {
             </div>
             <div className='restaurant'>
               <span class="material-symbols-rounded">home</span>
-              {/* <p>{list.restaurant.name}</p> */}
+              <p>{list.restaurant.name}</p>
             </div>
           </div>
           <div className='ing'>
@@ -104,7 +108,6 @@ function Board() {
                 <p className='time'>{item.reg_date.slice(0, 4)}.{item.reg_date.slice(5, 7)}.{item.reg_date.slice(8, 10)} {item.reg_date.slice(11, 13)}:{item.reg_date.slice(14, 16)}</p>
               </div>
               <p>{item.contents}</p>
-              {/* 본인 댓글만 삭제할 수 있도록 */}
               { AppStorage.getItem("username") == item.writer &&
                 <button onClick={() => onCommentDelete(item.reply_no)}>
                   <span class="material-symbols-rounded">delete</span>

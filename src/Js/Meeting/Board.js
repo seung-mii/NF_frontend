@@ -6,14 +6,14 @@ import { call } from '../../Service/ApiService';
 import * as AppStorage from "../../AppStorage";
 
 function Board() {
-  const { id } = useParams();
+  const { board_no } = useParams();
   const [list, setList] = useState({
     member: { name: "" },
     reg_date: "",
     restaurant: { name: "" },
   });
   const [reply, setReply] = useState({
-    board_no: id,
+    board_no: board_no,
     contents: ""
   });
 
@@ -41,12 +41,11 @@ function Board() {
   }
 
   useLayoutEffect(() => {
-    call(`/api/board/get/${id}`, "GET", null).then((response) => {
+    call(`/api/board/get/${board_no}`, "GET", null).then((response) => {
       setList(response.data);
     });
   }, []);
 
-  // console.log(id); 
   console.log(list);
   // console.log(reply);
   // console.log(list.member['name']);

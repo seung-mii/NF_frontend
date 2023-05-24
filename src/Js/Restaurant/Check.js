@@ -86,9 +86,10 @@ function Check() {
     setMidnightType(true);
   };
 
-  const onChoose = (restaurant_no, category) => {
+  const onChoose = (restaurant_no, category, restaurant_name) => {
     AppStorage.setItem("restaurant_no", restaurant_no);
     AppStorage.setItem("category", category);
+    AppStorage.setItem("restaurant_name", restaurant_name);
   }
 
   useEffect(() => {
@@ -140,7 +141,7 @@ function Check() {
                 <strong>최소주문</strong>
                 <p>{item.min_order_price}원</p>
               </div>
-              <Link to="/make" state={{restaurant_no: item.restaurant_no}} onClick={() => onChoose(item.restaurant_no, item.category)}>
+              <Link to="/make" state={{restaurant_no: item.restaurant_no}} onClick={() => onChoose(item.restaurant_no, item.category, item.name)}>
                 <button>선택</button>
               </Link>
             </div>

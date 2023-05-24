@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import '../../Css/Home/Home.css';
 import profile from '../../Images/profile.png';
 import { call } from '../../Service/ApiService';
+import * as AppStorage from "../../AppStorage";
 
 function Home() {
+  AppStorage.setItem("max_people", 1);
   const [categroy, setCategroy] = useState("전체");
   const [entireType, setEntireType] = useState(true);
   const [koreanType, setKoreanType] = useState(false);
@@ -134,7 +136,7 @@ function Home() {
             <p className='content'>{item.contents}</p>
             <div className='location'>
               <span class="material-symbols-rounded">location_on</span>
-              <p>경상북도 구미시 대학로 62 오름관 1동 1층</p>
+              <p>{item.location}</p>
             </div>
             <div className='restaurant'>
               <span class="material-symbols-rounded">home</span>

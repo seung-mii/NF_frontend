@@ -49,7 +49,7 @@ input {
 
 .entire .header span {
   display: inline-block;
-  color: #47647C;
+  color: #5A9367;
   padding-top: 5px;
   font-weight: 900;
   justify-content: space-between;
@@ -66,7 +66,7 @@ input {
   margin: 20px;
   padding: 10px 20px;
   border-radius: 15px;
-  background-color: #d7e9f75d;
+  background-color: #8fbc941e;
 }
 
 .entire .ing {
@@ -160,7 +160,7 @@ input {
 
 .entire .comment span {
   font-size: 20px;
-  color: #47647C;
+  color: #5A9367;
 }
 
 .entire .comment button {
@@ -187,7 +187,7 @@ input {
 }
 
 .input span {
-  color: #47647C;
+  color: #5A9367;
   font-weight: 700;
   vertical-align: middle;
 }
@@ -195,7 +195,7 @@ input {
 .input button {
   position: absolute;
   font-size: 20px;
-  color: #47647C;
+  color: #5A9367;
   background-color: transparent;
   border: 0px;
   cursor: pointer;

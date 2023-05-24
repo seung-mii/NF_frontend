@@ -38,7 +38,7 @@
   outline: none;
   font-size: 12px;
   font-weight: 700;
-  color: #47647C;
+  color: #5A9367;
   margin: 5px 0px;
   padding: 10px 15px;
   border: 1px solid #bcbcbcc4;
@@ -53,8 +53,8 @@
   font-weight: 700;
   text-align: center;
   color: white;
-  background-color: #47647C;
-  border: 1px solid #47647C;
+  background-color: #5A9367;
+  border: 1px solid #5A9367;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -67,7 +67,7 @@
 }
 
 .make .header {
-  color: #47647C;
+  color: #5A9367;
   margin-top: 10px;
   text-align: center;
 }
@@ -75,7 +75,7 @@
 .make .header span {
   float: left;
   font-weight: 900;
-  color: #47647C;
+  color: #5A9367;
   padding-top: 3px;
   margin-left: 30px;
 }
@@ -156,7 +156,7 @@
   width: 100%;
   font-size: 12px;
   font-weight: 700;
-  color: #47647C;
+  color: #5A9367;
   padding: 8.5px 20px;
   margin: 3px 8px 5px 0px;
   text-align: center;
@@ -189,7 +189,7 @@
   right: 13px;
   font-size: 12px;
   font-weight: 700;
-  color: #47647C;
+  color: #5A9367;
   padding: 0px;
   margin: 7px 8px 5px 0px;
 }
@@ -213,5 +213,5 @@
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: #47647C;
+  background-color: #5A9367;
 }

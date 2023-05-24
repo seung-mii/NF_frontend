@@ -56,8 +56,8 @@ function Board() {
             <div className='user'>
               <img src={profile} alt='profile' />
               <div className='infor'>
-                <p className='name'>{list.member.name}</p>
-                <p className='date'>{list.reg_date.slice(0, 14)}</p>
+                {/* <p className='name'>{list.member.name}</p> */}
+                {/* <p className='date'>{list.reg_date.slice(0, 14)}</p> */}
               </div>
             </div>
             <h4 className='title'>{list.title}</h4>
@@ -68,7 +68,7 @@ function Board() {
             </div>
             <div className='restaurant'>
               <span class="material-symbols-rounded">home</span>
-              <p>{list.restaurant.name}</p>
+              {/* <p>{list.restaurant.name}</p> */}
             </div>
           </div>
           <div className='ing'>

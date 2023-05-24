@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import '../../Css/Restaurant/Check.css';
 import profile from '../../Images/profile.png';
-import Make from '../Meeting/Make.js';
 import { call } from '../../Service/ApiService';
+import * as AppStorage from "../../AppStorage";
 
 function Check() {
   const [categroy, setCategroy] = useState("전체");
@@ -25,8 +25,8 @@ function Check() {
   const [westernList, setWesternList] = useState([]);
   const [cafeList, setCafeList] = useState([]);
   const [midnightList, setMidnightList] = useState([]);
-  
-  const allTypeOff = () => { 
+
+  const allTypeOff = () => {
     setEntireType(false);
     setKoreanType(false);
     setSchoolType(false);
@@ -37,60 +37,64 @@ function Check() {
     setMidnightType(false);
   };
 
-  const onEntireClick = () => { 
+  const onEntireClick = () => {
     setCategroy("전체")
     setList(entireList);
     allTypeOff();
     setEntireType(true);
   };
-  const onKoreanClick = () => { 
+  const onKoreanClick = () => {
     setCategroy("한식")
     setList(koreanList);
     allTypeOff();
     setKoreanType(true);
   };
-  const onSchoolClick = () => { 
+  const onSchoolClick = () => {
     setCategroy("분식")
     setList(schoolList);
     allTypeOff();
     setSchoolType(true);
   };
-  const onChineseClick = () => { 
+  const onChineseClick = () => {
     setCategroy("중식")
     setList(chineseList);
     allTypeOff();
     setChineseType(true);
   };
-  const onJapaneseClick = () => { 
+  const onJapaneseClick = () => {
     setCategroy("일식")
     setList(japaneseList);
     allTypeOff();
     setJapaneseType(true);
   };
-  const onWesternClick = () => { 
+  const onWesternClick = () => {
     setCategroy("양식")
     setList(westernList);
     allTypeOff();
     setWesternType(true);
   };
-  const onCafeClick = () => { 
+  const onCafeClick = () => {
     setCategroy("카페")
     setList(cafeList);
     allTypeOff();
     setCafeType(true);
   };
-  const onMidnightClick = () => { 
+  const onMidnightClick = () => {
     setCategroy("야식")
     setList(midnightList);
     allTypeOff();
     setMidnightType(true);
   };
 
+  const onChoose = (restaurant_no) => {
+    AppStorage.setItem("restaurant_no", restaurant_no);
+  }
+
   useEffect(() => {
     call("/api/restaurant/getList", "GET", null).then((response) => { setList(response.data); });
     call("/api/restaurant/getList", "GET", null).then((response) => { setEntireList(response.data); });
     call("/api/restaurant/getListByCategory?category=한식", "GET", null).then((response) => { setKoreanList(response.data); });
-    call("/api/restaurant/getListByCategory?category=분식", "GET", null).then((response) => { setSchoolList(response.data); });
+    // call("/api/restaurant/getListByCategory?category=분식", "GET", null).then((response) => { setSchoolList(response.data); });
     call("/api/restaurant/getListByCategory?category=중식", "GET", null).then((response) => { setChineseList(response.data); });
     call("/api/restaurant/getListByCategory?category=일식", "GET", null).then((response) => { setJapaneseList(response.data); });
     call("/api/restaurant/getListByCategory?category=양식", "GET", null).then((response) => { setWesternList(response.data); });
@@ -103,7 +107,9 @@ function Check() {
   return (
     <div className='check'>
       <div className='header'>
-        <a href="/make"><span class="material-symbols-rounded">chevron_left</span></a>
+        <a href='/make'>
+          <span class='material-symbols-rounded'>chevron_left</span>
+        </a>
         <h4>음식점 조회</h4>
       </div>
       <hr />
@@ -133,7 +139,7 @@ function Check() {
                 <strong>최소주문</strong>
                 <p>{item.min_order_price}원</p>
               </div>
-              <Link to="/make" state={{restaurant_no: item.id}}>
+              <Link to="/make" state={{restaurant_no: item.id}} onClick={() => onChoose(item.id)}>
                 <button>선택</button>
               </Link>
             </div>

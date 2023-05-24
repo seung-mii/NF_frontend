@@ -95,7 +95,7 @@ function Check() {
     call("/api/restaurant/getList", "GET", null).then((response) => { setList(response.data); });
     call("/api/restaurant/getList", "GET", null).then((response) => { setEntireList(response.data); });
     call("/api/restaurant/getListByCategory?category=한식", "GET", null).then((response) => { setKoreanList(response.data); });
-    // call("/api/restaurant/getListByCategory?category=분식", "GET", null).then((response) => { setSchoolList(response.data); });
+    call("/api/restaurant/getListByCategory?category=분식", "GET", null).then((response) => { setSchoolList(response.data); });
     call("/api/restaurant/getListByCategory?category=중식", "GET", null).then((response) => { setChineseList(response.data); });
     call("/api/restaurant/getListByCategory?category=일식", "GET", null).then((response) => { setJapaneseList(response.data); });
     call("/api/restaurant/getListByCategory?category=양식", "GET", null).then((response) => { setWesternList(response.data); });
@@ -140,7 +140,7 @@ function Check() {
                 <strong>최소주문</strong>
                 <p>{item.min_order_price}원</p>
               </div>
-              <Link to="/make" state={{restaurant_no: item.restaurant_no}} onClick={() => onChoose(item.id, item.category)}>
+              <Link to="/make" state={{restaurant_no: item.restaurant_no}} onClick={() => onChoose(item.restaurant_no, item.category)}>
                 <button>선택</button>
               </Link>
             </div>

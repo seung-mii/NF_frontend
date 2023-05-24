@@ -136,7 +136,11 @@ input {
 .entire .comment .user img {
   width: 35px;
   height: 35px;
-  margin-right: 10px;
+  margin: 0px 6px;
+}
+
+.entire .ing .user:first-child img {
+  margin: 0px 5px 0px 0px;
 }
 
 .entire .ing h4 {
@@ -147,7 +151,6 @@ input {
 .entire .ing .user,
 .entire .comment .user {
   display: flex;
-  width: 100%;
 }
 
 .entire .comment {

@@ -34,8 +34,8 @@
   font-weight: 700;
   text-align: center;
   color: white;
-  background-color: #47647C;
-  border: 3px solid #47647C;
+  background-color: #5A9367;
+  border: 3px solid #5A9367;
   border-radius: 8px;
   cursor: pointer;
   float: right;
@@ -54,14 +54,14 @@
 }
 
 .check .header {
-  color: #47647C;
+  color: #5A9367;
   margin-top: 10px;
   text-align: center;
 }
 
 .check .header span {
   float: left;
-  color: #47647C;
+  color: #5A9367;
   font-weight: 900;
   padding-top: 3px;
   margin-left: 30px;
@@ -89,7 +89,7 @@
 }
 
 .check .type p.this {
-  color: #47647C;
+  color: #5A9367;
 }
 
 .check .restaurant {
@@ -97,7 +97,7 @@
   margin: 15px 20px;
   padding: 15px 20px;
   border-radius: 15px;
-  background-color: #d7e9f75d;
+  background-color: #8fbc941e;
 }
 
 .check .restaurant .name,

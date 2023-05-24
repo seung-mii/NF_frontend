@@ -24,9 +24,15 @@ function Board() {
     });
   };
 
-  const onDelete = (reply_no) => {
+  const onBoardDelete = (board_no) => {
+    call(`/api/board/delete/${board_no}`, "GET", null).then((response) => {
+      window.location.href = "/";
+    });
+  }
+
+  const onCommentDelete = (reply_no) => {
     call(`/api/reply/delete/${reply_no}`, "GET", null).then((response) => {
-      setReply(response.data);
+      window.location.reload();
     });
   }
 
@@ -59,6 +65,11 @@ function Board() {
                 {/* <p className='name'>{list.member.name}</p> */}
                 {/* <p className='date'>{list.reg_date.slice(0, 14)}</p> */}
               </div>
+              { AppStorage.getItem("username") == list.member.name &&
+                <button onClick={() => onBoardDelete(list.board_no)}>
+                  <span class="material-symbols-rounded">delete</span>
+                </button>
+              }
             </div>
             <h4 className='title'>{list.title}</h4>
             <p className='content'>{list.contents}</p> 
@@ -95,7 +106,7 @@ function Board() {
               <p>{item.contents}</p>
               {/* 본인 댓글만 삭제할 수 있도록 */}
               { AppStorage.getItem("username") == item.writer &&
-                <button onClick={() => onDelete(item.reply_no)}>
+                <button onClick={() => onCommentDelete(item.reply_no)}>
                   <span class="material-symbols-rounded">delete</span>
                 </button>
               }
@@ -105,7 +116,7 @@ function Board() {
         )}
       </div>
       <form noValidate onSubmit={handleSubmit} className='input'>
-        <input placeholder='댓글을 입력하세요.' onChange={onCommentChange} onKeyPress={onCommentKeyPress}/>
+        <input placeholder='댓글을 입력하세요.' key={AppStorage.getItem("username")} onChange={onCommentChange} onKeyPress={onCommentKeyPress}/>
         <button type="submit">
           <span class="material-symbols-rounded">check_circle</span>
         </button>

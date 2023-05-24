@@ -11,18 +11,32 @@ function Make() {
     contents: "",
     category: AppStorage.getItem("category"),
     restaurant_no: AppStorage.getItem("restaurant_no"),
-    max_people: 1,
+    max_people: parseInt(AppStorage.getItem("max_people")),
     location: AppStorage.getItem("address"),
     order_time: ""
   }); 
 
-  const onDecrease = () => { setList((prevState) => ({ ...prevState, max_people: list.max_people - 1})); }
-  const onIncrease = () => { setList((prevState) => ({ ...prevState, max_people: list.max_people + 1})); }
+  const onDecrease = () => { 
+    AppStorage.setItem("max_people", list.max_people - 1);
+    setList((prevState) => ({ ...prevState, max_people: parseInt(AppStorage.getItem("max_people"))}))
+  }
+  const onIncrease = () => { 
+    AppStorage.setItem("max_people", list.max_people + 1);
+    setList((prevState) => ({ ...prevState, max_people: parseInt(AppStorage.getItem("max_people"))}))
+  }
   const onInputTitleChange = (e) => { setList((prevState) => ({ ...prevState, title : e.target.value})); }
   const onInputContentsChange = (e) => { setList((prevState) => ({ ...prevState, contents: e.target.value})); }
-  const onInputPeopleChange = (e) => { setList((prevState) => ({ ...prevState, max_people: e.target.value})); }
   const onInputTimeChange = (e) => { setList({ ...list, [e.target.name]: e.target.value })} 
   const onInputDetailAddressChange = (e) => { setDetailAddress(e.target.value)} 
+  const onInputPeopleChange = (e) => { setList((prevState) => ({ ...prevState, max_people: list.max_people })); }
+
+  const onClear = (e) => {
+    AppStorage.setItem("restaurant_no", null);
+    AppStorage.setItem("restaurant_name", null);
+    AppStorage.setItem("max_people", null);
+    AppStorage.setItem("category", null);
+    AppStorage.setItem("address", null);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,28 +49,33 @@ function Make() {
     
     call("/api/board/create", "POST", list).then((response) => {
       setList(response.data);
-      AppStorage.setItem("restaurant_no", null);
-      AppStorage.setItem("category", null);
-      AppStorage.setItem("address", null);
+      onClear();
       window.location.href = "/home";
     });
   };
 
-  console.log(list);
+  // console.log(list);
   
   return (
     <div className='make'>
-      <div className='header'>
+      <div className='header' onClick={onClear}>
         <a href='/home'><span className="material-symbols-rounded">chevron_left</span></a>
         <h4>모임 만들기</h4>
       </div>
       <form noValidate onSubmit={handleSubmit} className='main'>
         <hr />
         <div className='infor'>
-          <div className='restaurant'>
-            <h4>음식점</h4>
-            <a href='/check'>음식점 선택하기</a>
-          </div>
+          {list.restaurant_no == "null" ?
+            <div className='restaurant'>
+              <h4>음식점</h4>
+              <a href='/check'>음식점 선택하기</a>
+            </div>
+            :
+            <div className='restaurant_choose'>
+              <h4>음식점</h4>
+              <a href='/check'>{AppStorage.getItem("restaurant_name")}</a>
+            </div>
+          }
           <div className='num'>
             <h4>인원</h4>
             <span onClick={onDecrease} className="material-symbols-rounded">remove</span>
@@ -70,15 +89,27 @@ function Make() {
           </div>
         </div>
         <hr />
-        <div className='location'>
-          <h4>음식 받을 위치</h4>
-          <a href='/map'>위치 선택하기</a>
-          <input required
-            id='detail_address' name='detail_address' type='text'
-            placeholder='상세주소를 작성해 주세요.'
-            onChange={onInputDetailAddressChange}
-          />
-        </div>
+        {list.location == "null" ?
+          <div className='location'>
+            <h4>음식 받을 위치</h4>
+            <a href='/map'>위치 선택하기</a> 
+            <input required
+              id='detail_address' name='detail_address' type='text'
+              placeholder='상세주소를 작성해 주세요.'
+              onChange={onInputDetailAddressChange}
+            />
+          </div>
+          : 
+          <div className='location_choose'>
+            <h4>음식 받을 위치</h4>
+            <a href='/map'>{list.location}</a>
+            <input required
+              id='detail_address' name='detail_address' type='text'
+              placeholder='상세주소를 작성해 주세요.'
+              onChange={onInputDetailAddressChange}
+            />
+          </div>
+        }
         <hr />
         <div className='title'>
           <h4>제목</h4>

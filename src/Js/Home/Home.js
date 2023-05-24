@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import '../../Css/Home/Home.css';
 import profile from '../../Images/profile.png';
 import { call } from '../../Service/ApiService';
+import * as AppStorage from "../../AppStorage";
 
 function Home() {
+  AppStorage.setItem("max_people", 1);
   const [categroy, setCategroy] = useState("전체");
   const [entireType, setEntireType] = useState(true);
   const [koreanType, setKoreanType] = useState(false);

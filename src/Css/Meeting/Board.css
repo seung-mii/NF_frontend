@@ -80,9 +80,19 @@ input {
   border-radius: 100%;
 }
 
+
 .entire .board .user {
+  position: relative;
   display: flex;
   width: 100%;
+}
+
+.entire .board .user button {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  border: 0px;
+  background-color: transparent;
 }
 
 .entire .board .user .name {

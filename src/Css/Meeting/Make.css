@@ -112,14 +112,15 @@
 }
 
 .make .infor,
-.make .timeItem {
+.make .timeItem,
+.make .timeHeader {
   display: flex;
 }
 
 .make .infor .num {
   position: relative;
   width: 100px;
-  margin-right: 50px;
+  margin: 0px 50px 0px 30px;
 }
 
 .make .infor .num span {
@@ -131,12 +132,11 @@
 }
 
 .make .infor .num span:last-child {
-  left: 95px;
+  left: 103px;
 }
 
 .make .infor .location {
   width: 60%;
-  margin-left: 30px;
 }
 
 .make .infor input {
@@ -149,6 +149,12 @@
   text-align: center;
   border: 1px solid #bcbcbcc4;
   border-radius: 10px;
+}
+
+.make .timeHeader p {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #838383;
 }
 
 .make .timeItem .item {

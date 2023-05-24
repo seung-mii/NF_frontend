@@ -97,6 +97,7 @@ function MenuView() {
   return (
     <div className="mvcontainer">
       <Nav title={title} />
+
       <div className="mv-header">
         <p className="text">{res.name}</p>
       </div>

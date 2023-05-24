@@ -1,22 +1,21 @@
-.mypage_name {
+.myheader .mypage_name {
   font-weight: bold;
   font-size: 17px;
-  margin-top: 20px;
-  text-align: center;
-  color: #47647C;
+  color: #9ab18a;
+  margin-left: 185px;
 }
 
 .profile-container img {
   width: 112px;
   height: 112px;
-  background: #47647C;
+  background: #9ab18a;
   border-radius: 100%;
 }
 
 .img {
   width: 70px;
   height: 70px;
-  background: #47647C;
+  background: #9ab18a;
   border-radius: 100%;
   margin-bottom: 30px;
 }
@@ -31,13 +30,14 @@
   justify-content: center;
   margin-top: 60px;
   /* width: 80%;
-  border: solid 1.5px #47647C;
+  border: solid 1.5px #9AB18A;
   margin-left: 40px;
   border-radius: 10px;
   padding-top: 20px; */
 }
 
 .mypage-explain {
+  margin-top: 10px;
   margin-left: 20px;
 }
 
@@ -54,7 +54,7 @@
 
 .button-container button {
   margin: 5px;
-  background: #47647C;
+  background: #9ab18a;
   border-radius: 15px;
   border: none;
   color: #fff;
@@ -75,13 +75,13 @@
   height: 35px;
 }
 
-.header {
+.myheader {
   margin-top: 10px;
 }
 
 .blue-container {
   width: 88%;
-  border: solid 1.5px #47647C;
+  border: solid 1.5px #9ab18a;
   border-radius: 10px;
   margin-bottom: 15px;
 }

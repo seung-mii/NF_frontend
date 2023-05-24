@@ -13,6 +13,12 @@ const Nav = (props) => {
       </div>
       <p className="title">{title}</p>
     </div>
+    // <div className="nav">
+    //   <span class="material-symbols-rounded" onClick={() => goBack()}>
+    //     chevron_left
+    //   </span>
+    //   <h4>{title}</h4>
+    // </div>
   );
 };
 

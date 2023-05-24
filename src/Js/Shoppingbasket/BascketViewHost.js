@@ -247,8 +247,8 @@ function BasketViewHost(props) {
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
                   {user.memberEmail === orderInfo.hostEmail
-                    ? user.memberName.charAt(0) + "**" + "(방장:나)"
-                    : user.memberName.charAt(0) + "**"}
+                    ? user.memberName + "(방장:나)"
+                    : user.memberName}
                 </p>
               </div>
               {user.menulist.map((menu, idx) => (

@@ -65,7 +65,7 @@ export function signin(userDTO) {
         console.log(response.data.token);
         AppStorage.setItem("ACCESS_TOKEN", response.data.token);
         AppStorage.setItem("email", response.data.email);
-        window.location.href = "/mypage";
+        window.location.href = "/home";
         console.log("로그인 성공");
       }
     })

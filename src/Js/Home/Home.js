@@ -108,8 +108,7 @@ function Home() {
   return (
     <div className='home'>
       <div className='header'>
-        경북 구미시 대학로
-        <span class="material-symbols-rounded">search</span>
+        ❝ NeighborFood ❞
       </div>
       <hr />
       <div className='main'>

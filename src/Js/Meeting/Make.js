@@ -15,7 +15,7 @@ function Make() {
     max_people: 1,
     latitude: AppStorage.getItem("lat"),
     longtitude: AppStorage.getItem("lng"),
-    address: AppStorage.getItem("address"),
+    location: AppStorage.getItem("address"),
     order_time: ""
   }); 
 

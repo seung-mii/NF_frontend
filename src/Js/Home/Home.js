@@ -134,7 +134,7 @@ function Home() {
             <p className='content'>{item.contents}</p>
             <div className='location'>
               <span class="material-symbols-rounded">location_on</span>
-              <p>경상북도 구미시 대학로 62 오름관 1동 1층</p>
+              <p>{item.location}</p>
             </div>
             <div className='restaurant'>
               <span class="material-symbols-rounded">home</span>

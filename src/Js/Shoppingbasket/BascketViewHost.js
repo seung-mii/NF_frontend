@@ -268,47 +268,48 @@ function BasketViewHost(props) {
     </List>
   );
   return (
-    <div className="bvcontainer">
+    <>
       <Nav title={title} />
+      <div className="bvcontainer">
+        <div className="bv-header">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            gap={1}
+          >
+            <p className="resname">{res.name}</p>
+            <p className="bvtext">
+              주문 남은 시간 : {hour.toString().padStart(2, "0")}:
+              {minute.toString().padStart(2, "0")}:
+              {second.toString().padStart(2, "0")}
+            </p>
+            <RefreshIcon
+              className="bvicon"
+              onClick={() => {
+                window.location.reload();
+              }}
+            />
+          </Stack>
+        </div>
+        <hr className="hr" />
 
-      <div className="bv-header">
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          gap={1}
-        >
-          <p className="resname">{res.name}</p>
-          <p className="bvtext">
-            주문 남은 시간 : {hour.toString().padStart(2, "0")}:
-            {minute.toString().padStart(2, "0")}:
-            {second.toString().padStart(2, "0")}
-          </p>
-          <RefreshIcon
-            className="bvicon"
-            onClick={() => {
-              window.location.reload();
-            }}
-          />
-        </Stack>
+        {userlistitems}
+
+        <div className="bv-footer">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            gap={1}
+          >
+            <Button variant="contained" className="bv-btt" onClick={order}>
+              <p>{buttonText}</p>
+            </Button>
+          </Stack>
+        </div>
       </div>
-      <hr className="hr" />
-
-      {userlistitems}
-
-      <div className="bv-footer">
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          gap={1}
-        >
-          <Button variant="contained" className="bv-btt" onClick={order}>
-            <p>{buttonText}</p>
-          </Button>
-        </Stack>
-      </div>
-    </div>
+    </>
   );
 }
 

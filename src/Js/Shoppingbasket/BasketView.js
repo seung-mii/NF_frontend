@@ -228,46 +228,47 @@ function BasketView(props) {
     </List>
   );
   return (
-    <div className="bvcontainer">
+    <>
       <Nav title={title} />
+      <div className="bvcontainer">
+        <div className="bv-header">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            gap={1}
+          >
+            <p className="resname">{res.name}</p>
+            <p className="bvtext">
+              주문 남은 시간 {hour.toString().padStart(2, "0")}:
+              {minute.toString().padStart(2, "0")}:
+              {second.toString().padStart(2, "0")}
+            </p>
+            <RefreshIcon
+              className="bvicon"
+              onClick={() => {
+                window.location.reload();
+              }}
+            />
+          </Stack>
+        </div>
+        <hr className="hr" />
 
-      <div className="bv-header">
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          gap={1}
-        >
-          <p className="resname">{res.name}</p>
-          <p className="bvtext">
-            주문 남은 시간 {hour.toString().padStart(2, "0")}:
-            {minute.toString().padStart(2, "0")}:
-            {second.toString().padStart(2, "0")}
-          </p>
-          <RefreshIcon
-            className="bvicon"
-            onClick={() => {
-              window.location.reload();
-            }}
-          />
-        </Stack>
+        {userlistitems}
+
+        <div className="bv-footer">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            gap={1}
+          >
+            {/* //나의 id랑 userlist의 id랑 같은걸 찾아서 나의 status 나타내기 */}
+            {/* 입금전이면 장바구니 음식을 삭제할 수 있게, 입금확인이면 취소불가 */}
+          </Stack>
+        </div>
       </div>
-      <hr className="hr" />
-
-      {userlistitems}
-
-      <div className="bv-footer">
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          gap={1}
-        >
-          {/* //나의 id랑 userlist의 id랑 같은걸 찾아서 나의 status 나타내기 */}
-          {/* 입금전이면 장바구니 음식을 삭제할 수 있게, 입금확인이면 취소불가 */}
-        </Stack>
-      </div>
-    </div>
+    </>
   );
 }
 

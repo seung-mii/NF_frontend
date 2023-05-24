@@ -10,10 +10,12 @@ import M from "../../native";
 function SignUp() {
   const [bank, setBank] = useState("");
   const [text, setText] = useState("계정 생성");
+
   const handleChange = (event) => {
     setBank(event.target.value);
   };
 
+  const [onlyNumber, setOnlyNumber] = useState([]);
   const handleSubmit = (event) => {
     event.preventDefault();
     setText("회원가입 중입니다...");
@@ -49,6 +51,12 @@ function SignUp() {
       });
   };
 
+  const handleBankAccountNumberChange = (e) => {
+    const value = e.target.value;
+    const onlyNumbers = value.replace(/[^0-9]/g, "");
+    e.target.value = onlyNumbers;
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <form noValidate onSubmit={handleSubmit}>
@@ -82,20 +90,6 @@ function SignUp() {
               style={{ marginLeft: "30px" }}
               defaultValue=""
               InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <input
-                      type="text"
-                      style={{
-                        border: "none",
-                        outline: "none",
-                        marginRight: "5px",
-                        background: "transparent",
-                      }}
-                      readOnly
-                    />
-                  </InputAdornment>
-                ),
                 endAdornment: (
                   <InputAdornment position="end">@kumoh.ac.kr</InputAdornment>
                 ),
@@ -163,6 +157,7 @@ function SignUp() {
               label="계좌번호"
               autoFocus
               style={{ marginLeft: "30px" }}
+              onChange={handleBankAccountNumberChange}
             />
           </Grid>
 

@@ -10,12 +10,23 @@
   text-align: center;
   align-items: center;
   font-size: 17px;
+
+  /* color: #47647c;
+  margin-top: 10px;
+  text-align: center; */
 }
 .icon {
   margin-left: 30px;
   font-weight: 900;
   padding-top: 7px;
 }
+/* .nav .span {
+  float: left;
+  font-weight: 900;
+  color: #47647c;
+  padding-top: 3px;
+  margin-left: 30px;
+} */
 .nav .title {
   width: 100%;
   position: absolute;
@@ -23,4 +34,6 @@
   justify-content: center;
   align-content: center;
   font-size: 17px;
+
+  /* font-size: 17px; */
 }

@@ -3,43 +3,49 @@ import "../../Css/Meeting/MyPosts.css";
 import { call } from "../../Service/ApiService";
 
 function MyPosts() {
-  const [member, setMember] = useState({
-    name: "",
-  });
+  const [member, setMember] = useState([]);
   const [myBoard, setMyBoard] = useState({
     board_no: "",
     title: "",
     restaurant: "",
   });
   const [list, setList] = useState([]);
-  const detail = () => {
-    window.location.href = "/postdetail";
-  };
+
   const goBack = () => {
     window.location.href = "/mypage";
   };
+
+  const handleCancelParticipation = (board_no) => {
+    call(`/api/participation/out/${board_no}`, "GET", null)
+      .then((response) => {
+        console.log(response.data);
+        setList(list.filter((item) => item.board_no !== board_no));
+        alert("참여 취소되었습니다.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     call("/api/member/getMember", "GET", null).then((response) => {
-      setMember({
-        name: response.data.name,
-      });
+      setMember(response.data);
+      console.log(response.data);
     });
     call("/api/board/myBoardList", "GET", null).then((response) => {
-      setMyBoard({
-        board_no: response.data.board_no,
-        title: response.data.title,
-        restaurant: response.data.restaurant,
-      });
+      setMyBoard(response.data);
+      setList(response.data);
+      console.log(response.data);
     });
   }, []);
 
   return (
     <>
-      <div className="MyPostsHeader">
+      <div className="header">
         <span class="material-symbols-rounded" onClick={goBack}>
           chevron_left
         </span>
-        <div className="mypage_name">내가 쓴 게시물</div>
+        <div className="MyPostsBigName">내가 참여한 게시물</div>
       </div>
       <div className="profile-container">
         {/* <img src="" alt=""></img> */}
@@ -48,22 +54,36 @@ function MyPosts() {
           <div className="MyPostsName">{member.name}</div>
         </div>
       </div>
-      {list &&
-        list.map((item) => {
-          <div
-            className="posts-container"
-            id={item.board_no}
-            key={item.board_no}
-          >
-            <div className="post">
-              <div className="post-title">{item.myBoard.title}</div>
-              <div className="post-place">{item.myBoard.restaurant}</div>
+      {list.length === 0
+        ? alert("참여한 모임이 없습니다")
+        : list.map((item) => (
+            <div
+              className="posts-container"
+              id={item.board_no}
+              key={item.board_no}
+            >
+              <div className="post">
+                <div className="post-title">{item.title}</div>
+                <div className="post-place">{item.restaurant.name}</div>
+                <div className="MyPostsButton">
+                  <a href={`/board/${item.board_no}`} className="MyPostsLink">
+                    <button className="MyPostsCancel">모임으로 이동</button>
+                  </a>
+
+                  <button
+                    className="MyPostsCancel"
+                    onClick={() => handleCancelParticipation(item.board_no)}
+                  >
+                    참여 취소
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>;
-        })}
-      ;
+          ))}
     </>
   );
+}
+{
 }
 
 export default MyPosts;

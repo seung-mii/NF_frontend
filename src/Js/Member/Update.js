@@ -146,19 +146,20 @@ function Update() {
       bank,
       bank_account_number,
     } = update;
+    console.log(update);
     setIsFormValid(
-      name.trim() !== "" &&
-        email.trim() !== "" &&
-        cur_password.trim() !== "" &&
-        new_password.trim() !== "" &&
-        bank.trim() !== "" &&
+      name.trim() !== "" ||
+        email.trim() !== "" ||
+        cur_password.trim() !== "" ||
+        new_password.trim() !== "" ||
+        bank.trim() !== "" ||
         bank_account_number.trim() !== ""
     );
   }, [update]);
 
   return (
     <>
-      <div className="header">
+      <div className="uheader">
         <span class="material-symbols-rounded" onClick={goBack}>
           chevron_left
         </span>

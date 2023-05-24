@@ -5,9 +5,9 @@ import * as AppStorage from "../../AppStorage";
 function MyPage() {
   const [user, setUser] = useState({ email: "", name: "" });
   useEffect(() => {
-    // call("/api/member/getMember", "GET", null).then((response) =>
-    //   setUser({ email: response.data.email, name: response.data.name })
-    // );
+    call("/api/member/getMember", "GET", null).then((response) =>
+      setUser({ email: response.data.email, name: response.data.name })
+    );
     var myemail = AppStorage.getItem("email");
     // alert(myemail);
     setUser({ email: myemail });
@@ -64,7 +64,7 @@ function MyPage() {
           <div className="blue-container">
             <li className="mypage-title">게시물</li>
             <li className="mypage-content" onClick={() => myposts()}>
-              내가 쓴 게시물
+              내가 참여한 게시물
             </li>
           </div>
           <div className="blue-container">

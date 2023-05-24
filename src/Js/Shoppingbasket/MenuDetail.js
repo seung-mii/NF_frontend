@@ -18,7 +18,7 @@ function MenuDetail() {
   const [totalCost, setTotalCost] = useState(0);
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
   const { boardNo } = useParams();
-
+  //member의 해당 board의 confirmed 여부를 확인하고 confirmed이 true일 경우 버튼을 비활성화한다.
   const boardno = 1;
   useEffect(() => {
     if (menu.menu_no) {

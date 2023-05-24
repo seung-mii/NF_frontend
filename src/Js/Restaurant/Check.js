@@ -113,16 +113,16 @@ function Check() {
         <h4>음식점 조회</h4>
       </div>
       <hr />
-      <div className='main'>
-        <div className='type'>
-          <p className={`${entireType ? 'this' : ''}`} onClick={onEntireClick}>전체</p>
-          <p className={`${koreanType ? 'this' : ''}`} onClick={onKoreanClick}>한식</p>
-          <p className={`${schoolType ? 'this' : ''}`} onClick={onSchoolClick}>분식</p>
-          <p className={`${chineseType ? 'this' : ''}`} onClick={onChineseClick}>중식</p>
-          <p className={`${japaneseType ? 'this' : ''}`} onClick={onJapaneseClick}>일식</p>
-          <p className={`${westernType ? 'this' : ''}`} onClick={onWesternClick}>양식</p>
-          <p className={`${cafeType ? 'this' : ''}`} onClick={onCafeClick}>카페</p>
-          <p className={`${midnightType ? 'this' : ''}`} onClick={onMidnightClick}>야식</p>
+      <div className="main">
+        <div className="type">
+          <p className={`${entireType ? "this" : ""}`} onClick={onEntireClick}>전체</p>
+          <p className={`${koreanType ? "this" : ""}`} onClick={onKoreanClick}>한식</p>
+          <p className={`${schoolType ? "this" : ""}`} onClick={onSchoolClick}>분식</p>
+          <p className={`${chineseType ? "this" : ""}`} onClick={onChineseClick}>중식</p>
+          <p className={`${japaneseType ? "this" : ""}`} onClick={onJapaneseClick}>일식</p>
+          <p className={`${westernType ? "this" : ""}`} onClick={onWesternClick}>양식</p>
+          <p className={`${cafeType ? "this" : ""}`} onClick={onCafeClick}>카페</p>
+          <p className={`${midnightType ? "this" : ""}`} onClick={onMidnightClick}>야식</p>
         </div>
         {list.map((item) => (
           <div className='restaurant' id={item.id} key={item.id}>

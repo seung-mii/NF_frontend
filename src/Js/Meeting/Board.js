@@ -42,7 +42,7 @@ function Board() {
 
   useLayoutEffect(() => {
     call(`/api/board/get/${board_no}`, "GET", null).then((response) => {
-      setList(response.data);
+      if (response !== undefined) { setList(response.data); } 
     });
   }, []);
 
@@ -72,10 +72,10 @@ function Board() {
                 <button onClick={() => onBoardDelete(list.board_no)}>
                   <span class="material-symbols-rounded">delete</span>
                 </button>
-              } 
+              }
             </div>
             <h4 className='title'>{list.title}</h4>
-            <p className='content'>{list.contents}</p> 
+            <p className='content'>{list.contents}</p>
             <div className='location'>
               <span class="material-symbols-rounded">location_on</span>
               <p>{list.location}</p>
@@ -88,7 +88,7 @@ function Board() {
           <div className='ing'>
             <h4>모임중인 사용자</h4>
             <div className='users'>
-              {list.participant && list.participant.map((item) => 
+              {list.participant && list.participant.map((item) =>
                 <div className='user' id={item.participation_no}>
                   <img src={profile} alt='profile' />
                   <p className='name'>{item.participant_name}</p>

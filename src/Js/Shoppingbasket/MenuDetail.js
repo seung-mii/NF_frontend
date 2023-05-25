@@ -75,46 +75,47 @@ function MenuDetail() {
       });
   };
   return (
-    <div className="mdcontainer">
+    <>
       <Nav title={title} />
+      <div className="mdcontainer">
+        <div className="md-header">
+          <p className="mdtext">{resname}</p>
 
-      <div className="md-header">
-        <p className="mdtext">{resname}</p>
-
-        <img className="image" alt={menu.menu_no} src={menu.src} />
-        <div className="fnbox">
-          <p>{menu.name}</p>
+          <img className="image" alt={menu.menu_no} src={menu.src} />
+          <div className="fnbox">
+            <p>{menu.name}</p>
+          </div>
+          <div className="fpbox">
+            <p className="p">{menu.price}원</p>
+          </div>
+          <div className="fqbox">
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              gap={1}
+            >
+              <RemoveIcon onClick={delFunc} className="qicon" />
+              <p>{quantity}개</p>
+              <AddIcon onClick={addFunc} className="qicon" />
+            </Stack>
+          </div>
         </div>
-        <div className="fpbox">
-          <p className="p">{menu.price}원</p>
-        </div>
-        <div className="fqbox">
+        {/* <hr /> */}
+        <div className="footer-container">
           <Stack
             direction="row"
             alignItems="center"
             justifyContent="center"
             gap={1}
           >
-            <RemoveIcon onClick={delFunc} className="qicon" />
-            <p>{quantity}개</p>
-            <AddIcon onClick={addFunc} className="qicon" />
+            <Button variant="contained" className="btt" onClick={insertMenu}>
+              {buttonText}
+            </Button>
           </Stack>
         </div>
       </div>
-      {/* <hr /> */}
-      <div className="footer-container">
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          gap={1}
-        >
-          <Button variant="contained" className="btt" onClick={insertMenu}>
-            {buttonText}
-          </Button>
-        </Stack>
-      </div>
-    </div>
+    </>
   );
 }
 

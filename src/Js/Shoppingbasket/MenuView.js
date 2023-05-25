@@ -95,29 +95,34 @@ function MenuView() {
     </List>
   );
   return (
-    <div className="mvcontainer">
+    <>
       <Nav title={title} />
+      <div className="mvcontainer">
+        <div className="mv-header">
+          <p className="text">{res.name}</p>
+        </div>
+        <hr className="hr" />
 
-      <div className="mv-header">
-        <p className="text">{res.name}</p>
+        {menulistitems}
+
+        <div className="footer-container">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            gap={1}
+          >
+            <Button
+              className="btt"
+              variant="contained"
+              onClick={basketViewFunc}
+            >
+              공동 장바구니 보기
+            </Button>
+          </Stack>
+        </div>
       </div>
-      <hr className="hr" />
-
-      {menulistitems}
-
-      <div className="footer-container">
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          gap={1}
-        >
-          <Button className="btt" variant="contained" onClick={basketViewFunc}>
-            공동 장바구니 보기
-          </Button>
-        </Stack>
-      </div>
-    </div>
+    </>
   );
 }
 

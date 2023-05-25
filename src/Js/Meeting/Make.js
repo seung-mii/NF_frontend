@@ -43,17 +43,21 @@ function Make() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(list.month.length == 1) { list.month = "0" + list.month }
-    if(list.day.length == 1) { list.day = "0" + list.day }
-    if(list.hour.length == 1) { list.hour = "0" + list.hour }
-    if (list.minute.length == 1) { list.minute = "0" + list.minute }
+    if (list.month != undefined && list.day != undefined && list.hour != undefined && list.minute != undefined) {
+      if(list.month.length == 1) { list.month = "0" + list.month }
+      if(list.day.length == 1) { list.day = "0" + list.day }
+      if(list.hour.length == 1) { list.hour = "0" + list.hour }
+      if (list.minute.length == 1) { list.minute = "0" + list.minute }
+    }
     list.order_time = list.year + list.month + list.day + list.hour + list.minute;
     list.location = list.location + " " + detailAddress;
     setList((prevState) => ({ ...prevState, location: list.location }));
     call("/api/board/create", "POST", list).then((response) => {
-      setList(response.data);
-      onClear();
-      window.location.href = "/home";
+      if (response != undefined) {
+        setList(response.data);
+        onClear();
+        window.location.href = "/home";
+      }
     });
   };
 

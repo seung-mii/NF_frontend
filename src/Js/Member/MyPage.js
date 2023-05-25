@@ -50,9 +50,10 @@ function MyPage() {
         </span>
         <div className="mypage_name">마이페이지</div>
       </div>
+      <hr />
       <div className="profile-container">
         {/* <img src="" alt=""></img> */}
-        <div className="img"></div>
+        <div className="imgg"></div>
         <div className="mypage-explain">
           <div className="username">{user.name}</div>
 

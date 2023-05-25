@@ -1,21 +1,22 @@
 .myheader .mypage_name {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 17px;
-  color: #9ab18a;
-  margin-left: 185px;
+  color: #7CA380;
+  margin-top: 3.5px;
+  margin-left: 155px;
 }
 
 .profile-container img {
   width: 112px;
   height: 112px;
-  background: #9ab18a;
+  background: #7CA380;
   border-radius: 100%;
 }
 
-.img {
+.imgg {
   width: 70px;
   height: 70px;
-  background: #9ab18a;
+  background: #7CA380;
   border-radius: 100%;
   margin-bottom: 30px;
 }
@@ -30,7 +31,7 @@
   justify-content: center;
   margin-top: 60px;
   /* width: 80%;
-  border: solid 1.5px #9AB18A;
+  border: solid 1.5px #7CA380;
   margin-left: 40px;
   border-radius: 10px;
   padding-top: 20px; */
@@ -54,7 +55,7 @@
 
 .button-container button {
   margin: 5px;
-  background: #9ab18a;
+  background: #7CA380;
   border-radius: 15px;
   border: none;
   color: #fff;
@@ -76,12 +77,19 @@
 }
 
 .myheader {
-  margin-top: 10px;
+  display: flex;
+  color: #7CA380;
+  margin: 10px;
+  text-align: center;
+}
+
+.myheader span {
+  font-weight: 700;
 }
 
 .blue-container {
   width: 88%;
-  border: solid 1.5px #9ab18a;
+  border: solid 1.5px #7CA380;
   border-radius: 10px;
   margin-bottom: 15px;
 }

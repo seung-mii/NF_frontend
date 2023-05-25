@@ -51,8 +51,8 @@ function MyPosts() {
         </span>
         <div className="MyPostsBigName">내가 참여한 게시물</div>
       </div>
-      <div className="profile-container">
-        {/* <img src="" alt=""></img> */}
+      <hr />
+      <div className="post_profile-container">
         <div className="img"></div>
         <div className="mypost-explain">
           <div className="MyPostsName">{member.name}</div>
@@ -73,14 +73,14 @@ function MyPosts() {
               <div className="post-place">{item.restaurant.name}</div>
               <div className="MyPostsButton">
                 <a href={`/board/${item.board_no}`} className="MyPostsLink">
-                  <button className="MyPostsCancel">모임으로 이동</button>
+                  <button className="MyPostsCancel">이동</button>
                 </a>
 
                 <button
                   className="MyPostsCancel"
                   onClick={() => handleCancelParticipation(item.board_no)}
                 >
-                  참여 취소
+                  취소
                 </button>
               </div>
             </div>

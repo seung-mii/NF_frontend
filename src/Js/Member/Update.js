@@ -163,8 +163,9 @@ function Update() {
         <span class="material-symbols-rounded" onClick={goBack}>
           chevron_left
         </span>
-        <div className="name">회원정보수정</div>
+        <div className="update_name">회원정보수정</div>
       </div>
+      <hr />
       <div className="UpdateOriginal">
         <div className="UpdateImg"></div>
       </div>

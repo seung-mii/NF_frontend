@@ -3,7 +3,7 @@
   text-align: center;
   margin-bottom: 50px;
   font-weight: bold;
-  color: #9ab18a;
+  color: #7CA380;
   margin-top: 250px;
 }
 
@@ -11,7 +11,7 @@
   width: 339px;
   height: 45px;
   border-radius: 4px;
-  background: #9ab18a;
+  background: #7CA380;
   color: #fff;
   font-size: 15px;
   font-weight: bold 900;
@@ -30,12 +30,12 @@
 
 .no-account {
   font-weight: 700;
-  color: #9ab18a;
+  color: #7CA380;
   text-decoration: none;
   vertical-align: middle;
 }
 
 .material-symbols-rounded {
-  color: #9ab18a;
+  color: #7CA380;
   vertical-align: middle;
 }

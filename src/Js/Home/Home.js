@@ -26,6 +26,9 @@ function Home() {
   const [cafeList, setCafeList] = useState([]);
   const [midnightList, setMidnightList] = useState([]);
 
+  AppStorage.setItem("restaurant_name", null);
+  AppStorage.setItem("category", null);
+  AppStorage.setItem("address", null);
   const allTypeOff = () => {
     setEntireType(false);
     setKoreanType(false);

@@ -53,6 +53,21 @@ export function call(api, method, request) {
       } else if (error.error == "Not an authenticated member") {
         alert("학교 인증이 되지 않아 참여할 수 없습니다.");
         window.location.href = "/mypage";
+      } else if (error.error.slice(59, 70) == "MonthOfYear") {
+        alert("1월 - 12월 사이를 입력해주세요.");
+        window.location.reload();
+      } else if (error.error.slice(59, 70) == "DayOfMonth") {
+        alert("1일 - 31일 사이를 입력해주세요.");
+        window.location.reload();
+      } else if (error.error.slice(59, 68) == "HourOfDay") {
+        alert("0시 - 23시 사이를 입력해주세요.");
+        window.location.reload();
+      } else if (error.error.slice(59, 68) == "MinuteOfHour") {
+        alert("0분 - 59분 사이를 입력해주세요.");
+        window.location.reload();
+      } else if (error.error.slice(0, 30) == "The given id must not be null!") {
+        alert("음식점 또는 위치를 설정하지 않았습니다.");
+        window.location.reload();
       }
 
       // if (error.status === 403) {

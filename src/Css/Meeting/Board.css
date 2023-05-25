@@ -42,15 +42,14 @@ input {
 }
 
 .entire .header {
-  margin: 10px 30px;
+  margin: 10px 20px;
   font-size: 17px;
   font-weight: 900;
 }
 
 .entire .header span {
   display: inline-block;
-  color: #5A9367;
-  padding-top: 5px;
+  color: #7CA380;
   font-weight: 900;
   justify-content: space-between;
 }
@@ -136,7 +135,16 @@ input {
 .entire .comment .user img {
   width: 35px;
   height: 35px;
+}
+
+.entire .ing .user img{
+  width: 35px;
+  height: 35px;
   margin: 0px 6px;
+}
+
+.entire .comment .user img {
+  margin-right: 10px;
 }
 
 .entire .ing .user:first-child img {
@@ -173,7 +181,7 @@ input {
 
 .entire .comment span {
   font-size: 20px;
-  color: #5A9367;
+  color: #7CA380;
 }
 
 .entire .comment button {
@@ -200,7 +208,7 @@ input {
 }
 
 .input span {
-  color: #5A9367;
+  color: #7CA380;
   font-weight: 700;
   vertical-align: middle;
 }
@@ -208,7 +216,7 @@ input {
 .input button {
   position: absolute;
   font-size: 20px;
-  color: #5A9367;
+  color: #7CA380;
   background-color: transparent;
   border: 0px;
   cursor: pointer;

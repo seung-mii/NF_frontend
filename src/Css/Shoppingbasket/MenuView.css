@@ -3,10 +3,14 @@
   height: 74vh;
   background-color: "background.paper";
   overflow: auto;
+  overflow-x: none;
   min-width: 100%;
   font-size: 15px;
   margin-top: 0px;
   padding-top: 0px;
+}
+.list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 /* 리스트 아이템 음식이름+가격 텍스트*/
 .list .typography {
@@ -28,7 +32,7 @@
 }
 /* 리스트 아이템 아래 텍스트 */
 .listitem .listitemtext {
-  margin: 10px;
+  margin: 20px;
 }
 
 /* 전체 페이지의 구분선 (hr) */
@@ -43,6 +47,8 @@
   align-items: center;
   justify-content: center;
   height: 5vh;
+  padding: 10px 0px;
+  background-color: #8fbc941e;
 }
 
 /* 하단부 버튼 텍스트 */
@@ -54,28 +60,26 @@
   font-size: 17px;
   font-weight: 700;
 }
+
 /* 하단부의 버튼 */
-.footer-container .btt {
-  background-color: #5a9367;
-  width: 400px;
-  height: 50px;
-  font-size: 17px;
+.footer-container .view_btt {
+  width: 60%;
+  padding: 10px 15px;
+  margin-top: 2px;
+  font-size: 12px;
   font-weight: 700;
-  border-radius: 8px;
+  text-align: center;
+  color: white;
+  background-color: #7CA380;
+  border: 1px solid #7CA380;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 5px lightgray;
 }
-.footer-container .btt :focus {
-  background-color: #5a9367;
-  width: 400px;
-  height: 50px;
-  font-size: 17px;
-  font-weight: 700;
-  border-radius: 8px;
-}
-.footer-container .btt :hover {
-  background-color: #5a9367;
-  width: 400px;
-  height: 50px;
-  font-size: 17px;
-  font-weight: 700;
-  border-radius: 8px;
+
+.footer-container .view_btt:focus,
+.footer-container .view_btt:hover {
+  background-color: #597c5c;
+  box-shadow: none;
+  margin-top: 5px;
 }

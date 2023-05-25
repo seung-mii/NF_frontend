@@ -30,7 +30,7 @@
 
 .make textarea {
   width: 100%;
-  height: 140px;
+  height: 170px;
 }
 
 .make select {
@@ -38,7 +38,7 @@
   outline: none;
   font-size: 12px;
   font-weight: 700;
-  color: #5A9367;
+  color: #7CA380;
   margin: 5px 0px;
   padding: 10px 15px;
   border: 1px solid #bcbcbcc4;
@@ -53,8 +53,8 @@
   font-weight: 700;
   text-align: center;
   color: white;
-  background-color: #5A9367;
-  border: 1px solid #5A9367;
+  background-color: #7CA380;
+  border: 1px solid #7CA380;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -67,7 +67,7 @@
 }
 
 .make .header {
-  color: #5A9367;
+  color: #7CA380;
   margin-top: 10px;
   text-align: center;
 }
@@ -75,7 +75,7 @@
 .make .header span {
   float: left;
   font-weight: 900;
-  color: #5A9367;
+  color: #7CA380;
   padding-top: 3px;
   margin-left: 10px;
 }
@@ -97,7 +97,7 @@
 }
 
 .make .time {
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 35px 20px;
 }
 
 .make .location a,
@@ -111,8 +111,8 @@
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: #5A9367;
-  border: 1px solid #5A9367;
+  background-color: #7CA380;
+  border: 1px solid #7CA380;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -127,9 +127,9 @@
   font-weight: 700;
   text-align: center;
   text-decoration: none;
-  color: #5A9367;
+  color: #7CA380;
   background-color: white;
-  border: 1px solid #5A9367;
+  border: 1px solid #7CA380;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -139,7 +139,7 @@
   width: 94%;
   padding: 9px 11px;
   margin-top: 20px;
-  border: 1px solid #5A9367;
+  border: 1px solid #7CA380;
   border-radius: 10px;
 }
 
@@ -180,7 +180,7 @@
   width: 100%;
   font-size: 12px;
   font-weight: 700;
-  color: #5A9367;
+  color: #7CA380;
   padding: 8.5px 20px;
   margin: 3px 8px 5px 0px;
   text-align: center;
@@ -213,7 +213,7 @@
   right: 13px;
   font-size: 12px;
   font-weight: 700;
-  color: #5A9367;
+  color: #7CA380;
   padding: 0px;
   margin: 7px 8px 5px 0px;
 }
@@ -221,9 +221,16 @@
 .make .makeBtn {
   display: block;
   width: 60%;
-  margin: 20px auto;
-  border-radius: 6px;
+  margin-top: 40px;
+  margin: auto;
+  border-radius: 10px;
   box-shadow: 0px 5px lightgray;
+}
+.make .makeBtn:focus, 
+.make .makeBtn:hover {
+  background-color: #597c5c;
+  box-shadow: none;
+  margin-top: 5px;
 }
 
 .make .mapBtn {
@@ -237,5 +244,5 @@
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: #5A9367;
+  background-color: #7CA380;
 }

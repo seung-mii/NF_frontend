@@ -1,20 +1,24 @@
 .navbar {
-  color: #5a9367;
-  margin-top: 10px;
+  display: flex;
+  color: #7CA380;
+  padding: 10px 20px;
   text-align: center;
   font-weight: 900;
   font-size: 17px;
+  border-bottom: 3px solid #bcbcbc41;
+}
+
+.navbar h4 {
+  margin: 2px 0px 0px 150px;
 }
 
 .navbar .span {
-  float: left;
-  font-weight: 900;
-  color: #5a9367;
-  padding-top: 3px;
+  display: inline-block;
+  color: #7CA380;
 }
 .navbar .title {
   font-size: 17px;
-  color: #5a9367;
+  color: #7CA380;
   align-items: center;
   justify-content: center;
   flex-direction: column;

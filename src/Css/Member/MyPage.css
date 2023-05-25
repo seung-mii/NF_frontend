@@ -1,7 +1,7 @@
 .myheader .mypage_name {
   font-weight: 700;
   font-size: 17px;
-  color: #7CA380;
+  color: #7ca380;
   margin-top: 3.5px;
   margin-left: 155px;
 }
@@ -9,14 +9,14 @@
 .profile-container img {
   width: 112px;
   height: 112px;
-  background: #7CA380;
+  background: #7ca380;
   border-radius: 100%;
 }
 
 .imgg {
   width: 70px;
   height: 70px;
-  background: #7CA380;
+  background: #7ca380;
   border-radius: 100%;
   margin-bottom: 30px;
 }
@@ -50,7 +50,7 @@
 
 .button-container button {
   margin: 5px;
-  background: #7CA380;
+  background: #7ca380;
   border-radius: 15px;
   border: none;
   color: #fff;
@@ -73,7 +73,7 @@
 
 .myheader {
   display: flex;
-  color: #7CA380;
+  color: #7ca380;
   margin: 10px;
   text-align: center;
 }
@@ -84,7 +84,7 @@
 
 .blue-container {
   width: 88%;
-  border: solid 1.5px #7CA380;
+  border: solid 1.5px #7ca380;
   border-radius: 10px;
   margin-bottom: 15px;
 }
@@ -103,4 +103,16 @@
 
 .mypage-content {
   font-size: 12px;
+}
+
+.MyPageRed {
+  background-color: #f08784;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.MyPageGreen {
+  background-color: #9ab18a;
+  border-radius: 4px;
+  margin-left: 10px;
 }

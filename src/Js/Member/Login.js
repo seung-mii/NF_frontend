@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { signin } from "../../Service/ApiService";
-import {
-  TextField,
-  Grid,
-  Container,
-  InputAdornment,
-  IconButton,
-} from "@material-ui/core";
+
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "../../Css/Member/Login.css";
 
 function Login() {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [password, setPassword] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    const email = data.get("email");
+    const email = data.get("email") + "@kumoh.ac.kr";
     const password = data.get("password");
 
+    console.log(email, password);
     signin({ email: email, password: password })
-      .then((response) => {})
+      .then((response) => {
+        console.log("로그인성공");
+        window.location.href = "/home";
+      })
       .catch((error) => {
+        console.log(error);
         alert(error);
       });
   };
@@ -29,59 +30,51 @@ function Login() {
     setPasswordVisible(!passwordVisible);
   };
 
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
   return (
-    <Container component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
-      <div className="login-main-title">로그인</div>
-      <form noValidate onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={10}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="학교이메일 주소"
-              name="email"
-              autoComplete="email"
-              style={{ marginLeft: "30px" }}
-            />
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="password"
-              label="패스워드"
-              name="password"
-              autoComplete="password"
-              type={passwordVisible ? "text" : "password"}
-              style={{ marginLeft: "30px" }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={togglePasswordVisibility} edge="end">
-                      {passwordVisible ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <button type="submit" color="#E2E9F6" className="login-button">
-              로그인
-            </button>
-          </Grid>
-          <div className="button">
-            <a href="/signup" className="no-account">
-              회원가입
-            </a>
-            <span className="material-symbols-rounded">chevron_right</span>
-          </div>
-        </Grid>
+    <>
+      <div className="LoginMainTitle">로그인</div>
+      <form onSubmit={handleSubmit}>
+        <div noValidate className="LoginContainer">
+          <input
+            className="LoginEmailInput"
+            placeholder="학교 이메일 주소를 입력하세요."
+            required
+            id="email"
+            label="학교이메일 주소"
+            name="email"
+            autoComplete="email"
+          />
+          <input
+            required
+            className="LoginPwInput"
+            placeholder="비밀번호를 입력하세요."
+            id="password"
+            label="패스워드"
+            name="password"
+            autoComplete="password"
+            type={passwordVisible ? "text" : "password"}
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <span onClick={togglePasswordVisibility} className="LoginToggle">
+            {passwordVisible ? <Visibility /> : <VisibilityOff />}
+          </span>
+        </div>
+        <button className="LoginButton" type="submit">
+          로그인
+        </button>
+        <div className="button">
+          <a href="/signup" className="no-account">
+            회원가입
+          </a>
+          <span className="material-symbols-rounded">chevron_right</span>
+        </div>
       </form>
-    </Container>
+    </>
   );
 }
 

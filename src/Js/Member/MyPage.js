@@ -3,15 +3,27 @@ import "../../Css/Member/MyPage.css";
 import { call, logout, dropoutUser } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
 function MyPage() {
-  const [user, setUser] = useState({ email: "", name: "" });
+  const [user, setUser] = useState({ email: "", name: "", email_auth: false });
   useEffect(() => {
-    call("/api/member/getMember", "GET", null).then((response) =>
-      setUser({ email: response.data.email, name: response.data.name })
-    );
+    call("/api/member/getMember", "GET", null).then((response) => {
+      const { email, name, email_auth } = response.data;
+      setUser({ email, name, email_auth });
+    });
     var myemail = AppStorage.getItem("email");
-    // alert(myemail);
     setUser({ email: myemail });
   }, []);
+
+  const sendEmailVerification = () => {
+    call("/api/member/sendEmailAuth", "GET", null)
+      .then((response) => {
+        console.log("인증 메일이 전송되었습니다.");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("인증 메일 전송에 실패했습니다.");
+      });
+  };
+
   const home = () => {
     window.location.href = "/home";
   };
@@ -21,11 +33,11 @@ function MyPage() {
   const update = () => {
     window.location.href = "/update";
   };
-
   const handleLogout = () => {
     logout();
     window.location.href = "/";
   };
+
   const handleDropoutUser = () => {
     if (window.confirm("회원 탈퇴하시겠습니까?") == true) {
       call("/api/member/out", "GET", null)
@@ -42,6 +54,7 @@ function MyPage() {
         });
     }
   };
+
   return (
     <>
       <div className="myheader">
@@ -50,9 +63,7 @@ function MyPage() {
         </span>
         <div className="mypage_name">마이페이지</div>
       </div>
-      <hr />
       <div className="profile-container">
-        {/* <img src="" alt=""></img> */}
         <div className="imgg"></div>
         <div className="mypage-explain">
           <div className="username">{user.name}</div>
@@ -62,6 +73,19 @@ function MyPage() {
       </div>
       <div className="button-container2">
         <ul>
+          <div className="blue-container">
+            <li className="mypage-title">인증</li>
+            <li className="mypage-content" onClick={sendEmailVerification}>
+              학교 인증
+              <span className="MyPageAuthButton">
+                {user.email_auth === false ? (
+                  <span className="MyPageRed">인증 전</span>
+                ) : (
+                  <span className="MyPageGreen">인증 완료</span>
+                )}
+              </span>
+            </li>
+          </div>
           <div className="blue-container">
             <li className="mypage-title">게시물</li>
             <li className="mypage-content" onClick={() => myposts()}>

@@ -1,41 +1,80 @@
-.login-main-title {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 50px;
-  font-weight: bold;
-  color: #7CA380;
-  margin-top: 250px;
-}
-
-.login-button {
-  width: 339px;
-  height: 45px;
-  border-radius: 4px;
-  background: #7CA380;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold 900;
-  border: none;
-  margin-left: 30px;
-  margin-bottom: 20px;
-}
-
-.login-button:hover {
-  cursor: pointer;
-}
-
 .button {
-  margin-left: 295px;
+  margin-left: 300px;
 }
 
 .no-account {
   font-weight: 700;
-  color: #7CA380;
+  color: #9ab18a;
   text-decoration: none;
   vertical-align: middle;
 }
 
 .material-symbols-rounded {
-  color: #7CA380;
+  color: #9ab18a;
   vertical-align: middle;
+}
+
+.LoginMainTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #9ab18a;
+  margin-top: 230px;
+  margin-bottom: 70px;
+}
+
+.LoginEmailInput {
+  background: #f6f6f6;
+  height: 50px;
+  width: 68.5%;
+  justify-content: center;
+  margin-top: 30px;
+  border-radius: 50px;
+  margin-left: 54px;
+  border: none;
+  padding-left: 30px;
+}
+
+.LoginPwInput {
+  background: #f6f6f6;
+  height: 50px;
+  width: 53%;
+  justify-content: center;
+  margin-top: 30px;
+  border-radius: 50px;
+  margin-left: 54px;
+  border: none;
+  padding-left: 30px;
+}
+
+.LoginEmailInput:focus {
+  outline: none;
+}
+
+.LoginPwInput:focus {
+  outline: none;
+}
+
+.LoginClick {
+  margin-top: 30px;
+}
+
+.LoginButton {
+  width: 75%;
+  margin-left: 54px;
+  border-radius: 50px;
+  border: none;
+  height: 50px;
+  background: #9ab18a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.LoginToggle {
+  margin-left: 17px;
+  color: #9ab18a;
+  font-size: 12px;
 }

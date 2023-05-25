@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Grid, Container } from "@material-ui/core";
 import { signup } from "../../Service/ApiService";
 import "../../Css/Member/SignUp.css";
-import M from "../../native";
 function SignUp() {
   const [bank, setBank] = useState("");
   const [text, setText] = useState("계정 생성");
@@ -31,11 +29,6 @@ function SignUp() {
       bank_account_number: moneyAccount,
     })
       .then((response) => {
-        // M.sys.mail({
-        //   to: [email],
-        //   subject: "Neighborfood 인증 메일 (모피어스)",
-        //   content: "내용",
-        // });
         setText("회원가입이 완료되었습니다!");
         window.location.href = "/";
       })

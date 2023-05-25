@@ -11,6 +11,7 @@ import { call } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
 function BasketView(props) {
   const [title, setTitle] = useState("장바구니 조회 (일반)");
+  const [error, setError] = useState("");
   const [myInfo, setMyInfo] = useState({ email: "" });
   const [res, setRes] = useState({ name: "", id: "" });
   const [orderInfo, setOrderInfo] = useState({});
@@ -50,7 +51,7 @@ function BasketView(props) {
           })
         )
         .catch((error) => {
-          alert(error.error);
+          // alert(error.error);
         });
     }
   }, [orderInfo.resId]);
@@ -84,9 +85,9 @@ function BasketView(props) {
       .then((response) => setBasket(response.data))
 
       .catch((error) => {
-        alert(error.error);
+        setError("장바구니 정보가 없습니다");
       });
-  }, []);
+  }, [basket]);
   // 모든 basket의 confirmed 여부가 통일되도록 변경되었다 > 코드 변경 필요
   const userlist = basket.reduce((acc, item) => {
     const existingGroup = acc.find(
@@ -266,7 +267,13 @@ function BasketView(props) {
           </Stack>
         </div>
         <hr className="hr" />
-
+        <p
+          style={{
+            textAlign: "center",
+          }}
+        >
+          {error}
+        </p>
         {userlistitems}
 
         <div className="bv-footer">

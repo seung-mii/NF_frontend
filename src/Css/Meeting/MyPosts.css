@@ -2,31 +2,59 @@ body {
   margin-bottom: 50px;
 }
 
+.postheader {
+  display: flex;
+  margin: 11px;
+}
+
+.postheader span {
+  font-weight: 900;
+}
+
 .postheader .MyPostsBigName {
-  color: #7ca380;
+  color: #7CA380;
   margin-top: 2px;
   text-align: center;
-  font-weight: 900;
-  margin-left: 20px;
+  font-weight: 700;
+  margin-left: 135px;
+}
+
+.post_profile-container {
+  display: flex;
+  margin: 20px 20px 0px 340px;
+}
+
+.post_profile-container .img {
+  width: 37px;
+  height: 37px;
+  margin-bottom: 0px;
+  border-radius: 50%;
+  background-color: #7CA380;
 }
 
 .mypost-explain {
-  margin-left: 25px;
-  margin-top: 22px;
-  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 9px;
+  font-size: 15px;
 }
 
 .posts-container {
-  margin-top: 35px;
+  margin-top: 5px;
   margin-left: 50px;
+  overflow: scroll;
+}
+
+.posts-container::-webkit-scrollbar {
+  display: none;
 }
 
 .post {
   width: 80%;
   height: 110px;
-  background: rgba(143, 188, 148, 0.3);
+  background: #8fbc941e;
   text-align: left;
-  border-radius: 7px;
+  font-size: 15px;
+  border-radius: 30px;
   margin-top: 20px;
   padding-top: 25px;
   padding-left: 32px;
@@ -59,12 +87,12 @@ body {
 }
 
 .MyPostsCancel {
-  width: 120px;
+  width: 60px;
   height: 30px;
   margin-top: 14px;
   border: none;
-  background: #7ca380;
-  border-radius: 4px;
+  background: #7CA380;
+  border-radius: 6px;
   color: #fff;
   font-weight: 900;
   font-size: 12px;
@@ -74,6 +102,10 @@ body {
 
 .MyPostsButton {
   display: flex;
+}
+
+.MyPostsButton a {
+  margin-left: 140px;
 }
 
 .no-posts-alert {

@@ -13,6 +13,7 @@ import * as AppStorage from "../../AppStorage";
 //확인취소, 주문취소, 모두 주문
 function BasketViewHost(props) {
   const [title, setTitle] = useState("장바구니 조회 (방장)");
+  const [error, setError] = useState("");
   const [myInfo, setMyInfo] = useState({ email: "" });
   const [buttonText, setButtonText] = useState("입금 확인 모두 주문하기");
   const [res, setRes] = useState({ name: "", id: "" });
@@ -81,7 +82,7 @@ function BasketViewHost(props) {
           })
         )
         .catch((error) => {
-          alert(error.error);
+          // alert(error.error);
         });
     }
   }, [orderInfo.resId]);
@@ -114,7 +115,8 @@ function BasketViewHost(props) {
     call(`/api/basket/byBoardId/${boardNo}`, "GET", null)
       .then((response) => setBasket(response.data))
       .catch((error) => {
-        alert(error.error);
+        // alert(error.error);
+        setError("장바구니 정보가 없습니다");
       });
   }, [basket]);
 
@@ -228,7 +230,6 @@ function BasketViewHost(props) {
                 <>
                   <p className="mqp" key={menu.id}>
                     {menu.menuName} {menu.quantity}개
-                    {/* {menu.confirmed ? "" : " <입금확인 전> "} */}
                   </p>
                 </>
               ))}
@@ -281,7 +282,9 @@ function BasketViewHost(props) {
           </Stack>
         </div>
         <hr className="hr" />
-
+        <div className="bvdiv">
+          <p>{error}</p>
+        </div>
         {userlistitems}
 
         <div className="bv-footer">

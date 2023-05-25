@@ -21,7 +21,7 @@ function Basket() {
       });
     var userEmail = AppStorage.getItem("email");
     setUser({ email: userEmail });
-  }, []);
+  }, [boardNo]);
 
   useEffect(() => {
     if (user.email && user.email === host.email) {
@@ -29,12 +29,17 @@ function Basket() {
     }
   }, [user.email, host.email]);
 
-  const content = isHost ? (
+  // const content = isHost ? (
+  //   <BasketViewHost boardNo={boardNo} />
+  // ) : (
+  //   <BasketView boardNo={boardNo} />
+  // );
+  // return content;
+  return isHost ? (
     <BasketViewHost boardNo={boardNo} />
   ) : (
     <BasketView boardNo={boardNo} />
   );
-  return content;
 }
 export default Basket;
 // localstorage에서 이메일을 가져온다 > 게시물의 방장의 이메일과 비교한다.

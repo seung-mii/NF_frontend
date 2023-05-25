@@ -18,7 +18,6 @@ function Login() {
     signin({ email: email, password: password })
       .then((response) => {
         console.log("로그인성공");
-        window.location.href = "/home";
       })
       .catch((error) => {
         console.log(error);

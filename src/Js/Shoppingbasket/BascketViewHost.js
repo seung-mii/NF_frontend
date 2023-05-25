@@ -281,11 +281,13 @@ function BasketViewHost(props) {
             />
           </Stack>
         </div>
-        <div className="bvdiv">
-          <p>{error}</p>
-        </div>
-        {userlistitems}
-
+        {error !== "" ? (
+          <div className="bvdiv">
+            <p>{error}</p>
+          </div>
+        ) : (
+          userlistitems
+        )}
         <div className="bv-footer">
           <Stack
             direction="row"

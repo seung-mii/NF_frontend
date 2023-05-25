@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../../components/Nav";
+import "../../Css/Shoppingbasket/Nav.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 import "../../Css/Shoppingbasket/MenuDetail.css";
 import { call } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
-import M from "../../native";
 function MenuDetail() {
   const [title, setTitle] = useState("메뉴 조회");
   const [quantity, setQuantity] = useState(1);
@@ -19,7 +18,7 @@ function MenuDetail() {
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
   const { boardNo } = useParams();
   //member의 해당 board의 confirmed 여부를 확인하고 confirmed이 true일 경우 버튼을 비활성화한다.
-  const boardno = 1;
+
   useEffect(() => {
     if (menu.menu_no) {
       setTotalCost(menu.price * quantity);
@@ -37,13 +36,17 @@ function MenuDetail() {
     }
   }, [menu.menu_no, quantity, totalCost]);
   useEffect(() => {
-    call(`/api/menu/${foodid}`, "GET", null).then((response) =>
-      setMenu({
-        menu_no: response.data.menu_no,
-        name: response.data.name,
-        price: response.data.price,
-      })
-    );
+    call(`/api/menu/${foodid}`, "GET", null)
+      .then((response) =>
+        setMenu({
+          menu_no: response.data.menu_no,
+          name: response.data.name,
+          price: response.data.price,
+        })
+      )
+      .catch((error) => {
+        alert(error.error);
+      });
   }, []);
   const delFunc = () => {
     if (quantity > 1) {
@@ -70,13 +73,32 @@ function MenuDetail() {
         }
       })
       .catch((error) => {
-        alert(error.error);
-        return Promise.reject(error.error);
+        if (
+          error.error === "입금확인된 사용자는 장바구니를 추가할 수 없습니다"
+        ) {
+          setButtonText("이미 입금이 확인되어 메뉴를 담을 수 없습니다");
+          // alert(error.error);
+        }
       });
   };
   return (
     <>
-      <Nav title={title} />
+      <div className="navbar">
+        <span
+          class="material-symbols-rounded"
+          onClick={() => (window.location.href = `/menuview/${boardNo}`)}
+          style={{
+            float: "left",
+            marginLeft: "20px",
+            fontWeight: "900",
+            color: "#5a9367",
+          }}
+        >
+          chevron_left
+        </span>
+
+        <h4 style={{ marginRight: "45px" }}>{title}</h4>
+      </div>
       <div className="mdcontainer">
         <div className="md-header">
           <p className="mdtext">{resname}</p>

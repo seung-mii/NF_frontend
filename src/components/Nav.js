@@ -3,9 +3,11 @@ import "../Css/Shoppingbasket/Nav.css";
 
 const Nav = (props) => {
   const title = props.title;
+
   const goBack = () => {
     window.history.back();
   };
+
   return (
     <div className="navbar">
       <span

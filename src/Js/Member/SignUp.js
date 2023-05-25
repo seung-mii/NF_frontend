@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import { TextField, Grid, Container } from "@material-ui/core";
 import { signup } from "../../Service/ApiService";
 import "../../Css/Member/SignUp.css";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import { InputLabel } from "@mui/material";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import M from "../../native";
 function SignUp() {
   const [bank, setBank] = useState("");
@@ -26,7 +22,6 @@ function SignUp() {
     const password = data.get("password");
     const moneyBank = data.get("money-bank");
     const moneyAccount = data.get("money-account");
-    // console.log(moneyAccount);
     signup({
       name: username,
       email: email,
@@ -58,124 +53,65 @@ function SignUp() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <>
+      <div className="SignUpMainTitle">회원가입</div>
       <form noValidate onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <div className="signup-main-title">회원가입</div>
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              autoComplete="username"
-              name="username"
-              variant="outlined"
-              required
-              fullWidth
-              id="username"
-              label="사용자 이름"
-              autoFocus
-              style={{ marginLeft: "30px" }}
-            />
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              autoComplete="email"
-              name="email"
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="학교 이메일"
-              autoFocus
-              style={{ marginLeft: "30px" }}
-              defaultValue=""
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">@kumoh.ac.kr</InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              autoComplete="push_email"
-              name="push_email"
-              variant="outlined"
-              required
-              fullWidth
-              id="push_email"
-              label="push 이메일"
-              autoFocus
-              style={{ marginLeft: "30px" }}
-            />
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              autoComplete="current-password"
-              name="password"
-              variant="outlined"
-              required
-              fullWidth
-              id="password"
-              label="패스워드"
-              autoFocus
-              style={{ marginLeft: "30px" }}
-            />
-          </Grid>
-          <Grid item xs={10}>
-            <InputLabel style={{ marginLeft: "30px" }}>은행</InputLabel>
-            <Select
-              autoComplete="money-bank"
+        <div className="SignUpContainer">
+          <input
+            className="SignUpInput"
+            placeholder="사용자 이름"
+            name="username"
+          ></input>
+          <input
+            className="SignUpInput"
+            placeholder="학교 이메일"
+            name="email"
+          ></input>
+          <input
+            className="SignUpInput"
+            placeholder="push 이메일"
+            name="push_email"
+          ></input>
+          <input
+            className="SignUpInput"
+            placeholder="비밀번호"
+            name="password"
+          ></input>
+          <div className="SignUpAccount">
+            <select
+              className="SignUpSelect"
+              id="bank"
               name="money-bank"
-              variant="outlined"
               required
-              fullWidth
-              id="money-bank"
-              label="은행"
-              autoFocus
-              style={{ marginLeft: "30px" }}
-              value={bank}
-              onChange={handleChange}
             >
-              <MenuItem value="국민은행">국민은행</MenuItem>
-              <MenuItem value="신한은행">신한은행</MenuItem>
-              <MenuItem value="삼성은행">삼성은행</MenuItem>
-              <MenuItem value="농협은행">농협은행</MenuItem>
-              <MenuItem value="하나은행">하나은행</MenuItem>
-              <MenuItem value="우체국은행">우체국은행</MenuItem>
-              <MenuItem value="카카오뱅크">카카오뱅크</MenuItem>
-            </Select>
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              autoComplete="money-account"
-              name="money-account"
-              variant="outlined"
-              required
-              fullWidth
-              id="money-account"
-              label="계좌번호"
-              autoFocus
-              style={{ marginLeft: "30px" }}
+              <option value="">은행 선택</option>
+              <option value="국민은행">국민은행</option>
+              <option value="신한은행">신한은행</option>
+              <option value="삼성은행">삼성은행</option>
+              <option value="농협은행">농협은행</option>
+              <option value="하나은행">하나은행</option>
+              <option value="우체국은행">우체국은행</option>
+              <option value="카카오뱅크">카카오뱅크</option>
+            </select>
+            <input
+              className="SignUpInputAccount"
+              placeholder="계좌번호"
               onChange={handleBankAccountNumberChange}
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <button type="submit" color="#E2E9F6" className="login-button">
-              {text}
-            </button>
-          </Grid>
-
-          <div className="login-btn">
-            <a href="/" className="yes-account">
-              로그인
-            </a>
-            <span className="material-symbols-rounded">chevron_right</span>
+              name="money-account"
+            ></input>
           </div>
-        </Grid>
+        </div>
+        <button className="SignUpButton" type="submit">
+          회원가입
+        </button>
+        <div className="login-btn">
+          <a href="/" className="yes-account">
+            로그인
+          </a>
+          <span className="material-symbols-rounded">chevron_right</span>
+        </div>
       </form>
-    </Container>
+    </>
   );
 }
 

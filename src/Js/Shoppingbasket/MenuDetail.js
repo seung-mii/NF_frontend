@@ -89,9 +89,8 @@ function MenuDetail() {
           onClick={() => (window.location.href = `/menuview/${boardNo}`)}
           style={{
             float: "left",
-            marginLeft: "20px",
             fontWeight: "900",
-            color: "#5a9367",
+            color: "#7CA380",
           }}
         >
           chevron_left
@@ -101,7 +100,7 @@ function MenuDetail() {
       </div>
       <div className="mdcontainer">
         <div className="md-header">
-          <p className="mdtext">{resname}</p>
+          <p className="mdtext">「 {resname} 」</p>
 
           <img className="image" alt={menu.menu_no} src={menu.src} />
           <div className="fnbox">

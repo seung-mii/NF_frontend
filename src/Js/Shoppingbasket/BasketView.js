@@ -166,7 +166,7 @@ function BasketView(props) {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#5a9367",
+                      backgroundColor: "#7CA380",
                       color: user.confirmed ? "#ff99cc" : "white",
                       lineHeight: "32px",
                       width: 90,
@@ -183,7 +183,7 @@ function BasketView(props) {
                     <Typography
                       variant="contained"
                       style={{
-                        backgroundColor: "#5a9367",
+                        backgroundColor: "#7CA380",
                         color: "#ff99cc",
                         lineHeight: "32px",
                         width: 90,
@@ -207,9 +207,9 @@ function BasketView(props) {
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
                   {user.memberEmail === orderInfo.hostEmail
-                    ? user.memberName + "(방장)"
+                    ? user.memberName + " (방장)"
                     : user.memberEmail == myInfo.email
-                    ? user.memberName + "(나)"
+                    ? user.memberName + " (나)"
                     : user.memberName}
                 </p>
               </div>
@@ -236,7 +236,7 @@ function BasketView(props) {
             float: "left",
             marginLeft: "20px",
             fontWeight: "900",
-            color: "#5a9367",
+            color: "#7CA380",
           }}
         >
           chevron_left
@@ -252,7 +252,7 @@ function BasketView(props) {
             justifyContent="center"
             gap={1}
           >
-            <p className="resname">{res.name}</p>
+            <p className="resname">「 {res.name} 」</p>
             <p className="bvtext">
               주문 남은 시간 {hour.toString().padStart(2, "0")}:
               {minute.toString().padStart(2, "0")}:
@@ -260,6 +260,7 @@ function BasketView(props) {
             </p>
             <RefreshIcon
               className="bvicon"
+              style={{ color: "#7CA380", fontSize: "17px", marginLeft: "-5px"}}
               onClick={() => {
                 window.location.reload();
               }}

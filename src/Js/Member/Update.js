@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../Css/Member/Update.css";
 import { call } from "../../Service/ApiService";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 function Update() {
   // 회원정보수정 - post
@@ -172,94 +173,104 @@ function Update() {
       <div className="UpdateOriginalName">{Member.name}</div>
       <form noValidate onSubmit={updateSubmit}>
         <div className="UpdateInformationContainer">
-          <div className="UpdateInformation">회원 정보</div>
-          <div className="UpdateName">사용자 이름</div>
-          <input
-            type="text"
-            className="UpdateInput"
-            name="name"
-            defaultValue={Member.name}
-            onChange={handleInputChange}
-            required
-          ></input>
-          <div className="UpdateName">이메일</div>
-          <input
-            type="text"
-            className="UpdateInput"
-            name="email"
-            defaultValue={Member.push_email}
-            onChange={handleInputChange}
-            required
-          ></input>
-          <div className="UpdateName">비밀번호 변경</div>
-          <input
-            type={curPasswordType.type}
-            placeholder="기존 비밀번호"
-            name="cur_password"
-            className="UpdateInput pw"
-            onChange={handleInputChange}
-            required
-          />
-          <span onClick={handleCurPasswordType} className="UpdateToggle">
-            {curPasswordType.visible ? (
-              <span>숨기기</span>
-            ) : (
-              <span>보이기</span>
-            )}
-          </span>
-          <input
-            type={newPasswordType.type}
-            placeholder="변경 비밀번호"
-            name="new_password"
-            className="UpdateInput pw"
-            onChange={handleInputChange}
-            required
-          />
-          <span onClick={handleNewPasswordType} className="UpdateToggle">
-            {newPasswordType.visible ? (
-              <span>숨기기</span>
-            ) : (
-              <span>보이기</span>
-            )}
-          </span>
-          <div className="UpdateName">계좌번호</div>
-          <select
-            className="UpdateSelect"
-            id="bank"
-            name="bank"
-            onChange={handleInputChange}
-            required
-          >
-            <option value={Member.bank} defaultValue={Member.bank}>
-              {Member.bank}
-            </option>
-            <option value="국민은행">국민은행</option>
-            <option value="신한은행">신한은행</option>
-            <option value="삼성은행">삼성은행</option>
-            <option value="농협은행">농협은행</option>
-            <option value="하나은행">하나은행</option>
-            <option value="우체국은행">우체국은행</option>
-            <option value="카카오뱅크">카카오뱅크</option>
-          </select>
-          <input
-            type="text"
-            className="UpdateInput"
-            name="bank_account_number"
-            defaultValue={Member.bank_account_number}
-            onKeyPress={(e) => {
-              const keyCode = e.keyCode || e.which;
-              const keyValue = String.fromCharCode(keyCode);
-              const regex = /[0-9]/;
-              if (!regex.test(keyValue)) {
-                e.preventDefault();
-              }
-            }}
-            onChange={(e) => {
-              handleBankAccountNumberChange(e);
-              handleInputChange(e);
-            }}
-            required
-          ></input>
+          <div className="flex">
+            <div className="UpdateName">사용자 이름</div>
+            <input
+              type="text"
+              className="UpdateInput"
+              name="name"
+              defaultValue={Member.name}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </div>
+          <div className="flex">
+            <div className="UpdateName">이메일</div>
+            <input
+              type="text"
+              className="UpdateInput"
+              name="email"
+              defaultValue={Member.push_email}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </div>
+          <div className="flex">
+            <div className="UpdateName">기존 비밀번호</div>
+            <input
+              type={curPasswordType.type}
+              placeholder="기존 비밀번호를 입력하세요."
+              name="cur_password"
+              className="UpdateInput pw"
+              onChange={handleInputChange}
+              required
+            />
+            <span onClick={handleCurPasswordType} className="UpdateToggle" style={{ position: "absolute", top: "3px", right: "30px"}}>
+              {curPasswordType.visible ? (
+                <Visibility /> 
+              ) : (
+                <VisibilityOff />
+              )}
+            </span>
+          </div>
+          <div className="flex">
+            <div className="UpdateName">변경 비밀번호</div>
+            <input
+              type={newPasswordType.type}
+              placeholder="변경 비밀번호를 입력하세요."
+              name="new_password"
+              className="UpdateInput pw"
+              onChange={handleInputChange}
+              required
+            />
+            <span onClick={handleNewPasswordType} className="UpdateToggle" style={{ position: "absolute", top: "3px", right: "30px"}}>
+              {newPasswordType.visible ? (
+                <Visibility /> 
+              ) : (
+                <VisibilityOff />
+              )}
+            </span>
+          </div>
+          <div className="flex">
+            <div className="UpdateName">계좌번호</div>
+            <select
+              className="UpdateSelect"
+              id="bank"
+              name="bank"
+              onChange={handleInputChange}
+              required
+            >
+              <option value={Member.bank} defaultValue={Member.bank}>
+                {Member.bank}
+              </option>
+              <option value="국민은행">국민은행</option>
+              <option value="신한은행">신한은행</option>
+              <option value="삼성은행">삼성은행</option>
+              <option value="농협은행">농협은행</option>
+              <option value="하나은행">하나은행</option>
+              <option value="우체국은행">우체국은행</option>
+              <option value="카카오뱅크">카카오뱅크</option>
+            </select>
+            <input
+              type="text"
+              className="UpdateInput"
+              name="bank_account_number"
+              defaultValue={Member.bank_account_number}
+              onKeyPress={(e) => {
+                const keyCode = e.keyCode || e.which;
+                const keyValue = String.fromCharCode(keyCode);
+                const regex = /[0-9]/;
+                if (!regex.test(keyValue)) {
+                  e.preventDefault();
+                }
+              }}
+              onChange={(e) => {
+                handleBankAccountNumberChange(e);
+                handleInputChange(e);
+              }}
+              required
+            ></input>
+          </div>
           <div className="UpdateEdit">
             <button
               type="submit"

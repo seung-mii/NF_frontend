@@ -181,8 +181,8 @@ function BasketViewHost(props) {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#5a9367",
-                      color: user.confirmed ? "white" : "#ff99cc",
+                      backgroundColor: "#7CA380",
+                      color: user.confirmed ? "white" : "red",
                       fontSize: "12px",
                       width: 90,
                       lineHeight: "32px",
@@ -198,8 +198,8 @@ function BasketViewHost(props) {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#5a9367",
-                      color: user.confirmed ? "#ff99cc" : "white",
+                      backgroundColor: "#7CA380",
+                      color: user.confirmed ? "red" : "white",
                       lineHeight: "32px",
                       width: 90,
                       padding: 2,
@@ -222,7 +222,7 @@ function BasketViewHost(props) {
                 <AccountCircleIcon className="bvicon" />
                 <p className="p">
                   {user.memberEmail === orderInfo.hostEmail
-                    ? user.memberName + "(방장:나)"
+                    ? user.memberName + " (방장:나)"
                     : user.memberName}
                 </p>
               </div>
@@ -242,22 +242,21 @@ function BasketViewHost(props) {
     </List>
   );
   return (
-    <>
+    <div className="host">
       <div className="navbar">
         <span
           class="material-symbols-rounded"
           onClick={() => (window.location.href = `/menuview/${boardNo}`)}
           style={{
             float: "left",
-            marginLeft: "20px",
             fontWeight: "900",
-            color: "#5a9367",
+            color: "#7CA380",
           }}
         >
           chevron_left
         </span>
 
-        <h4 style={{ marginRight: "45px" }}>{title}</h4>
+        <h4>{title}</h4>
       </div>
       <div className="bvcontainer">
         <div className="bv-header">
@@ -267,7 +266,7 @@ function BasketViewHost(props) {
             justifyContent="center"
             gap={1}
           >
-            <p className="resname">{res.name}</p>
+            <p className="resname">「 {res.name} 」</p>
             <p className="bvtext">
               주문 남은 시간 : {hour.toString().padStart(2, "0")}:
               {minute.toString().padStart(2, "0")}:
@@ -278,10 +277,10 @@ function BasketViewHost(props) {
               onClick={() => {
                 window.location.reload();
               }}
+              style={{ color: "#7CA380", fontSize: "17px", marginLeft: "-5px"}}
             />
           </Stack>
         </div>
-        <hr className="hr" />
         {error !== "" ? (
           <div className="bvdiv">
             <p>{error}</p>
@@ -296,13 +295,13 @@ function BasketViewHost(props) {
             justifyContent="center"
             gap={1}
           >
-            <Button variant="contained" className="bv-btt" onClick={order}>
+            <button variant="contained" className="bv-btt" onClick={order}>
               <p>{buttonText}</p>
-            </Button>
+            </button>
           </Stack>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -107,9 +107,8 @@ function MenuView() {
           onClick={() => (window.location.href = `/board/${board_no}`)}
           style={{
             float: "left",
-            marginLeft: "20px",
             fontWeight: "900",
-            color: "#5a9367",
+            color: "#7CA380",
           }}
         >
           chevron_left
@@ -119,9 +118,8 @@ function MenuView() {
       </div>
       <div className="mvcontainer">
         <div className="mv-header">
-          <p className="text">{res.name}</p>
+          <p className="text">「 {res.name} 」</p>
         </div>
-        <hr className="hr" />
 
         {menulistitems}
 
@@ -132,13 +130,13 @@ function MenuView() {
             justifyContent="center"
             gap={1}
           >
-            <Button
-              className="btt"
+            <button
+              className="view_btt"
               variant="contained"
               onClick={basketViewFunc}
             >
               공동 장바구니 보기
-            </Button>
+            </button>
           </Stack>
         </div>
       </div>

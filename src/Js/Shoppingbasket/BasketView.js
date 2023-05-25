@@ -166,8 +166,8 @@ function BasketView(props) {
                   <Typography
                     variant="contained"
                     style={{
-                      backgroundColor: "#7ca380",
-                      color: user.confirmed ? "#00FF00" : "white",
+                      backgroundColor: "#5a9367",
+                      color: user.confirmed ? "#ff99cc" : "white",
                       lineHeight: "32px",
                       width: 90,
                       padding: 2,
@@ -183,8 +183,8 @@ function BasketView(props) {
                     <Typography
                       variant="contained"
                       style={{
-                        backgroundColor: "#7ca380",
-                        color: "#00FF00",
+                        backgroundColor: "#5a9367",
+                        color: "#ff99cc",
                         lineHeight: "32px",
                         width: 90,
                         padding: 2,

@@ -3,6 +3,11 @@
   margin: 5px;
 }
 
+.flex {
+  display: flex;
+  position: relative;
+}
+
 .uheader span {
   padding: 5px 0px;
   font-weight: 700;
@@ -14,7 +19,7 @@
   text-align: center;
   font-weight: 700;
   font-size: 17px;
-  margin-left: 145px;
+  margin-left: 152px;
 }
 
 .UpdateOriginal {
@@ -23,15 +28,15 @@
 }
 
 .UpdateImg {
-  width: 70px;
-  height: 70px;
+  width: 55px;
+  height: 55px;
   background: #7CA380;
   border-radius: 100%;
   margin-top: 60px;
 }
 
 .UpdateInformationContainer {
-  margin: 40px;
+  margin: 45px 35px 45px 45px;
 }
 
 .UpdateOriginalName {
@@ -49,55 +54,65 @@
 }
 
 .UpdateName {
+  width: 90px;
   font-size: 12px;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 29px;
+  font-weight: 700;
   color: #7CA380;
 }
 
 .UpdateInput {
   font-size: 12px;
-  margin-top: 10px;
-  margin-left: 20px;
-  width: 75%;
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  margin: 15px 10px;
+  padding: 10px 20px;
+  width: 80%;
+  border: 0px;
   border-color: #7CA380;
   outline: none;
   height: 20px;
 }
 
 select {
+  width: 80px;
+  height: 30px;
+  color: #7CA380;
+  font-size: 12px;
+  font-weight: 700;
   outline: none;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
-  width: 100px;
-}
-
-.pw {
-  margin-top: 25px;
-  width: 220px;
-  margin-right: 12px;
 }
 
 .UpdateEdit {
-  margin: 20px 21px;
+  margin: 30px 21px 20px 21px;
 }
 
 .UpdateEditButton {
-  width: 315px;
-  height: 40px;
-  background: #7CA380;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 900;
+  width: 60%;
+  height: 35px;
+  padding: 0px 15px;
+  margin: 2px 0px 0px 60px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  background-color: #7CA380;
+  border: 1px solid #7CA380;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 5px lightgray;
+}
+
+.UpdateEditButton:focus,
+.UpdateEditButton:hover {
+  background-color: #597c5c;
+  box-shadow: none;
+  margin-top: 5px;
 }
 
 .UpdateToggle {
+  padding-top: 21px;
   font-size: 12px;
   color: #7CA380;
 }

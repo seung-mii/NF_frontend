@@ -19,6 +19,11 @@ body {
   margin-left: 135px;
 }
 
+.MyPostsName {
+  color: #7CA380;
+  font-weight: 700;
+}
+
 .post_profile-container {
   display: flex;
   margin: 20px 20px 0px 340px;
@@ -33,7 +38,7 @@ body {
 }
 
 .mypost-explain {
-  margin-left: 10px;
+  margin-left: 8px;
   margin-top: 9px;
   font-size: 15px;
 }

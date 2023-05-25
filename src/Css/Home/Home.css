@@ -118,6 +118,7 @@ hr {
   display: flex;
   font-weight: 700;
   vertical-align: middle;
+  color: black;
 }
 
 .home .board .title {
@@ -127,7 +128,7 @@ hr {
 }
 
 .home .board .content {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .home .board .location span,

@@ -22,12 +22,13 @@
   display: flex;
   flex-direction: column;
   font-size: 15px;
-  margin: 5px 0px;
+  margin: 8px 0px;
 }
 /* 이미지와 사용자 이름 */
 .userinfo .top {
   display: flex;
   flex-direction: row;
+  margin-bottom: 5px;
 }
 .top .bvicon {
   color: #7CA380;
@@ -45,12 +46,16 @@
   font-weight: 700;
   display: flex;
   flex-direction: row;
-  margin: 5px;
+  margin: 5px 8px;
 }
 /* 총가격 15000원 */
 .userinfo .pp {
   font-size: 12px;
-  margin: 5px;
+  margin: 5px 8px;
+}
+
+.host .navbar h4 {
+  margin-left: 120px;
 }
 
 /* 전체페이지 */
@@ -103,8 +108,8 @@
 }
 .bv-footer .bv-btt {
   width: 60%;
-  height: 35px;
-  padding: 10px 15px;
+  height: 38px;
+  padding: 0px 15px;
   margin-top: 2px;
   font-size: 12px;
   font-weight: 700;

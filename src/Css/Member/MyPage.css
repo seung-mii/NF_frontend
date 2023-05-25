@@ -29,12 +29,7 @@
 .profile-container {
   display: flex;
   justify-content: center;
-  margin-top: 60px;
-  /* width: 80%;
-  border: solid 1.5px #7CA380;
-  margin-left: 40px;
-  border-radius: 10px;
-  padding-top: 20px; */
+  margin-top: 50px;
 }
 
 .mypage-explain {

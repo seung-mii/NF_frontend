@@ -282,13 +282,9 @@ function BasketViewHost(props) {
           </Stack>
         </div>
         <hr className="hr" />
-        <p
-          style={{
-            textAlign: "center",
-          }}
-        >
-          {error}
-        </p>
+        <div className="bvdiv">
+          <p>{error}</p>
+        </div>
         {userlistitems}
 
         <div className="bv-footer">

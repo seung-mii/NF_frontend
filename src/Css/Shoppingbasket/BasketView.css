@@ -80,6 +80,19 @@
   margin-bottom: 0px;
 }
 
+/* 장바구니 정보가 없습니다 */
+.bvcontainer .bvdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 74vh;
+}
+.bvcontainer .bvdiv p {
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #7ca380;
+}
 /* 하단 */
 .bv-footer {
   font-size: 17px;

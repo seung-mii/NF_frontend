@@ -26,6 +26,9 @@ function Home() {
   const [cafeList, setCafeList] = useState([]);
   const [midnightList, setMidnightList] = useState([]);
 
+  AppStorage.setItem("restaurant_name", null);
+  AppStorage.setItem("category", null);
+  AppStorage.setItem("address", null);
   const allTypeOff = () => {
     setEntireType(false);
     setKoreanType(false);
@@ -87,8 +90,9 @@ function Home() {
   };
 
   const onParticipate = (board_no) => {
-    call(`/api/participation/in/${board_no}`, "GET", null).then((response) => { });
-    window.location.reload();
+    call(`/api/participation/in/${board_no}`, "GET", null).then((response) => { 
+      window.location.reload();
+    });
   }
 
   useEffect(() => {

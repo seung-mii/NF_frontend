@@ -5,8 +5,20 @@
   vertical-align: middle;
 }
 
+.school_email {
+  position: relative;
+}
+
+.end_email {
+  position: absolute;
+  top: 33px;
+  right: 80px;
+  font-size: 15px;
+  color: #000;
+}
+
 .login-btn {
-  margin-left: 320px;
+  margin: 5px 0px 0px 340px;
 }
 
 .SignUpMainTitle {
@@ -14,20 +26,26 @@
   font-weight: bold;
   text-align: center;
   color: #9ab18a;
-  margin-top: 130px;
-  margin-bottom: 60px;
+  margin-top: 160px;
+  margin-bottom: 20px;
 }
 
-.SignUpInput {
-  background: #f6f6f6;
-  height: 50px;
-  width: 68.5%;
+.SignUpInput,
+.SignUpInputAccount {
+  background: #bcbcbc21;
+  width: 66%;
+  font-size: 15px;
   justify-content: center;
   margin-top: 30px;
   border-radius: 50px;
   margin-left: 54px;
   border: none;
-  padding-left: 30px;
+  padding: 18px 20px 18px 30px;
+}
+
+.SignUpInputAccount {
+  width: 42%;
+  padding-left: 140px;
 }
 
 .SignUpInput:focus {
@@ -35,8 +53,12 @@
 }
 
 .SignUpSelect {
-  width: 110px;
+  position: absolute;
+  top: 2px;
+  left: 20px;
+  width: 105px;
   height: 50px;
+  font-size: 15px;
   border-radius: 50px;
   margin-left: 54px;
   margin-top: 30px;
@@ -45,11 +67,12 @@
 }
 
 .SignUpAccount {
+  position: relative;
   display: flex;
 }
 
 .SignUpButton {
-  width: 75%;
+  width: 77%;
   margin-left: 54px;
   border-radius: 50px;
   border: none;
@@ -60,19 +83,6 @@
   font-size: 15px;
   margin-top: 30px;
   margin-bottom: 20px;
-}
-
-.SignUpInputAccount {
-  background: #f6f6f6;
-  height: 50px;
-  width: 60%;
-  justify-content: center;
-  margin-top: 30px;
-  border-radius: 50px;
-  margin-left: 10px;
-  border: none;
-  padding-left: 30px;
-  margin-right: 58px;
 }
 
 .SignUpInputAccount:focus {

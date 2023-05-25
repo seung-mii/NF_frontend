@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { signup } from "../../Service/ApiService";
+import logo from "../../Images/logo2.png";
 import "../../Css/Member/SignUp.css";
 function SignUp() {
   const [bank, setBank] = useState("");
@@ -47,29 +48,33 @@ function SignUp() {
 
   return (
     <>
+      <img className="logo" src={logo} alt="Logo"/>
       <div className="SignUpMainTitle">회원가입</div>
       <form noValidate onSubmit={handleSubmit}>
         <div className="SignUpContainer">
           <input
             className="SignUpInput"
-            placeholder="사용자 이름"
+            placeholder="사용자 이름을 입력하세요."
             name="username"
-          ></input>
+          />
+          <div className="school_email">
+            <input
+              className="SignUpInput"
+              placeholder="학교 이메일을 입력하세요."
+              name="email"
+            />
+            <p className="end_email">@kumoh.ac.kr</p>
+          </div>
           <input
             className="SignUpInput"
-            placeholder="학교 이메일"
-            name="email"
-          ></input>
-          <input
-            className="SignUpInput"
-            placeholder="push 이메일"
+            placeholder="푸쉬 이메일을 입력하세요."
             name="push_email"
-          ></input>
+          />
           <input
             className="SignUpInput"
-            placeholder="비밀번호"
+            placeholder="비밀번호를 입력하세요."
             name="password"
-          ></input>
+          />
           <div className="SignUpAccount">
             <select
               className="SignUpSelect"
@@ -88,10 +93,10 @@ function SignUp() {
             </select>
             <input
               className="SignUpInputAccount"
-              placeholder="계좌번호"
+              placeholder="계좌번호를 입력하세요."
               onChange={handleBankAccountNumberChange}
               name="money-account"
-            ></input>
+            />
           </div>
         </div>
         <button className="SignUpButton" type="submit">

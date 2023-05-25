@@ -133,6 +133,7 @@ hr {
 
 .home .board .location span,
 .home .board .restaurant span {
+  color: black;
   margin-right: 5px;
   padding-top: 4px;
 }

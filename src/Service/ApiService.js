@@ -68,6 +68,12 @@ export function call(api, method, request) {
       } else if (error.error.slice(0, 30) == "The given id must not be null!") {
         alert("음식점 또는 위치를 설정하지 않았습니다.");
         window.location.reload();
+      } else if (error.error == "회원을 찾을 수 없습니다.") {
+        alert("가입되지 않은 회원정보이거나 아이디가 일치하지 않습니다.");
+        window.location.reload();
+      } else if (error.error == "패스워드가 틀렸습니다.") {
+        alert("비밀번호가 일치하지 않습니다.");
+        window.location.reload();
       }
 
       // if (error.status === 403) {
@@ -85,7 +91,8 @@ export function signup(userDTO) {
       }
     })
     .catch((error) => {
-      return Promise.reject(error.error);
+      console.log(error.error);
+      return {};
     });
 }
 //로그인
@@ -103,9 +110,7 @@ export function signin(userDTO) {
     })
     .catch((error) => {
       console.log(error.error);
-      alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-      window.href.reload();
-      return Promise.reject(error.error);
+      return {};
     });
 }
 // 로그아웃

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Nav from "../../components/Nav";
+import "../../Css/Shoppingbasket/Nav.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography";
 import "../../Css/Shoppingbasket/MenuView.css";
 import { call } from "../../Service/ApiService";
 import { useParams } from "react-router-dom";
-import M from "../../native";
 function MenuView() {
   const [title, setTitle] = useState("메뉴 조회");
   const [res, setRes] = useState({ name: "", id: "" });
@@ -34,9 +33,7 @@ function MenuView() {
       );
     }
   }, [res.id]);
-  const mainFunc = () => {
-    window.location.href = "/";
-  };
+
   const detailFood = (item) => {
     console.log(item);
     window.location.href = `/menudetail/${board_no}/${res.name}/${item.menu_no}`;
@@ -96,7 +93,22 @@ function MenuView() {
   );
   return (
     <>
-      <Nav title={title} />
+      <div className="navbar">
+        <span
+          class="material-symbols-rounded"
+          onClick={() => (window.location.href = `/board/${board_no}`)}
+          style={{
+            float: "left",
+            marginLeft: "20px",
+            fontWeight: "900",
+            color: "#5a9367",
+          }}
+        >
+          chevron_left
+        </span>
+
+        <h4 style={{ marginRight: "45px" }}>{title}</h4>
+      </div>
       <div className="mvcontainer">
         <div className="mv-header">
           <p className="text">{res.name}</p>

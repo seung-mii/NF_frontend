@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../../components/Nav";
+import "../../Css/Shoppingbasket/Nav.css";
 import Stack from "@mui/material/Stack";
 import List from "@mui/material/List";
 import { ListItem } from "@mui/material";
@@ -14,7 +14,6 @@ function BasketView(props) {
   const [myInfo, setMyInfo] = useState({ email: "" });
   const [res, setRes] = useState({ name: "", id: "" });
   const [orderInfo, setOrderInfo] = useState({});
-  const board_no = 1;
   const [basket, setBasket] = useState([]);
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
@@ -85,7 +84,7 @@ function BasketView(props) {
         alert(error.error);
       });
   }, []);
-
+  // 모든 basket의 confirmed 여부가 통일되도록 변경되었다 > 코드 변경 필요
   const userlist = basket.reduce((acc, item) => {
     const existingGroup = acc.find(
       (group) => group.memberEmail === item.memberEmail
@@ -97,7 +96,7 @@ function BasketView(props) {
       if (existingMenu) {
         existingMenu.quantity += item.quantity;
 
-        existingMenu.confirmed = existingMenu.confirmed && item.confirmed;
+        existingMenu.confirmed = item.confirmed;
       } else {
         existingGroup.menulist.push({
           menuName: item.menuName,
@@ -105,12 +104,10 @@ function BasketView(props) {
 
           basketNo: item.basketNo,
           menuPrice: item.menuPrice,
-          confirmed: item.confirmed,
         });
       }
       existingGroup.totalPrice += item.menuPrice * item.quantity;
       existingGroup.basketlist.push(item.basketNo);
-      existingGroup.confirmed = existingGroup.confirmed && item.confirmed;
     } else {
       acc.push({
         memberEmail: item.memberEmail,
@@ -122,7 +119,6 @@ function BasketView(props) {
 
             basketNo: item.basketNo,
             menuPrice: item.menuPrice,
-            confirmed: item.confirmed,
           },
         ],
         confirmed: item.confirmed,
@@ -216,7 +212,6 @@ function BasketView(props) {
               {user.menulist.map((menu, idx) => (
                 <p className="mqp" key={menu.id}>
                   {menu.menuName} {menu.quantity}개
-                  {/* {menu.confirmed ? "" : " <입금확인 전> "} */}
                 </p>
               ))}
 
@@ -229,7 +224,22 @@ function BasketView(props) {
   );
   return (
     <>
-      <Nav title={title} />
+      <div className="navbar">
+        <span
+          class="material-symbols-rounded"
+          onClick={() => (window.location.href = `/menuview/${boardNo}`)}
+          style={{
+            float: "left",
+            marginLeft: "20px",
+            fontWeight: "900",
+            color: "#5a9367",
+          }}
+        >
+          chevron_left
+        </span>
+
+        <h4 style={{ marginRight: "45px" }}>{title}</h4>
+      </div>
       <div className="bvcontainer">
         <div className="bv-header">
           <Stack

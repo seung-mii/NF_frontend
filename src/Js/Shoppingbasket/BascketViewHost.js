@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../../components/Nav";
+import "../../Css/Shoppingbasket/Nav.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
@@ -18,7 +18,6 @@ function BasketViewHost(props) {
   const [res, setRes] = useState({ name: "", id: "" });
   const [orderInfo, setOrderInfo] = useState({});
   const [basket, setBasket] = useState([]);
-  const board_no = 1;
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
@@ -28,44 +27,20 @@ function BasketViewHost(props) {
   const cancleConfirmed = (list) => {
     var baskets = list;
     console.log(baskets);
-    const updatedlist = basket.filter((item) =>
-      baskets.includes(item.basketNo)
-    );
-    console.log(updatedlist);
-    const allConfirmed = updatedlist.every((item) => item.confirmed);
-    //모두 true 일경우 > false로 바꾸면 됨
-    //false가 하나라도 있을 경우 > false만 true로
+
     if (
       window.confirm("해당 사용자의 입금 확인여부를 변경 하시겠습니까?") == true
     ) {
-      if (allConfirmed) {
-        // 모든 데이터의 confirmed이 true인 경우
-        updatedlist.forEach((item) => {
-          call(`/api/basket/completePayment/${item.basketNo}`, "PUT", null)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        });
-      } else {
-        // confirmed이 false인 데이터만 처리
-        const falseConfirmedData = updatedlist.filter(
-          (item) => !item.confirmed
-        );
-
-        falseConfirmedData.forEach((item) => {
-          call(`/api/basket/completePayment/${item.basketNo}`, "PUT", null)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        });
-      }
-      alert("확인여부가 변경 되었습니다.");
+      baskets.forEach((item) => {
+        console.log(item);
+        call(`/api/basket/completePayment/${item}`, "PUT", null)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
     }
   };
   const order = () => {
@@ -150,8 +125,6 @@ function BasketViewHost(props) {
       );
       if (existingMenu) {
         existingMenu.quantity += item.quantity;
-
-        existingMenu.confirmed = existingMenu.confirmed && item.confirmed;
       } else {
         existingGroup.menulist.push({
           menuName: item.menuName,
@@ -159,12 +132,10 @@ function BasketViewHost(props) {
 
           basketNo: item.basketNo,
           menuPrice: item.menuPrice,
-          confirmed: item.confirmed,
         });
       }
       existingGroup.totalPrice += item.menuPrice * item.quantity;
       existingGroup.basketlist.push(item.basketNo);
-      existingGroup.confirmed = existingGroup.confirmed && item.confirmed;
     } else {
       acc.push({
         memberEmail: item.memberEmail,
@@ -176,7 +147,6 @@ function BasketViewHost(props) {
 
             basketNo: item.basketNo,
             menuPrice: item.menuPrice,
-            confirmed: item.confirmed,
           },
         ],
         confirmed: item.confirmed,
@@ -269,7 +239,22 @@ function BasketViewHost(props) {
   );
   return (
     <>
-      <Nav title={title} />
+      <div className="navbar">
+        <span
+          class="material-symbols-rounded"
+          onClick={() => (window.location.href = `/menuview/${boardNo}`)}
+          style={{
+            float: "left",
+            marginLeft: "20px",
+            fontWeight: "900",
+            color: "#5a9367",
+          }}
+        >
+          chevron_left
+        </span>
+
+        <h4 style={{ marginRight: "45px" }}>{title}</h4>
+      </div>
       <div className="bvcontainer">
         <div className="bv-header">
           <Stack

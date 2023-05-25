@@ -87,8 +87,9 @@ function Home() {
   };
 
   const onParticipate = (board_no) => {
-    call(`/api/participation/in/${board_no}`, "GET", null).then((response) => { });
-    window.location.reload();
+    call(`/api/participation/in/${board_no}`, "GET", null).then((response) => { 
+      window.location.reload();
+    });
   }
 
   useEffect(() => {

@@ -254,6 +254,7 @@ function Update() {
             <input
               type="text"
               className="UpdateInput"
+              id="UpdateBankInput"
               name="bank_account_number"
               defaultValue={Member.bank_account_number}
               onKeyPress={(e) => {

@@ -72,16 +72,25 @@
   height: 20px;
 }
 
+#UpdateBankInput {
+  width: 200px;
+  padding-left: 100px;
+}
+
 select {
-  width: 80px;
+  position: absolute;
+  left: 77px;
+  width: 75px;
   height: 30px;
   color: #7CA380;
   font-size: 12px;
   font-weight: 700;
   outline: none;
+  border-style: none;
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
+  background-color: transparent;
 }
 
 .UpdateEdit {

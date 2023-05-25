@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../Css/Shoppingbasket/Nav.css";
 import Stack from "@mui/material/Stack";
+import noodle from "../../Images/김치말이국수.webp";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -102,7 +103,7 @@ function MenuDetail() {
         <div className="md-header">
           <p className="mdtext">「 {resname} 」</p>
 
-          <img className="image" alt={menu.menu_no} src={menu.src} />
+          <img className="image" alt={menu.menu_no} src={noodle} />
           <div className="fnbox">
             <p>{menu.name}</p>
           </div>
@@ -130,9 +131,9 @@ function MenuDetail() {
             justifyContent="center"
             gap={1}
           >
-            <Button variant="contained" className="btt" onClick={insertMenu}>
+            <button variant="contained" className="detail_btt" onClick={insertMenu}>
               {buttonText}
-            </Button>
+            </button>
           </Stack>
         </div>
       </div>

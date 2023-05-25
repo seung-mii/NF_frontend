@@ -26,6 +26,7 @@
 /* 우돌돌피자 */
 .fnbox {
   display: flex;
+  margin: 5px;
   flex-direction: row;
   justify-content: center;
   font-size: 15px;
@@ -54,6 +55,12 @@
   color: white;
   background-color: #7CA380;
   border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+
+.md-header img {
+  object-fit: cover;
 }
 
 /* 하단 컨테이너 */
@@ -64,7 +71,7 @@
 .footer-container .detail_btt {
   width: 60%;
   padding: 10px 15px;
-  margin-top: 2px;
+  margin-top: 15px;
   font-size: 12px;
   font-weight: 700;
   text-align: center;

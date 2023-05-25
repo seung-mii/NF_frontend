@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { signin } from "../../Service/ApiService";
-
+import logo from "../../Images/logo2.png";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "../../Css/Member/Login.css";
 
@@ -36,18 +36,24 @@ function Login() {
 
   return (
     <>
+      <img className="logo" src={logo} alt="Logo"/>
       <div className="LoginMainTitle">로그인</div>
       <form onSubmit={handleSubmit}>
         <div noValidate className="LoginContainer">
-          <input
-            className="LoginEmailInput"
-            placeholder="학교 이메일 주소를 입력하세요."
-            required
-            id="email"
-            label="학교이메일 주소"
-            name="email"
-            autoComplete="email"
-          />
+          <div className="school_email">
+            <input
+              className="LoginEmailInput"
+              placeholder="학교 이메일을 입력하세요."
+              required
+              id="email"
+              label="학교이메일 주소"
+              name="email"
+              autoComplete="email"
+            />
+            <p className="end_email">@kumoh.ac.kr</p>
+          </div>
+        </div>
+        <div noValidate className="LoginContainer">
           <input
             required
             className="LoginPwInput"

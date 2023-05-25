@@ -74,12 +74,15 @@ function BasketViewHost(props) {
   useEffect(() => {
     if (orderInfo.resId) {
       console.log(orderInfo.resId);
-      call(`/api/restaurant/get/${orderInfo.resId}`, "GET", null).then(
-        (response) =>
+      call(`/api/restaurant/get/${orderInfo.resId}`, "GET", null)
+        .then((response) =>
           setRes({
             name: response.data.name,
           })
-      );
+        )
+        .catch((error) => {
+          alert(error.error);
+        });
     }
   }, [orderInfo.resId]);
   useEffect(() => {

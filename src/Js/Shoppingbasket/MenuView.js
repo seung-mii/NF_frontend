@@ -18,19 +18,27 @@ function MenuView() {
   // const board_no = 12;
   const { board_no } = useParams();
   useEffect(() => {
-    call(`/api/board/get/${board_no}`, "GET", null).then((response) =>
-      setRes({
-        id: response.data.restaurant.restaurant_no,
-        name: response.data.restaurant.name,
-      })
-    );
+    call(`/api/board/get/${board_no}`, "GET", null)
+      .then((response) =>
+        setRes({
+          id: response.data.restaurant.restaurant_no,
+          name: response.data.restaurant.name,
+        })
+      )
+      .catch((error) => {
+        alert(error.error);
+      });
   }, []);
   useEffect(() => {
     if (res.id) {
-      call(`/api/menu/restaurant/${res.id}`, "GET", null).then((response) =>
-        // console.log(response)
-        setMenulist(response.data)
-      );
+      call(`/api/menu/restaurant/${res.id}`, "GET", null)
+        .then((response) =>
+          // console.log(response)
+          setMenulist(response.data)
+        )
+        .catch((error) => {
+          alert(error.error);
+        });
     }
   }, [res.id]);
 

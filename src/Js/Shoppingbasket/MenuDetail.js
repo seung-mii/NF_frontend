@@ -18,7 +18,7 @@ function MenuDetail() {
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
   const { boardNo } = useParams();
   //member의 해당 board의 confirmed 여부를 확인하고 confirmed이 true일 경우 버튼을 비활성화한다.
-  const boardno = 1;
+
   useEffect(() => {
     if (menu.menu_no) {
       setTotalCost(menu.price * quantity);
@@ -36,13 +36,17 @@ function MenuDetail() {
     }
   }, [menu.menu_no, quantity, totalCost]);
   useEffect(() => {
-    call(`/api/menu/${foodid}`, "GET", null).then((response) =>
-      setMenu({
-        menu_no: response.data.menu_no,
-        name: response.data.name,
-        price: response.data.price,
-      })
-    );
+    call(`/api/menu/${foodid}`, "GET", null)
+      .then((response) =>
+        setMenu({
+          menu_no: response.data.menu_no,
+          name: response.data.name,
+          price: response.data.price,
+        })
+      )
+      .catch((error) => {
+        alert(error.error);
+      });
   }, []);
   const delFunc = () => {
     if (quantity > 1) {

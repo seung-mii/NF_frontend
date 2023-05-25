@@ -10,11 +10,15 @@ function Basket() {
   const [isHost, setIsHost] = useState(false);
   const { boardNo } = useParams();
   useEffect(() => {
-    call(`/api/board/get/${boardNo}`, "GET", null).then((response) =>
-      setHost({
-        email: response.data.member.email,
-      })
-    );
+    call(`/api/board/get/${boardNo}`, "GET", null)
+      .then((response) =>
+        setHost({
+          email: response.data.member.email,
+        })
+      )
+      .catch((error) => {
+        alert(error.error);
+      });
     var userEmail = AppStorage.getItem("email");
     setUser({ email: userEmail });
   }, []);

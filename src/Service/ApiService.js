@@ -44,10 +44,16 @@ export function call(api, method, request) {
       } else if (error.error == "Member is already participating") {
         alert("이미 참여한 모임입니다.");
         window.location.reload();
-      } else if (error.error == "member does not exist or Member is not logged in" && AppStorage.getItem("email") == "null") {
+      } else if (
+        error.error == "member does not exist or Member is not logged in" &&
+        AppStorage.getItem("email") == "null"
+      ) {
         alert("로그인을 하지 않아 참여할 수 없습니다.");
         window.location.href = "/";
-      } else if (error.error == "member does not exist or Member is not logged in" && AppStorage.getItem("email") != "null") {
+      } else if (
+        error.error == "member does not exist or Member is not logged in" &&
+        AppStorage.getItem("email") != "null"
+      ) {
         alert("학교 인증이 되지 않아 참여할 수 없습니다.");
         window.location.href = "/mypage";
       } else if (error.error == "Not an authenticated member") {
@@ -74,12 +80,52 @@ export function call(api, method, request) {
       } else if (error.error == "패스워드가 틀렸습니다.") {
         alert("비밀번호가 일치하지 않습니다.");
         window.location.reload();
+      } else if (
+        error.error == "해당 게시글에 장바구니가 들어있어 탈퇴할 수 없습니다."
+      ) {
+        alert("해당 게시글에 장바구니가 들어있어 탈퇴할 수 없습니다.");
+        window.location.reload();
       }
 
       // if (error.status === 403) {
       //   window.location.href = "/";
       // }
-      return ;
+      return Promise.reject(error);
+    });
+}
+export function callIMG(api, method, request) {
+  let headers = new Headers({
+    "Content-Type": "image/jpeg",
+  });
+
+  const accessToken = AppStorage.getItem("ACCESS_TOKEN");
+  if (accessToken) {
+    headers.append("Authorization", "Bearer " + accessToken);
+  }
+
+  let options = {
+    headers: headers,
+    url: APL_BASE_URL + api,
+    method: method,
+  };
+
+  if (request) {
+    options.body = JSON.stringify(request);
+  }
+
+  return fetch(options.url, options)
+    .then((response) => {
+      return response;
+    })
+
+    .catch((error) => {
+      console.log("Oops!");
+      console.log(error.error);
+
+      // if (error.status === 403) {
+      //   window.location.href = "/";
+      // }
+      return;
     });
 }
 //회원가입
@@ -87,11 +133,12 @@ export function signup(userDTO) {
   return call("/api/member/join", "POST", userDTO)
     .then((response) => {
       console.log(response);
-      if (response.data) {
+      if (response.result === "fail") {
+        throw new Error("Failed to join");
       }
     })
     .catch((error) => {
-      console.log(error.error);
+      console.log(error);
       return {};
     });
 }

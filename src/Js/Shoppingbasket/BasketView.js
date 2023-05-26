@@ -167,7 +167,7 @@ function BasketView(props) {
                     variant="contained"
                     style={{
                       backgroundColor: "#7CA380",
-                      color: user.confirmed ? "#ff99cc" : "white",
+                      color: user.confirmed ? "red" : "white",
                       lineHeight: "32px",
                       width: 90,
                       padding: 2,
@@ -184,7 +184,7 @@ function BasketView(props) {
                       variant="contained"
                       style={{
                         backgroundColor: "#7CA380",
-                        color: "#ff99cc",
+                        color: "red",
                         lineHeight: "32px",
                         width: 90,
                         padding: 2,
@@ -227,14 +227,13 @@ function BasketView(props) {
     </List>
   );
   return (
-    <>
+    <div className="host">
       <div className="navbar">
         <span
           class="material-symbols-rounded"
           onClick={() => (window.location.href = `/menuview/${boardNo}`)}
           style={{
             float: "left",
-            marginLeft: "20px",
             fontWeight: "900",
             color: "#7CA380",
           }}
@@ -242,8 +241,9 @@ function BasketView(props) {
           chevron_left
         </span>
 
-        <h4 style={{ marginRight: "45px" }}>{title}</h4>
+        <h4>{title}</h4>
       </div>
+
       <div className="bvcontainer">
         <div className="bv-header">
           <Stack
@@ -260,7 +260,7 @@ function BasketView(props) {
             </p>
             <RefreshIcon
               className="bvicon"
-              style={{ color: "#7CA380", fontSize: "17px", marginLeft: "-5px"}}
+              style={{ color: "#7CA380", fontSize: "17px", marginLeft: "-5px" }}
               onClick={() => {
                 window.location.reload();
               }}
@@ -288,7 +288,7 @@ function BasketView(props) {
           </Stack>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

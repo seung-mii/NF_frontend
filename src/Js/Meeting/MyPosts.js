@@ -32,7 +32,7 @@ function MyPosts() {
       setMember(response.data);
       console.log(response.data);
     });
-    call("/api/board/myBoardList", "GET", null)
+    call("/api/board/myParticipationBoardList", "GET", null)
       .then((response) => {
         setMyBoard(response.data);
         setList(response.data);

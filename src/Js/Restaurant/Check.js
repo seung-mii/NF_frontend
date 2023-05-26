@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../Css/Restaurant/Check.css";
 import profile from "../../Images/profile.png";
-import { call } from "../../Service/ApiService";
+import { call, callIMG } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
 
 function Check() {
@@ -25,6 +25,7 @@ function Check() {
   const [westernList, setWesternList] = useState([]);
   const [cafeList, setCafeList] = useState([]);
   const [midnightList, setMidnightList] = useState([]);
+  const [images, setImages] = useState([]);
 
   const allTypeOff = () => {
     setEntireType(false);
@@ -99,59 +100,53 @@ function Check() {
     call("/api/restaurant/getList", "GET", null).then((response) => {
       setEntireList(response.data);
     });
-
-    call("/api/restaurant/getListByCategory?category=한식", "GET", null).then(
-      (response) => {
-        setKoreanList(response.data);
-      }
-    );
-    call("/api/restaurant/getListByCategory?category=분식", "GET", null).then(
-      (response) => {
-        setSchoolList(response.data);
-      }
-    );
-    call("/api/restaurant/getListByCategory?category=중식", "GET", null).then(
-      (response) => {
-        setChineseList(response.data);
-      }
-    );
-    call("/api/restaurant/getListByCategory?category=일식", "GET", null).then(
-      (response) => {
-        setJapaneseList(response.data);
-      }
-    );
-    call("/api/restaurant/getListByCategory?category=양식", "GET", null).then(
-      (response) => {
-        setWesternList(response.data);
-      }
-    );
-    call("/api/restaurant/getListByCategory?category=카페", "GET", null).then(
-      (response) => {
-        setCafeList(response.data);
-      }
-    );
-    call("/api/restaurant/getListByCategory?category=야식", "GET", null).then(
-      (response) => {
-        setMidnightList(response.data);
-      }
-    );
+    // call("/api/restaurant/getListByCategory?category=한식", "GET", null).then( (response) => { setKoreanList(response.data); });
+    // call("/api/restaurant/getListByCategory?category=분식", "GET", null).then( (response) => { setSchoolList(response.data); });
+    // call("/api/restaurant/getListByCategory?category=중식", "GET", null).then( (response) => { setChineseList(response.data); });
+    // call("/api/restaurant/getListByCategory?category=일식", "GET", null).then( (response) => { setJapaneseList(response.data); });
+    // call("/api/restaurant/getListByCategory?category=양식", "GET", null).then( (response) => { setWesternList(response.data); });
+    // call("/api/restaurant/getListByCategory?category=카페", "GET", null).then( (response) => { setCafeList(response.data); });
+    // call("/api/restaurant/getListByCategory?category=야식", "GET", null).then( (response) => { setMidnightList(response.data); });
   }, []);
 
   // console.log(list);
 
-  // useEffect(() => {
-  //   call(`/api/restaurant/getImage/${restaurant_no}`, "GET", null)
-  //     .then((response) =>
-  //       setImge({
-  //         menu_no: response.data.menu_no,
-  //         name: response.data.name,
-  //         price: response.data.price,
-  //       })
-  //     )
-  //     .catch((error) => {
-  //       alert(error.error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    if (list.length > 0) {
+      list.forEach((item) => {
+        const { restaurant_no } = item;
+        callIMG(`/api/restaurant/getImage/${restaurant_no}`, "GET", null)
+          .then((response) => {
+            return response.blob();
+          })
+          .then((blob) => {
+            const imageUrl = URL.createObjectURL(blob);
+            setImages((prevImages) => [
+              ...prevImages,
+              {
+                restaurant_no,
+                image: imageUrl,
+              },
+            ]);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    }
+  }, [list]);
+
+  const ImageComponent = ({ restaurant_no }) => {
+    const imageObj = images.find(
+      (item) => item.restaurant_no === restaurant_no
+    );
+    if (!imageObj) {
+      return <div>Loading image...</div>;
+    }
+    console.log(imageObj.image);
+    return <img src={imageObj.image} alt={`Restaurant ${restaurant_no}`} />;
+  };
+
   return (
     <div className="check">
       <div className="header">
@@ -206,7 +201,8 @@ function Check() {
             id={item.restaurant_no}
             key={item.restaurant_no}
           >
-            <img src={profile} alt="profile" />
+            {/* <img src={profile} alt="profile" /> */}
+            <ImageComponent restaurant_no={item.restaurant_no} />
             <div className="price">
               <div className="name">
                 <h4>{item.name}</h4>

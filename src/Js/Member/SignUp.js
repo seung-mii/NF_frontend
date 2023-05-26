@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { signup } from "../../Service/ApiService";
+import { signup, call } from "../../Service/ApiService";
 import logo from "../../Images/logo2.png";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "../../Css/Member/SignUp.css";
 function SignUp() {
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const [bank, setBank] = useState("");
   const [text, setText] = useState("계정 생성");
 
   const handleChange = (event) => {
     setBank(event.target.value);
   };
-
   const [onlyNumber, setOnlyNumber] = useState([]);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,28 +20,40 @@ function SignUp() {
     const password = data.get("password");
     const moneyBank = data.get("money-bank");
     const moneyAccount = data.get("money-account");
-    signup({
+
+    if (
+      !username ||
+      !email ||
+      !push_email ||
+      !password ||
+      !moneyBank ||
+      !moneyAccount
+    ) {
+      setText("모든 필드를 입력해주세요.");
+      return;
+    }
+    const userDTO = {
       name: username,
       email: email,
       push_email: push_email,
       password: password,
       bank: moneyBank,
       bank_account_number: moneyAccount,
-    })
+    };
+
+    console.log(userDTO);
+    call(`/api/member/join`, "POST", userDTO)
       .then((response) => {
+        console.log(response);
         setText("회원가입이 완료되었습니다!");
         window.location.href = "/";
       })
       .catch((error) => {
-        if (error === "email already exist")
+        console.log(error.error);
+        if (error.error === "email already exist")
           setText("이미 존재하는 이메일 입니다.");
-        else setText(error);
+        else setText(error.error);
       });
-  };
-
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
   };
 
   const handleBankAccountNumberChange = (e) => {
@@ -55,7 +64,7 @@ function SignUp() {
 
   return (
     <>
-      <img className="logo" src={logo} alt="Logo"/>
+      <img className="logo" src={logo} alt="Logo" />
       <div className="SignUpMainTitle">회원가입</div>
       <form noValidate onSubmit={handleSubmit}>
         <div className="SignUpContainer">
@@ -63,12 +72,14 @@ function SignUp() {
             className="SignUpInput"
             placeholder="사용자 이름을 입력하세요."
             name="username"
+            required
           />
           <div className="school_email">
             <input
               className="SignUpInput"
               placeholder="학교 이메일을 입력하세요."
               name="email"
+              required
             />
             <p className="end_email">@kumoh.ac.kr</p>
           </div>
@@ -76,24 +87,21 @@ function SignUp() {
             className="SignUpInput"
             placeholder="푸쉬 이메일을 입력하세요."
             name="push_email"
+            required
           />
-          <div noValidate className="LoginContainer">
-            <input
-              className="SignUpInput"
-              placeholder="비밀번호를 입력하세요."
-              type={passwordVisible ? "text" : "password"}
-              name="password"
-            />
-            <span onClick={togglePasswordVisibility} className="LoginToggle">
-              {passwordVisible ? <Visibility /> : <VisibilityOff />}
-            </span>
-          </div>
+          <input
+            className="SignUpInput"
+            placeholder="비밀번호를 입력하세요."
+            name="password"
+            required
+          />
           <div className="SignUpAccount">
             <select
               className="SignUpSelect"
               id="bank"
               name="money-bank"
               required
+              onChange={handleChange}
             >
               <option value="">은행 선택</option>
               <option value="국민은행">국민은행</option>
@@ -109,11 +117,12 @@ function SignUp() {
               placeholder="계좌번호를 입력하세요."
               onChange={handleBankAccountNumberChange}
               name="money-account"
+              required
             />
           </div>
         </div>
         <button className="SignUpButton" type="submit">
-          회원가입
+          {text}
         </button>
         <div className="login-btn">
           <a href="/" className="yes-account">

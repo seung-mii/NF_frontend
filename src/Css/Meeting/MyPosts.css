@@ -4,11 +4,18 @@ body {
 
 .postheader {
   display: flex;
-  margin: 11px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 3px solid #bcbcbc41;
+  z-index: 9;
+  background-color: white;
 }
 
 .postheader span {
   font-weight: 900;
+  margin-left: 10px;
 }
 
 .postheader .MyPostsBigName {
@@ -16,7 +23,7 @@ body {
   margin-top: 2px;
   text-align: center;
   font-weight: 700;
-  margin-left: 105px;
+  margin-left: 120px;
 }
 
 .MyPostsName {
@@ -26,7 +33,7 @@ body {
 
 .post_profile-container {
   display: flex;
-  margin: 20px 20px 0px 240px;
+  margin: 68px 20px 0px 270px;
 }
 
 .post_profile-container .img {
@@ -49,20 +56,33 @@ body {
   overflow: scroll;
 }
 
+.posts-container span {
+  color: black;
+}
+
+.posts-container .post-title {
+  padding: 3px 0px 0px 5px;
+}
+
+.posts-container .post-place {
+  font-size: 12px;
+  padding: 5.8px 0px 0px 5px;
+}
+
 .posts-container::-webkit-scrollbar {
   display: none;
 }
 
 .post {
-  width: 76%;
-  height: 110px;
+  width: 80%;
+  height: 115px;
   background: #8fbc941e;
   text-align: left;
   font-size: 15px;
   border-radius: 30px;
   margin-top: 20px;
-  padding-top: 25px;
-  padding-left: 32px;
+  padding-top: 18px;
+  padding-left: 25px;
 }
 
 .post:hover {
@@ -110,7 +130,7 @@ body {
 }
 
 .MyPostsButton a {
-  margin-left: 90px;
+  margin-left: 105px;
 }
 
 .no-posts-alert {

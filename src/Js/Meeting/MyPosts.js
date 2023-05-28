@@ -51,7 +51,6 @@ function MyPosts() {
         </span>
         <div className="MyPostsBigName">내가 참여한 게시물</div>
       </div>
-      <hr />
       <div className="post_profile-container">
         <div className="img"></div>
         <div className="mypost-explain">
@@ -69,8 +68,14 @@ function MyPosts() {
             key={item.board_no}
           >
             <div className="post">
-              <div className="post-title">{item.title}</div>
-              <div className="post-place">{item.restaurant.name}</div>
+              <div className="flex">
+                <span class="material-symbols-rounded">list_alt</span>
+                <div className="post-title">{item.title}</div>
+              </div>
+              <div className="flex">
+                <span class="material-symbols-rounded">home</span>
+                <div className="post-place">{item.restaurant.name}</div>
+              </div>
               <div className="MyPostsButton">
                 <a href={`/board/${item.board_no}`} className="MyPostsLink">
                   <button className="MyPostsCancel">이동</button>

@@ -11,9 +11,9 @@
 
 .end_email {
   position: absolute;
-  top: 33px;
+  top: 26px;
   right: 80px;
-  font-size: 15px;
+  font-size: 12px;
   color: #000;
 }
 
@@ -26,7 +26,7 @@
   font-weight: bold;
   text-align: center;
   color: #9ab18a;
-  margin-top: 90px;
+  margin-top: 130px;
   margin-bottom: 20px;
 }
 
@@ -36,16 +36,16 @@
   width: 60%;
   font-size: 12px;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 20px;
   border-radius: 50px;
   margin-left: 54px;
   border: none;
-  padding: 18px 20px 18px 30px;
+  padding: 16px 20px 16px 30px;
 }
 
 .SignUpInputAccount {
-  width: 33%;
-  padding-left: 140px;
+  width: 35%;
+  padding-left: 130px;
 }
 
 .SignUpInput:focus {
@@ -54,11 +54,11 @@
 
 .SignUpSelect {
   position: absolute;
-  top: 2px;
-  left: 20px;
+  top: -9px;
+  left: 15px;
   width: 105px;
   height: 50px;
-  font-size: 15px;
+  font-size: 12px;
   border-radius: 50px;
   margin-left: 54px;
   margin-top: 30px;
@@ -76,12 +76,12 @@
   margin-left: 54px;
   border-radius: 50px;
   border: none;
-  height: 50px;
+  height: 46px;
   background: #9ab18a;
   color: #fff;
   font-weight: 700;
-  font-size: 15px;
-  margin-top: 30px;
+  font-size: 12px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 

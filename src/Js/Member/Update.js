@@ -278,7 +278,7 @@ function Update() {
               className="UpdateEditButton"
               disabled={!isFormValid}
             >
-              회원정보 수정하기
+              수정
             </button>
           </div>
         </div>

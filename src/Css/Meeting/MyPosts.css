@@ -12,21 +12,21 @@ body {
 }
 
 .postheader .MyPostsBigName {
-  color: #7CA380;
+  color: #7ca380;
   margin-top: 2px;
   text-align: center;
   font-weight: 700;
-  margin-left: 135px;
+  margin-left: 105px;
 }
 
 .MyPostsName {
-  color: #7CA380;
+  color: #7ca380;
   font-weight: 700;
 }
 
 .post_profile-container {
   display: flex;
-  margin: 20px 20px 0px 340px;
+  margin: 20px 20px 0px 240px;
 }
 
 .post_profile-container .img {
@@ -34,7 +34,7 @@ body {
   height: 37px;
   margin-bottom: 0px;
   border-radius: 50%;
-  background-color: #7CA380;
+  background-color: #7ca380;
 }
 
 .mypost-explain {
@@ -54,7 +54,7 @@ body {
 }
 
 .post {
-  width: 80%;
+  width: 76%;
   height: 110px;
   background: #8fbc941e;
   text-align: left;
@@ -96,12 +96,12 @@ body {
   height: 30px;
   margin-top: 14px;
   border: none;
-  background: #7CA380;
+  background: #7ca380;
   border-radius: 6px;
   color: #fff;
   font-weight: 900;
   font-size: 12px;
-  margin-right: 12px;
+  margin-right: 10px;
   margin-left: 10px;
 }
 
@@ -110,7 +110,7 @@ body {
 }
 
 .MyPostsButton a {
-  margin-left: 140px;
+  margin-left: 90px;
 }
 
 .no-posts-alert {

@@ -18,7 +18,7 @@
 }
 
 .login-btn {
-  margin: 5px 0px 0px 340px;
+  margin: 5px 0px 0px 280px;
 }
 
 .SignUpMainTitle {
@@ -26,15 +26,15 @@
   font-weight: bold;
   text-align: center;
   color: #9ab18a;
-  margin-top: 160px;
+  margin-top: 90px;
   margin-bottom: 20px;
 }
 
 .SignUpInput,
 .SignUpInputAccount {
   background: #bcbcbc21;
-  width: 66%;
-  font-size: 15px;
+  width: 60%;
+  font-size: 12px;
   justify-content: center;
   margin-top: 30px;
   border-radius: 50px;
@@ -44,7 +44,7 @@
 }
 
 .SignUpInputAccount {
-  width: 42%;
+  width: 33%;
   padding-left: 140px;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .SignUpButton {
-  width: 77%;
+  width: 72.5%;
   margin-left: 54px;
   border-radius: 50px;
   border: none;

@@ -43,8 +43,16 @@ hr {
 
 .home .main {
   width: 100%;
+  height: 545px;
+  overflow: scroll;
+  overflow-x: hidden;
   margin: auto;
+  padding-top: 40px;
   padding-bottom: 90px;
+}
+
+.home .main::-webkit-scrollbar {
+  display: none;
 }
 
 .home .header {
@@ -64,11 +72,17 @@ hr {
 
 .home .type {
   display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 48px;
+  top: 48px;
+  background-color: white;
 }
 
 .home .type p {
   display: flex;
   margin: 5px 8px;
+  padding-top: 8px;
   color: #bcbcbc;
   font-size: 15px;
   font-weight: 900;

@@ -140,10 +140,8 @@ function Make() {
         </div>
         <hr />
         <div className='time'>
-          <div className='timeHeader'>
-            <h4>희망 주문 시간 </h4>
-            <p>24시간 기준으로 작성해주세요. (예. 오후 6시 → 18시)</p>
-          </div>
+          <h4>희망 주문 시간 </h4>
+          <p>24시간 기준으로 작성해주세요. (예. 오후 6시 → 18시)</p>
           <div className='timeItem'>
             <div className='item'>
               <input required type='text' name='year' minLength='4' maxLength='4' value={list.year} onChange={onInputTimeChange}/><p>년</p>

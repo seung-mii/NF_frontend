@@ -59,7 +59,6 @@ function Board() {
             <span class="material-symbols-rounded" id='basket'>shopping_basket</span>
           </Link>
         </div>
-        <hr />
         <div className='main'>
           <div className='board'>
             <div className='user'>

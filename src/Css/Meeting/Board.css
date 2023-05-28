@@ -16,8 +16,8 @@
 }
 
 input {
-  width: 80%;
-  height: 20px;
+  width: 78%;
+  height: 30px;
   font-size: 12px;
   padding: 5px 20px;
   margin: 0px 5px 0px 10px;
@@ -38,13 +38,20 @@ input {
 
 .entire .main {
   width: 100%;
+  padding-top: 45px;
   margin: auto;
 }
 
 .entire .header {
-  margin: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 93vw;
+  padding: 10px 20px 10px 10px;
   font-size: 17px;
   font-weight: 900;
+  background-color: white;
+  border-bottom: 3px solid #bcbcbc41;
+  z-index: 9;
 }
 
 .entire .header span {
@@ -60,7 +67,7 @@ input {
 
 .entire .board,
 .entire .ing {
-  width: 82%;
+  width: 80.5%;
   color: #000000;
   margin: 20px;
   padding: 10px 20px;
@@ -163,7 +170,7 @@ input {
 
 .entire .comment {
   position: relative;
-  padding: 10px;
+  padding: 14px 10px 5px 10px;
   width: 90%;
   margin: auto;
 }
@@ -199,25 +206,27 @@ input {
 
 .input {
   position: fixed;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   padding-top: 10px;
   width: 98%;
-  height: 40px;
+  height: 50px;
   background-color: white;
+  z-index: 9;
 }
 
 .input span {
   color: #7CA380;
+  font-size: 28px;
   font-weight: 700;
   vertical-align: middle;
 }
 
 .input button {
   position: absolute;
-  font-size: 20px;
   color: #7CA380;
   background-color: transparent;
   border: 0px;
+  padding: 5px 0px 0px 2px;
   cursor: pointer;
 }

@@ -31,20 +31,20 @@
   text-align: center;
   color: #9ab18a;
   margin-top: 240px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .LoginEmailInput,
 .LoginPwInput {
   background: #bcbcbc21;
-  width: 60%;
+  width: 62%;
   font-size: 12px;
   justify-content: center;
   margin-top: 20px;
   border-radius: 50px;
   margin-left: 54px;
   border: none;
-  padding: 16px 20px 16px 30px;
+  padding: 12px 20px 12px 25px;
   z-index: 9999;
 }
 

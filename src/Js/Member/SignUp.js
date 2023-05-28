@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { signup, call } from "../../Service/ApiService";
+import React, { useState } from "react";
+import { call } from "../../Service/ApiService";
 import logo from "../../Images/logo2.png";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "../../Css/Member/SignUp.css";
 function SignUp() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [bank, setBank] = useState("");
   const [text, setText] = useState("계정 생성");
 
@@ -56,6 +58,10 @@ function SignUp() {
       });
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+  
   const handleBankAccountNumberChange = (e) => {
     const value = e.target.value;
     const onlyNumbers = value.replace(/[^0-9]/g, "");
@@ -89,12 +95,18 @@ function SignUp() {
             name="push_email"
             required
           />
-          <input
-            className="SignUpInput"
-            placeholder="비밀번호를 입력하세요."
-            name="password"
-            required
-          />
+          <div noValidate className="LoginContainer">
+            <input
+              className="SignUpInput"
+              placeholder="비밀번호를 입력하세요."
+              name="password"
+              type={passwordVisible ? "text" : "password"}
+              required
+            />
+            <span onClick={togglePasswordVisibility} className="LoginToggle">
+              {passwordVisible ? <Visibility /> : <VisibilityOff />}
+            </span>
+          </div>
           <div className="SignUpAccount">
             <select
               className="SignUpSelect"

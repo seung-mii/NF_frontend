@@ -57,7 +57,11 @@ function BasketViewHost(props) {
     const fetchOrderInfo = async () => {
       try {
         const response = await call(`/api/board/get/${boardNo}`, "GET", null);
-        const orderTime = new Date(response.data.order_time);
+        const ot = response.data.order_time;
+        const [, year, month, day, hour, minute] = ot.match(
+          /(\d+)년 (\d+)월 (\d+)일 (\d+):(\d+)/
+        );
+        const orderTime = new Date(year, month - 1, day, hour, minute);
         const resId = response.data.restaurant.restaurant_no;
         const hostEmail = response.data.member.email;
         setOrderInfo({
@@ -277,7 +281,7 @@ function BasketViewHost(props) {
               onClick={() => {
                 window.location.reload();
               }}
-              style={{ color: "#7CA380", fontSize: "17px", marginLeft: "-5px"}}
+              style={{ color: "#7CA380", fontSize: "17px", marginLeft: "-5px" }}
             />
           </Stack>
         </div>

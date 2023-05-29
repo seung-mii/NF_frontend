@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../../Css/Shoppingbasket/Nav.css";
 import Stack from "@mui/material/Stack";
-import noodle from "../../Images/김치말이국수.webp";
+// import noodle from "../../Images/김치말이국수.webp";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useParams } from "react-router-dom";
 import "../../Css/Shoppingbasket/MenuDetail.css";
-import { call } from "../../Service/ApiService";
+import { call, callIMG } from "../../Service/ApiService";
 import * as AppStorage from "../../AppStorage";
 function MenuDetail() {
   const [title, setTitle] = useState("메뉴 조회");
@@ -18,6 +18,7 @@ function MenuDetail() {
   const [totalCost, setTotalCost] = useState(0);
   const [buttonText, setButtonText] = useState(totalCost + "원 담기");
   const { boardNo } = useParams();
+  const [image, setImage] = useState();
   //member의 해당 board의 confirmed 여부를 확인하고 confirmed이 true일 경우 버튼을 비활성화한다.
 
   useEffect(() => {
@@ -49,6 +50,35 @@ function MenuDetail() {
         alert(error.error);
       });
   }, []);
+  useEffect(() => {
+    callIMG(`/api/menu/image/${menu.menu_no}`, "GET", null)
+      .then((response) => {
+        return response.blob();
+      })
+      .then((blob) => {
+        const imageUrl = URL.createObjectURL(blob);
+        setImage({
+          image: imageUrl,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [menu.menu_no]);
+
+  const ImageComponent = () => {
+    if (!image) {
+      return <div>Loading image...</div>;
+    }
+    console.log(image.image);
+    return (
+      <img
+        src={image.image}
+        alt={`Restaurant ${menu.menu_no}`}
+        className="image"
+      />
+    );
+  };
   const delFunc = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -103,7 +133,8 @@ function MenuDetail() {
         <div className="md-header">
           <p className="mdtext">「 {resname} 」</p>
 
-          <img className="image" alt={menu.menu_no} src={noodle} />
+          {/* <img className="image" alt={menu.menu_no} src={menu.src} /> */}
+          <ImageComponent />
           <div className="fnbox">
             <p>{menu.name}</p>
           </div>
@@ -131,7 +162,11 @@ function MenuDetail() {
             justifyContent="center"
             gap={1}
           >
-            <button variant="contained" className="detail_btt" onClick={insertMenu}>
+            <button
+              variant="contained"
+              className="detail_btt"
+              onClick={insertMenu}
+            >
               {buttonText}
             </button>
           </Stack>

@@ -9,14 +9,14 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import "../../Css/Shoppingbasket/MenuView.css";
-import { call } from "../../Service/ApiService";
+import { call, callIMG } from "../../Service/ApiService";
 import { useParams } from "react-router-dom";
 function MenuView() {
   const [title, setTitle] = useState("메뉴 조회");
   const [res, setRes] = useState({ name: "", id: "" });
   const [menulist, setMenulist] = useState([]);
-  // const board_no = 12;
   const { board_no } = useParams();
+  const [images, setImages] = useState([]);
   useEffect(() => {
     call(`/api/board/get/${board_no}`, "GET", null)
       .then((response) =>
@@ -41,7 +41,39 @@ function MenuView() {
         });
     }
   }, [res.id]);
+  useEffect(() => {
+    if (menulist.length > 0) {
+      menulist.forEach((item) => {
+        const { menu_no } = item;
+        callIMG(`/api/menu/image/${menu_no}`, "GET", null)
+          .then((response) => {
+            return response.blob();
+          })
+          .then((blob) => {
+            const imageUrl = URL.createObjectURL(blob);
+            setImages((prevImages) => [
+              ...prevImages,
+              {
+                menu_no,
+                image: imageUrl,
+              },
+            ]);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    }
+  }, [menulist]);
 
+  const ImageComponent = ({ menu_no }) => {
+    const imageObj = images.find((item) => item.menu_no === menu_no);
+    if (!imageObj) {
+      return <div>Loading image...</div>;
+    }
+    console.log(imageObj.image);
+    return <img src={imageObj.image} alt={`Restaurant ${menu_no}`} />;
+  };
   const detailFood = (item) => {
     console.log(item);
     window.location.href = `/menudetail/${board_no}/${res.name}/${item.menu_no}`;
@@ -49,6 +81,7 @@ function MenuView() {
   const basketViewFunc = () => {
     window.location.href = `/basket/${board_no}`;
   };
+
   var menulistitems = menulist.length > 0 && (
     <List className="list">
       {menulist.map((item, idx) => (
@@ -65,12 +98,9 @@ function MenuView() {
           >
             {/* 아바타 */}
             <ListItemAvatar>
-              <Avatar
-                variant="square"
-                alt={item.name}
-                src={item.src}
-                className="avatar"
-              />
+              <Avatar variant="square" className="avatar">
+                <ImageComponent menu_no={item.menu_no} />
+              </Avatar>
             </ListItemAvatar>
             {/* 텍스트 */}
             <ListItemText

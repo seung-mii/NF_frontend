@@ -90,7 +90,7 @@ export function call(api, method, request) {
       // if (error.status === 403) {
       //   window.location.href = "/";
       // }
-      return {};
+      return Promise.reject(error);
     });
 }
 export function callIMG(api, method, request) {

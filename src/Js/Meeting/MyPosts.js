@@ -23,7 +23,7 @@ function MyPosts() {
         alert("참여 취소되었습니다.");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.error);
       });
   };
 

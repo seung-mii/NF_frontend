@@ -23,11 +23,11 @@
 
 ## 4. 사용 기술 및 API
  - CSS
+ - Material-UI
  - React
  - 모피어스 API
-  - Location API
-  - Data API
- - Material-UI
+   - Location API
+   - Data API
 
 <br/>
 
